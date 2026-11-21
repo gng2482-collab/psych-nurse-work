@@ -1,0 +1,2370 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>はじめての夜勤｜精神科ナースのお仕事</title>
+<meta name="description" content="新人看護師のための精神科病棟夜勤巡視トレーニング。暗い病棟を懐中電灯で照らし、観察と判断、当直医へのSBAR報告を練習する。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+/* はじめての夜勤（精神科ナースのお仕事）
+   方針：紙の色の背景と落ち着いた病院の青磁色、夜勤巡視の深い藍色、懐中電灯の温かい光。
+   全画面（html.is-max）で1場面がページ全体をスクロールせずに収まる設計。 */
+:root{
+  --bg:#E8EDEB;--paper:#FFFFFF;--paper-2:#F2F6F4;--paper-3:#E5ECE9;
+  --ink:#141E1C;--ink-2:#3C4A47;--ink-3:#54635F;
+  --line:#CFDAD6;--line-strong:#9EAEA9;
+  --accent:#2744D1;--accent-2:#1E36AE;--accent-soft:#E5EAFB;--on-accent:#FFFFFF;
+  --nurse:#0C766A;--nurse-2:#095B51;--nurse-soft:#DEF3EF;
+  --night:#0D1628;--night-2:#15233D;--night-ink:#EBF2FA;--night-sub:#9CB2CC;
+  --beam:#FFF2B8;--amber:#C67A08;--amber-soft:#FFF3D6;
+  --ok:#127844;--ok-soft:#E0F3E8;--ng:#BF3325;--ng-soft:#FDEAE8;
+  --f-display:"DotGothic16","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic","Meiryo",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --gut-l:max(12px,env(safe-area-inset-left,0px));
+  --gut-r:max(12px,env(safe-area-inset-right,0px));
+  --shadow:0 1px 2px rgba(16,24,22,.06),0 6px 18px rgba(16,24,22,.07);
+  --radius:14px;
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1513;--paper:#17211F;--paper-2:#202D2A;--paper-3:#283734;
+    --ink:#ECF2F0;--ink-2:#C1CECA;--ink-3:#99AAA5;
+    --line:#2D3C39;--line-strong:#4D615B;
+    --accent:#8CA2FF;--accent-2:#A8B8FF;--accent-soft:#1D2754;--on-accent:#0B102E;
+    --nurse:#4FD1C0;--nurse-2:#76E0D2;--nurse-soft:#123833;
+    --amber:#F2B84B;--amber-soft:#382A0E;
+    --ok:#5FD493;--ok-soft:#163322;--ng:#FF8C7E;--ng-soft:#3D1E1B;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 22px rgba(0,0,0,.32);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1513;--paper:#17211F;--paper-2:#202D2A;--paper-3:#283734;
+  --ink:#ECF2F0;--ink-2:#C1CECA;--ink-3:#99AAA5;
+  --line:#2D3C39;--line-strong:#4D615B;
+  --accent:#8CA2FF;--accent-2:#A8B8FF;--accent-soft:#1D2754;--on-accent:#0B102E;
+  --nurse:#4FD1C0;--nurse-2:#76E0D2;--nurse-soft:#123833;
+  --amber:#F2B84B;--amber-soft:#382A0E;
+  --ok:#5FD493;--ok-soft:#163322;--ng:#FF8C7E;--ng-soft:#3D1E1B;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 22px rgba(0,0,0,.32);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--f-body);font-size:15px;line-height:1.65;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;
+}
+button{font:inherit;color:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+[hidden]{display:none!important}
+
+/* ---------- 相互リンク帯 ---------- */
+.sister-bar{
+  background:var(--paper-2);border-bottom:1px solid var(--line);
+  font-size:12.5px;
+}
+.sister-in{
+  max-width:1120px;margin:0 auto;
+  padding:4px var(--gut-r) 4px var(--gut-l);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;
+}
+.sister-link{
+  display:inline-flex;align-items:center;gap:4px;
+  min-height:36px;padding:2px 6px;border-radius:8px;
+  text-decoration:none;font-weight:700;color:var(--accent);
+}
+.sister-link:hover{background:var(--accent-soft)}
+.ward-pill{
+  font-size:11.5px;color:var(--ink-3);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:100%;
+}
+
+/* ---------- 上部バー ---------- */
+.top{
+  position:sticky;top:0;z-index:30;
+  background:var(--bg);border-bottom:1px solid var(--line);
+}
+.top-in{
+  max-width:1120px;margin:0 auto;
+  padding:6px var(--gut-r) 6px var(--gut-l);
+  min-height:56px;display:flex;align-items:center;gap:6px;flex-wrap:nowrap;
+}
+.brand{
+  display:inline-flex;align-items:center;gap:6px;min-height:44px;
+  font-family:var(--f-display);font-size:18px;letter-spacing:.02em;
+  color:var(--ink);text-decoration:none;white-space:nowrap;min-width:0;
+}
+.brand-ic{
+  width:28px;height:28px;border-radius:8px;flex:none;
+  display:grid;place-items:center;background:var(--night);color:var(--beam);
+  font-size:15px;
+}
+.brand b{font-weight:inherit;color:var(--nurse)}
+.top-tools{margin-left:auto;display:flex;align-items:center;gap:6px;flex:none}
+.tbtn{
+  display:inline-flex;align-items:center;justify-content:center;gap:4px;
+  min-height:44px;min-width:44px;padding:0 11px;border-radius:999px;
+  border:1.5px solid var(--line-strong);background:var(--paper);color:var(--ink);
+  font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;
+  touch-action:manipulation;transition:border-color .15s,background .15s,transform .1s;
+}
+.tbtn:hover{border-color:var(--nurse)}
+.tbtn:active{transform:scale(.96)}
+.tbtn[aria-pressed="true"]{background:var(--nurse);border-color:var(--nurse);color:#fff}
+.tbtn-max{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.tbtn-max:hover{background:var(--accent);color:var(--on-accent)}
+.tbtn-icon{width:44px;padding:0}
+@media (max-width:480px){
+  .brand{font-size:15.5px}
+  .tbtn{padding:0 9px;font-size:12px}
+  .lbl-sm{display:none}
+}
+
+/* ---------- メイン領域 ---------- */
+.wrap{
+  max-width:1120px;margin:0 auto;
+  padding:12px var(--gut-r) 24px var(--gut-l);
+}
+
+/* 進捗タイムライン */
+.timeline{
+  display:flex;align-items:center;gap:6px;overflow-x:auto;
+  padding:2px 0 8px;margin-bottom:8px;scrollbar-width:thin;
+}
+.tl-item{
+  flex:none;display:inline-flex;align-items:center;gap:5px;
+  min-height:44px;padding:0 12px;border-radius:999px;
+  border:1.5px solid var(--line);background:var(--paper);
+  font-size:12.5px;font-weight:700;color:var(--ink-2);
+  cursor:pointer;white-space:nowrap;transition:all .15s;
+}
+.tl-item:hover{border-color:var(--nurse)}
+.tl-item.is-now{
+  background:var(--night);border-color:var(--night);color:var(--beam);
+}
+.tl-item.is-done{
+  background:var(--ok-soft);border-color:var(--ok);color:var(--ok);
+}
+.tl-clock{font-family:var(--f-mono);font-size:12px}
+
+/* ---------- ステージと設問の2列レイアウト ---------- */
+.play-grid{
+  display:grid;grid-template-columns:1fr;gap:12px;align-items:start;
+}
+@media (min-width:900px){
+  .play-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:14px}
+}
+
+/* 左ペイン：患者カード＋暗い病棟ステージ */
+.left-pane{display:flex;flex-direction:column;gap:8px;min-width:0}
+
+.chart-strip{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:9px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;
+  box-shadow:var(--shadow);
+}
+.time-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 9px;border-radius:8px;background:var(--night);color:var(--beam);
+  font-family:var(--f-mono);font-size:13px;font-weight:700;
+}
+.place-badge{
+  font-size:12.5px;font-weight:700;color:var(--nurse);
+  background:var(--nurse-soft);padding:3px 9px;border-radius:8px;
+}
+.who-main{font-weight:700;font-size:14.5px;color:var(--ink)}
+.who-dx{font-size:12.5px;color:var(--ink-2)}
+.who-keys{display:flex;flex-wrap:wrap;gap:5px;width:100%}
+.key-chip{
+  font-size:11.5px;padding:2px 8px;border-radius:999px;
+  background:var(--paper-2);border:1px solid var(--line);color:var(--ink-2);
+}
+
+/* 懐中電灯ステージ */
+.stage-card{
+  background:var(--night);border:1.5px solid #243554;border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);position:relative;
+}
+.stage-box{
+  position:relative;width:100%;aspect-ratio:16/9;
+  background:#070d1a;touch-action:none;user-select:none;-webkit-user-select:none;
+  cursor:crosshair;overflow:hidden;
+}
+.stage-box svg{display:block;width:100%;height:100%}
+
+.stage-hud{
+  position:absolute;top:8px;left:8px;right:8px;
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  pointer-events:none;z-index:4;
+}
+.hud-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 10px;border-radius:999px;
+  background:rgba(9,15,28,.82);border:1px solid rgba(255,242,184,.35);
+  color:var(--night-ink);font-size:12px;font-weight:700;
+  backdrop-filter:blur(4px);
+}
+.hud-pill b{color:var(--beam)}
+
+.stage-sub{
+  position:absolute;left:10px;right:10px;bottom:8px;z-index:4;
+  pointer-events:none;display:flex;justify-content:center;
+}
+.sub-chip{
+  background:rgba(8,13,24,.88);border:1px solid rgba(255,242,184,.45);
+  color:#FFF9DE;padding:5px 12px;border-radius:10px;
+  font-size:12.5px;font-weight:700;text-align:center;
+  max-width:100%;box-shadow:0 4px 14px rgba(0,0,0,.4);
+}
+
+.stage-bar{
+  background:var(--night-2);border-top:1px solid #243554;
+  padding:7px 10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+}
+.spot-btn{
+  min-height:44px;padding:0 10px;border-radius:10px;
+  border:1.5px solid #354b75;background:#1a2b49;color:var(--night-ink);
+  font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:5px;touch-action:manipulation;
+  transition:all .15s;
+}
+.spot-btn:hover{border-color:var(--beam)}
+.spot-btn.is-found{background:#183a36;border-color:#4fd1c0;color:#d9fff8}
+.spot-btn.is-light{margin-left:auto;background:#2a2515;border-color:#d4a73b;color:var(--beam)}
+.spot-btn.is-light[aria-pressed="true"]{background:var(--beam);color:#141a26;border-color:var(--beam)}
+
+.look-box{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:9px 12px;font-size:13.5px;color:var(--ink);
+}
+.look-label{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11.5px;font-weight:700;color:var(--amber);
+  background:var(--amber-soft);padding:2px 8px;border-radius:999px;margin-right:6px;
+}
+
+/* 右ペイン：問い・選択肢・SBAR・先輩・試験 */
+.right-pane{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:13px 14px;box-shadow:var(--shadow);min-width:0;
+  display:flex;flex-direction:column;gap:10px;
+}
+.step-tabs{
+  display:flex;gap:5px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:8px;
+}
+.step-tag{
+  font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;
+  background:var(--paper-2);color:var(--ink-3);border:1px solid var(--line);
+}
+.step-tag.is-on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.step-tag.is-done{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+
+.q-title{
+  margin:0;font-family:var(--f-display);font-size:17px;line-height:1.45;color:var(--ink);
+}
+.q-sub{margin:0;font-size:13px;color:var(--ink-2)}
+
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{
+  width:100%;min-height:46px;padding:9px 12px;border-radius:11px;
+  border:1.5px solid var(--line-strong);background:var(--paper-2);
+  color:var(--ink);text-align:left;font-size:14px;line-height:1.45;
+  display:flex;align-items:flex-start;gap:9px;cursor:pointer;
+  touch-action:manipulation;transition:border-color .15s,background .15s,transform .1s;
+}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+.opt:active:not(:disabled){transform:scale(.99)}
+.opt:disabled{cursor:default}
+.opt-num{
+  flex:none;width:24px;height:24px;border-radius:7px;margin-top:1px;
+  background:var(--paper);border:1.5px solid var(--line-strong);
+  display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--ink-2);
+}
+.opt.is-ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.opt.is-ok .opt-num{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-ng{background:var(--ng-soft);border-color:var(--ng);color:var(--ink)}
+.opt.is-ng .opt-num{background:var(--ng);border-color:var(--ng);color:#fff}
+
+/* 解説ボックス */
+.exp{
+  border-radius:12px;padding:10px 12px;border:1.5px solid var(--line);
+  background:var(--paper-2);font-size:13.5px;line-height:1.55;
+}
+.exp.is-ok{border-color:var(--ok);background:var(--ok-soft)}
+.exp.is-ng{border-color:var(--ng);background:var(--ng-soft)}
+.exp-head{font-weight:700;font-size:14px;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.exp-src{margin-top:5px;font-size:11.5px;color:var(--ink-2)}
+
+/* SBAR 組み立て */
+.sbar-intro{font-size:13px;color:var(--ink-2);margin:0}
+.sbar-grid{display:flex;flex-direction:column;gap:8px}
+.sbar-row{
+  border:1.5px solid var(--line);border-radius:11px;padding:8px 10px;
+  background:var(--paper-2);
+}
+.sbar-row.is-ok{border-color:var(--ok);background:var(--ok-soft)}
+.sbar-row.is-ng{border-color:var(--ng);background:var(--ng-soft)}
+.sbar-hd{
+  display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:12.5px;font-weight:700;
+}
+.sbar-letter{
+  width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  background:var(--accent);color:var(--on-accent);font-family:var(--f-mono);font-size:13px;
+}
+.sbar-cards{display:flex;flex-direction:column;gap:5px}
+.sbar-card{
+  width:100%;min-height:44px;padding:7px 10px;border-radius:9px;
+  border:1.5px solid var(--line-strong);background:var(--paper);
+  text-align:left;font-size:13px;line-height:1.4;cursor:pointer;
+  touch-action:manipulation;transition:all .14s;
+}
+.sbar-card:hover:not(:disabled){border-color:var(--accent)}
+.sbar-card.is-sel{border-color:var(--accent);background:var(--accent-soft);font-weight:700}
+.sbar-card.is-ok{border-color:var(--ok);background:var(--ok-soft);font-weight:700}
+.sbar-card.is-ng{border-color:var(--ng);background:var(--ng-soft)}
+.sbar-preview{
+  border-radius:10px;padding:8px 10px;background:var(--night);color:var(--night-ink);
+  font-size:12.5px;line-height:1.5;border:1px solid #2c4066;
+}
+.sbar-preview b{color:var(--beam)}
+
+/* 先輩のひとこと */
+.senpai-box{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 12px;border-radius:12px;
+  background:var(--nurse-soft);border:1.5px solid var(--nurse);
+}
+.senpai-av{width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;background:var(--paper);border:1.5px solid var(--nurse)}
+.senpai-body{min-width:0;font-size:13.5px;line-height:1.5}
+.senpai-name{font-size:11.5px;font-weight:700;color:var(--nurse);margin-bottom:2px}
+
+.exam-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700;
+  background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber);
+}
+
+/* アクションボタン */
+.act-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.btn-primary{
+  flex:1;min-height:46px;padding:0 16px;border-radius:12px;
+  border:none;background:var(--accent);color:var(--on-accent);
+  font-size:14.5px;font-weight:700;cursor:pointer;touch-action:manipulation;
+  transition:background .15s,transform .1s;
+}
+.btn-primary:hover:not(:disabled){background:var(--accent-2)}
+.btn-primary:active:not(:disabled){transform:scale(.98)}
+.btn-primary:disabled{opacity:.48;cursor:not-allowed}
+.btn-ghost{
+  min-height:46px;padding:0 14px;border-radius:12px;
+  border:1.5px solid var(--line-strong);background:var(--paper);color:var(--ink);
+  font-size:13.5px;font-weight:700;cursor:pointer;touch-action:manipulation;
+}
+.btn-ghost:hover{border-color:var(--nurse)}
+
+/* ---------- 振り返り画面 ---------- */
+.summary-card{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);max-width:760px;margin:0 auto;
+  display:flex;flex-direction:column;gap:14px;
+}
+.summary-title{margin:0;font-family:var(--f-display);font-size:22px;color:var(--ink)}
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.score-box{
+  background:var(--paper-2);border:1.5px solid var(--line);border-radius:12px;
+  padding:10px;text-align:center;
+}
+.score-num{font-family:var(--f-display);font-size:22px;color:var(--nurse)}
+.score-lbl{font-size:12px;color:var(--ink-2)}
+.rec-list{display:flex;flex-direction:column;gap:7px}
+.rec-item{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:9px 12px;border-radius:10px;background:var(--paper-2);border:1px solid var(--line);
+  font-size:13.5px;
+}
+
+/* ---------- フッター ---------- */
+.foot{
+  max-width:1120px;margin:0 auto;
+  padding:10px var(--gut-r) 24px var(--gut-l);
+  font-size:12px;color:var(--ink-3);text-align:center;
+  border-top:1px solid var(--line);
+}
+
+/* ---------- SVG アニメーション（なめらかなイージング） ---------- */
+@keyframes chestBreath{
+  0%,100%{transform:translateY(0) scaleY(1)}
+  45%{transform:translateY(-3.2px) scaleY(1.028)}
+}
+@keyframes apneaCycle{
+  0%,16%{transform:translateY(0) scaleY(1)}
+  8%{transform:translateY(-3.5px) scaleY(1.03)}
+  24%{transform:translateY(-2.4px) scaleY(1.02)}
+  34%,100%{transform:translateY(0) scaleY(1)}
+}
+@keyframes snoreWave{
+  0%,32%{opacity:.95;transform:translate(0,0)}
+  16%{opacity:1;transform:translate(3px,-4px)}
+  36%,100%{opacity:0;transform:translate(6px,-6px)}
+}
+@keyframes silentWarn{
+  0%,36%{opacity:0}
+  44%,92%{opacity:1}
+  100%{opacity:0}
+}
+@keyframes sweatSlide{
+  0%{transform:translateY(0);opacity:0}
+  20%{opacity:.95}
+  85%{opacity:.85}
+  100%{transform:translateY(11px);opacity:0}
+}
+@keyframes rigidPulse{
+  0%,100%{opacity:.35;transform:scale(1)}
+  50%{opacity:.85;transform:scale(1.04)}
+}
+@keyframes paceSway{
+  0%,100%{transform:translateX(-14px)}
+  50%{transform:translateX(18px)}
+}
+@keyframes curtainSway{
+  0%,100%{transform:skewX(0deg)}
+  50%{transform:skewX(4deg)}
+}
+@keyframes climbRock{
+  0%,100%{transform:rotate(0deg)}
+  50%{transform:rotate(-3.5deg)}
+}
+@keyframes dripFall{
+  0%{transform:translateY(0);opacity:.9}
+  80%{opacity:.8}
+  100%{transform:translateY(18px);opacity:0}
+}
+@keyframes spotPulse{
+  0%,100%{transform:scale(1);opacity:.78}
+  50%{transform:scale(1.22);opacity:.3}
+}
+
+.anim-breath{transform-origin:330px 230px;animation:chestBreath 3.6s ease-in-out infinite}
+.anim-apnea{transform-origin:330px 230px;animation:apneaCycle 7.2s ease-in-out infinite}
+.anim-snore{animation:snoreWave 7.2s ease-in-out infinite}
+.anim-silent{animation:silentWarn 7.2s ease-in-out infinite}
+.anim-sweat{animation:sweatSlide 2.6s ease-in-out infinite}
+.anim-sweat-2{animation:sweatSlide 2.6s ease-in-out 1.1s infinite}
+.anim-rigid{transform-origin:center;animation:rigidPulse 2.2s ease-in-out infinite}
+.anim-pace{animation:paceSway 6.4s ease-in-out infinite}
+.anim-curtain{transform-origin:520px 60px;animation:curtainSway 4.8s ease-in-out infinite}
+.anim-climb{transform-origin:340px 220px;animation:climbRock 3.2s ease-in-out infinite}
+.anim-drip{animation:dripFall 1.8s ease-in infinite}
+.spot-ring{transform-box:fill-box;transform-origin:center;animation:spotPulse 2.2s ease-in-out infinite}
+
+@media (prefers-reduced-motion:reduce){
+  .anim-breath,.anim-apnea,.anim-snore,.anim-silent,.anim-sweat,.anim-sweat-2,
+  .anim-rigid,.anim-pace,.anim-curtain,.anim-climb,.anim-drip,.spot-ring{
+    animation:none!important;
+  }
+}
+
+/* ---------- 全画面モード（html.is-max） ----------
+   ページ全体のスクロールを禁止し、1場面を画面内に収める。 */
+html.is-max,html.is-max body{
+  height:100dvh;max-height:100dvh;overflow:hidden!important;
+}
+html.is-max .sister-bar,
+html.is-max .foot,
+html.is-max .timeline{
+  display:none!important;
+}
+html.is-max .top{
+  position:static;flex:none;
+}
+html.is-max .top-in{
+  max-width:none;min-height:48px;padding:3px var(--gut-r) 3px var(--gut-l);
+}
+html.is-max .brand{min-height:44px;font-size:16px}
+html.is-max body{
+  display:flex;flex-direction:column;
+}
+html.is-max .wrap{
+  flex:1;min-height:0;max-width:none;width:100%;
+  padding:8px var(--gut-r) 8px var(--gut-l);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+html.is-max #app{
+  flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;
+}
+html.is-max .play-grid{
+  flex:1;min-height:0;display:grid;gap:10px;overflow:hidden;
+}
+html.is-max .left-pane{
+  min-height:0;height:100%;display:flex;flex-direction:column;gap:6px;overflow:hidden;
+}
+html.is-max .chart-strip{
+  flex:none;padding:6px 10px;gap:4px 8px;
+}
+html.is-max .who-keys{gap:4px}
+html.is-max .stage-card{
+  flex:1;min-height:0;display:flex;flex-direction:column;
+}
+html.is-max .stage-box{
+  flex:1;min-height:0;aspect-ratio:auto;
+}
+html.is-max .stage-bar{
+  flex:none;padding:4px 8px;gap:4px;overflow-x:auto;flex-wrap:nowrap;
+}
+html.is-max .spot-btn{min-height:44px;padding:0 8px;font-size:11.5px}
+html.is-max .look-box{
+  flex:none;padding:6px 10px;font-size:12.5px;line-height:1.45;
+  max-height:74px;overflow-y:auto;
+}
+html.is-max .right-pane{
+  min-height:0;height:100%;padding:10px 12px;gap:8px;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+html.is-max .right-scroll{
+  flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
+  padding-right:2px;
+}
+html.is-max .q-title{font-size:15.5px;line-height:1.38}
+html.is-max .opt{min-height:44px;padding:7px 10px;font-size:13px;line-height:1.38}
+html.is-max .exp{padding:8px 10px;font-size:12.5px;line-height:1.45}
+html.is-max .sbar-row{padding:6px 8px}
+html.is-max .sbar-card{min-height:44px;padding:5px 8px;font-size:12px}
+html.is-max .act-row{flex:none;padding-top:4px;border-top:1px solid var(--line)}
+html.is-max .summary-card{
+  flex:1;min-height:0;overflow-y:auto;width:100%;
+}
+
+/* 横長画面（PC・iPad横）：左右2列 */
+@media (min-width:840px){
+  html.is-max .play-grid{
+    grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+    grid-template-rows:minmax(0,1fr);
+    align-items:stretch;
+  }
+}
+
+/* 縦長画面（iPhone・iPad縦）：上コンパクト絵・下スクロール可能設問 */
+@media (max-width:839px){
+  html.is-max .play-grid{
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(180px,40%) minmax(0,60%);
+    gap:6px;
+  }
+  html.is-max .chart-strip{padding:4px 8px;font-size:12px}
+  html.is-max .who-keys{display:none}
+  html.is-max .look-box{display:none}
+  html.is-max .stage-bar{padding:3px 6px}
+  html.is-max .right-pane{padding:8px 10px;gap:6px}
+}
+@media (max-width:480px){
+  html.is-max .play-grid{
+    grid-template-rows:minmax(155px,34%) minmax(0,66%);
+  }
+  html.is-max .hud-pill{font-size:11px;padding:3px 7px}
+  html.is-max .sub-chip{font-size:11px;padding:3px 8px}
+  html.is-max .spot-btn{padding:0 6px;font-size:11px;gap:3px}
+  html.is-max .q-title{font-size:14.5px;line-height:1.35}
+  html.is-max .opts{gap:5px}
+  html.is-max .opt{min-height:44px;padding:5px 9px;font-size:12.5px;line-height:1.32}
+  html.is-max .exp{padding:7px 9px;font-size:12px;line-height:1.4}
+}
+
+</style>
+</head>
+<body>
+<div class="sister-bar">
+  <div class="sister-in">
+    <a class="sister-link" href="https://gng2482-collab.github.io/psycho-games/" target="_blank" rel="noopener">← 精神科試験ゲーム（医師向け）</a>
+    <span class="ward-pill" id="ward-name">架空の第3病棟（急性期・閉鎖・40床）</span>
+  </div>
+</div>
+<header class="top">
+  <div class="top-in">
+    <span class="brand"><span class="brand-ic" aria-hidden="true">🔦</span>はじめての<b>夜勤</b></span>
+    <div class="top-tools">
+      <button type="button" id="soundbtn" class="tbtn" aria-pressed="false">🔇 <span class="lbl-sm">音オフ</span></button>
+      <button type="button" id="themebtn" class="tbtn tbtn-icon" aria-label="画面の明るさを切り替え">☾</button>
+      <button type="button" id="maxbtn" class="tbtn tbtn-max" aria-pressed="false">⛶ <span class="lbl-sm">全画面</span></button>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <nav class="timeline" id="timeline" aria-label="夜勤の巡視時刻"></nav>
+  <div id="app"></div>
+</main>
+<footer class="foot">登場する人物・病院はすべて架空。実際は院内の手順に従う。</footer>
+<script>
+var DATA = {
+  id: 'yakin',
+  title: 'はじめての夜勤',
+  ward: {
+    name: '架空の第3病棟（急性期・閉鎖・40床）',
+    note: '登場する人物・病院はすべて架空。実際の看護は最新の資料を確認し、院内の手順に従う。'
+  },
+  scenes: [
+    {
+      id: 'sleepless',
+      time: '22:00',
+      place: '廊下',
+      who: {
+        name: '秋山さん',
+        age: 45,
+        sex: '男',
+        dx: '統合失調症',
+        key: ['入院3日目', '不眠時の頓服（必要なときに使う薬）の指示あり']
+      },
+      look: '消灯した廊下を往復し、自室のドアの前で足を止める。「気になって眠れません」と話す。',
+      vis: '廊下の光の輪に入ると、歩幅をゆるめて部屋を振り返り、眉が少し寄る様子が見える。声かけ後は、同室の物音を示す字幕と、投薬記録の確認欄を順に出す。',
+      qs: [
+        {
+          q: '消灯後も廊下を歩く秋山さんに、最初にどう関わる？',
+          a: [
+            '何が気になって眠れないか、本人に尋ねる',
+            '入院直後はよくあることと伝えて部屋に戻す',
+            '歩いて疲れれば眠れると伝えて巡視に戻る',
+            '眠れなかった時間を朝の申し送りで確認する'
+          ],
+          why: '本人に聞くと、物音や不安、体のつらさなど、今対応できる原因を探せる。帰室や歩行だけを勧めたり、朝まで聞かずに待ったりすると、困っている理由を見落とす。',
+          src: '国立精神・神経医療研究センター精神保健研究所「不眠症（Insomnia）」 https://www.ncnp.go.jp/nimh/sleep/sleep-medicine/insomnia/index.html'
+        },
+        {
+          q: '同室の物音を調整しても眠れず、本人が頓服を希望した。使う前に何を確認する？',
+          a: [
+            '指示の条件と最終投与時刻、今の眠気やふらつき',
+            '今夜の訴えの回数と、昨夜に眠れた時間の長さ',
+            '入院前の就寝時刻と、明日の病棟での活動予定',
+            '廊下を歩いた時間と、同室者の就寝後の様子'
+          ],
+          why: '使用条件や投与間隔、現在の状態を確認すると、重複投与や転倒の危険を減らせる。睡眠の経過や病棟の様子は参考になるが、それだけでは安全に使えるか判断できない。',
+          src: '国立精神・神経医療研究センター「不眠症（睡眠障害）」 https://kokoro.ncnp.go.jp/disease.php?%40uid=XpsDJBKfyaGD0mIx ／ 投与条件・間隔は個別指示と院内の手順で確認。'
+        }
+      ],
+      sbar: null,
+      senpai: '頓服を使ったら効果とふらつきを見直し、記録しよう。実際は院内の手順に従う。',
+      exam: {
+        q: '不眠時の頓服を使用した後に確認することはどれか。',
+        a: [
+          '眠れたかと、起きたときの眠気やふらつき',
+          '消灯の時刻と、翌日のレクリエーション予定',
+          '翌朝の食事時間と、起床後の飲水希望の有無',
+          '同室の消灯後の様子と、廊下の照明の明るさ'
+        ],
+        why: '眠れたかで薬の効果を、眠気やふらつきで安全に動けるかを確かめる。予定や照明などの情報だけでは、薬を使った後の本人の変化は分からない。',
+        kind: '国試'
+      }
+    },
+    {
+      id: 'breathing',
+      time: '00:00',
+      place: '病室',
+      who: {
+        name: '高瀬さん',
+        age: 78,
+        sex: '男',
+        dx: 'うつ病',
+        key: ['飲み込みにくさがある', '夕食時にむせたと申し送りあり']
+      },
+      look: 'いつも聞こえるいびきが急に止まった。ベッドのそばで呼びかけ、肩を軽くたたいても反応がない。',
+      vis: 'あおむけの胸と腹の規則的な上下が止まる様子を横から見せる。「いびきあり→音が止まる」と字幕で示し、その後にあごが一度しゃくり上がる動きを描く。',
+      qs: [
+        {
+          q: '高瀬さんに反応がない。応援を呼び、院内の緊急連絡とAED（心臓に電気ショックを行う機器）の手配を頼んだ。すぐ何を確認する？',
+          a: [
+            '胸と腹の動きで呼吸を見ながら、脈を確認する',
+            '指の機器に表示される酸素の値が安定するのを待つ',
+            '口元の音をしばらく聞いて、いびきが戻るかを待つ',
+            '夕食の食事記録を先に読み、むせの状況を確認する'
+          ],
+          why: '胸と腹を見て普段どおりの呼吸があるかを確かめ、医療者は脈も同時に確認する。酸素の数値や音、食事の記録を待つと救命処置が遅れる。',
+          src: '消防庁「応急手当WEB講習 普段どおりの呼吸の確認」 https://www.fdma.go.jp/relocation/kyukyukikaku/oukyu/02jokyu/05shinpai/02_05_03.html ／ 米国心臓協会「医療従事者向け成人一次救命処置アルゴリズム（2025）」 https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Algorithms/Algorithm-BLS-Adult-Healthcare-250701.pdf'
+        },
+        {
+          q: 'しゃくり上げるような動きが一度あるだけで、10秒以内に脈を確かめられない。次の行動は？',
+          a: [
+            '胸骨圧迫から心肺蘇生を始め、AEDを待つ',
+            '呼吸の回数を1分間測り、脈を取り直して待つ',
+            '当直医がベッドに到着するまで観察を続ける',
+            '横向きに寝かせて、いびきが戻るかを観察する'
+          ],
+          why: '普段どおりの呼吸がなく脈も確かめられなければ、心停止として胸の中央を押す胸骨圧迫を始める。呼吸の再計測や医師の到着を待ったり、体位を変えて見守ったりすると、処置が遅れる。',
+          src: '米国心臓協会「医療従事者向け成人一次救命処置アルゴリズム（2025）」 https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Algorithms/Algorithm-BLS-Adult-Healthcare-250701.pdf'
+        }
+      ],
+      sbar: null,
+      senpai: '窒息（気道がふさがること）や誤嚥（飲食物などが気道に入ること）もありうるので、救命処置を急ごう。実際は院内の手順に従う。',
+      exam: {
+        q: '反応がない成人で、途切れ途切れにしゃくり上げるような動きがある。この所見はどれか。',
+        a: [
+          '死戦期呼吸で、心停止の直後にもみられる',
+          '深い眠りのときに続く、規則正しい呼吸である',
+          '気道が開いており、十分に換気できている所見である',
+          '呼びかけを理解して、意識が回復し始めた所見である'
+        ],
+        why: '死戦期呼吸は途切れ途切れのあえぎで、心停止直後にも現れる。十分な呼吸や意識の回復と判断すると、救命処置が遅れる。',
+        kind: '国試'
+      }
+    },
+    {
+      id: 'empty-bed',
+      time: '01:00',
+      place: '病室・病棟内',
+      who: {
+        name: '水野さん',
+        age: 36,
+        sex: '女',
+        dx: '双極症',
+        key: ['00:45に看護師が病室で本人を確認', '夕方に「家に帰りたい」と話していた']
+      },
+      look: 'ベッドは空で、上着は椅子の背にある。窓は少し開いているが、本人がどこにいるかは分からない。',
+      vis: '光の輪で、くぼみの残る寝具、椅子の上着、窓のすき間が順に見えるようにする。職員から得た最終確認時刻と、確認済みの場所を見取り図に表示する。',
+      qs: [
+        {
+          q: '水野さんのベッドが空だった。すぐに何をする？',
+          a: [
+            '夜勤の責任者に伝え、分担してトイレなど近くを確認する',
+            'トイレに行ったと考え、廊下の巡視を終えてから戻る',
+            '上着が部屋に残っているので、別の患者の巡視を続ける',
+            '近くは他の職員に任せ、自分は連絡せずに病棟の外へ出る'
+          ],
+          why: '早く共有して分担すれば、近くで体調を崩している可能性にも対応できる。帰室を待つと発見が遅れ、連絡せず病棟を離れると情報と人員の把握が難しくなる。',
+          src: '厚生労働省「記述情報集計結果（患者の離院事例）」 https://www.mhlw.go.jp/topics/bukyoku/isei/i-anzen/1/syukei11/5j.html ／ 確認の順と分担は院内の手順で確認。'
+        },
+        {
+          q: 'トイレと談話室を確認し、別の職員にも尋ねたが所在は分からない。どう伝える？',
+          a: [
+            '最終確認時刻と探した場所を伝え、院内の所在不明時の対応に移る',
+            '窓のすき間を根拠に離院が確定したと伝え、近くの捜索を切り上げる',
+            '帰りたいとの発言から自宅にいると伝え、病棟の確認は中止する',
+            '上着があることから院内にいると伝え、次の巡視まで確認を待つ'
+          ],
+          why: '最後に本人を見た時刻と確認済みの場所を伝えると、次の捜索や連絡を判断できる。窓や持ち物、本人の発言だけから行き先を決めると、別の場所での発見が遅れる。',
+          src: '日本医療機能評価機構「医療事故情報収集等事業 報告事例詳細（離院事例）」 https://www.med-safe.jp/mpreport/view/A347C5E226129442A ／ 連絡先と連絡順は院内の手順で確認。'
+        }
+      ],
+      // 未確認：所在不明時の院内連絡網、病棟外を探す担当者、院外への連絡条件は施設ごとに確認。
+      sbar: null,
+      senpai: '見た事実を時刻と一緒に伝えよう。実際は院内の手順に従う。',
+      exam: {
+        q: '患者の所在が分からないとき、最終確認として報告できるのはどれか。',
+        a: [
+          '00:45に看護師が病室で本人を見た',
+          '01:00にトイレに行った可能性がある',
+          '01:00の時点でも上着が椅子にあった',
+          '夕方に自宅へ帰りたいと話していた'
+        ],
+        why: '時刻と場所を伴って、本人の所在を直接確かめた記録が最終確認となる。推測や持ち物は補足情報で、夕方の発言より後に所在の確認がある。',
+        kind: '認定'
+      }
+    },
+    {
+      id: 'covered',
+      time: '02:00',
+      place: '病室',
+      who: {
+        name: '森川さん',
+        age: 52,
+        sex: '女',
+        dx: 'うつ病',
+        key: ['就寝前に「消えてしまいたい」と話した', '日勤の申し送りで自傷への注意あり']
+      },
+      look: '布団を頭までかぶって横になっている。入口から声をかけても返事がなく、布団越しでは呼吸の動きが分からない。',
+      vis: '厚い布団で顔と胸の動きが隠れている様子を見せる。ベッド脇で呼びかけて顔と胸元を見られたら、開眼と規則的な呼吸を示し、次の問いでは本人の言葉を字幕にする。',
+      qs: [
+        {
+          q: '入口からの声かけに返事がなく、呼吸が見えない。最初にどうする？',
+          a: [
+            '応援を呼び、本人のそばで顔と胸元を見て反応と呼吸を確かめる',
+            '近くの持ち物の確認を先に済ませ、その後に本人の反応をみる',
+            '布団をかぶって眠ったと考え、時間をおいて入口から確認する',
+            '就寝前の記録を先に読み、前の巡視での様子を確かめに戻る'
+          ],
+          why: 'そばで反応と普段どおりの呼吸を確認し、異常があれば緊急対応に移る。持ち物や記録を先に調べたり、寝ていると見込んで待ったりすると、急変に気づくのが遅れる。',
+          src: '消防庁「応急手当WEB講習 普段どおりの呼吸の確認」 https://www.fdma.go.jp/relocation/kyukyukikaku/oukyu/02jokyu/05shinpai/02_05_03.html'
+        },
+        {
+          q: '反応と普段どおりの呼吸があり、「今も死にたい」と話した。次の対応は？',
+          a: [
+            'そばにいて今の気持ちと切迫度を聞き、応援と当直医にすぐ共有する',
+            '話ができているので、危険な持ち物だけを確認して次の巡視に向かう',
+            '今夜は行動しないと約束してもらい、もう一度寝るように促す',
+            '本人が詳しく話すまで判断を保留し、発言だけを朝の申し送りに残す'
+          ],
+          why: '死にたい気持ちが今もあり、すぐ自分を傷つけそうかを直接尋ねて、観察を続けながらチームで対応する。危険になりうる紐状の物やタオルなどの環境確認は応援と分担する。持ち物の確認や約束だけで離れたり、朝まで共有を待ったりすると、切迫した危険に対応できない。',
+          src: '日本精神科救急学会「精神科救急医療ガイドライン2022年度版 第6章 自殺未遂者対応」 https://www.jaep.jp/gl/gl2022_06.pdf ／ 日本医療機能評価機構 認定病院患者安全推進協議会「院内自殺の予防と事後対応」 https://www.psp-jq.jcqhc.or.jp/post/activity/proposal/3192'
+        }
+      ],
+      // 未確認：切迫時の観察の間隔、人員、持ち物の扱いは施設の手順と患者ごとの計画を確認。
+      sbar: {
+        S: [
+          '森川さんが今も死にたいと話しています',
+          '布団をかぶっていたので、今は睡眠中です',
+          '明日、日勤で就寝前の話を聞く予定です',
+          '次の巡視で訪室する時刻を調整しています'
+        ],
+        B: [
+          'うつ病で入院中で、就寝前にも死にたい気持ちを話しています',
+          '今は呼びかけに応じるので、就寝前の話を確認する必要はありません',
+          '布団を頭までかぶっていたので、普段から睡眠中は反応がありません',
+          '夜間に返事がなかったため、以前にも自傷があったと判断しました'
+        ],
+        A: [
+          '反応と普段どおりの呼吸はあり、自傷の危険を急いで評価する必要があります',
+          '呼びかけに返事ができているので、差し迫った自傷の危険は低いと判断します',
+          '呼吸が普段どおりなので、今夜は予定した巡視だけで十分だと判断します',
+          '今は横になっているので、夜間の不眠が主な問題と考えます'
+        ],
+        R: [
+          '今すぐ診察をお願いします。看護師がそばで観察を続けます',
+          '朝の回診で本人の気持ちを確認し、観察方法を決めてください',
+          '次の巡視まで休んでもらい、その時点で必要なら診察をお願いします',
+          '持ち物の確認を済ませるまで、診察の時刻は決めずに待ってください'
+        ],
+        why: '本人の今の言葉から伝え、就寝前の発言と、反応・呼吸を確認済みであることを添える。診察を急いでほしいことと、看護師がそばにいることを伝える。返事があるだけで安全と判断したり、先の巡視まで待ったりすると、危険の評価が遅れる。'
+      },
+      senpai: 'そばにいる担当を決め、連絡役はSBAR（状況・背景・評価・提案）で伝えよう。実際は院内の手順に従う。',
+      exam: {
+        q: '入院中の患者が「今も死にたい」と話したとき、チームにまず共有する情報はどれか。',
+        a: [
+          '本人が話した言葉と時刻、切迫度の評価',
+          '当夜の消灯時刻と、翌朝の配膳の時刻',
+          '布団の様子と、消灯後に廊下で聞こえた物音',
+          '同室者が眠った時刻と、翌日の面会予定'
+        ],
+        why: '本人の言葉、時刻、切迫度の評価は、チームが次の対応と観察を決める材料になる。病棟の日程や周囲の様子だけでは、本人の危険度を判断できない。',
+        kind: '認定'
+      }
+    },
+    {
+      id: 'bed-rail',
+      time: '03:00',
+      place: '病室',
+      who: {
+        name: '小野寺さん',
+        age: 82,
+        sex: '女',
+        dx: 'アルツハイマー型認知症',
+        key: ['夕方は会話が続いていた', '普段は声かけと付き添いでトイレに行ける']
+      },
+      look: 'ベッド柵を握り、片脚を柵の上に上げようとしている。「トイレ」と話すが、問いかけの途中で視線がそれ、会話が続かない。',
+      vis: '柵を握る手に力が入り、寝具の上で重心が柵側に傾く様子を横から見せる。声かけで動きが止まり、介助者がそばについた後に、ベッドの高さと足元の明かりを見せる。',
+      qs: [
+        {
+          q: 'ベッド柵を越えそうな小野寺さんを見つけた。まずどうする？',
+          a: [
+            'そばで短く声をかけ、転落に備えながら応援を求める',
+            'トイレに行きたいようなので、先に通路の明かりをつけに行く',
+            '柵が足りないと考え、別の柵を取りに部屋を出る',
+            '歩行できる人なので、柵の外から降りるよう声だけかける'
+          ],
+          why: '転落が迫っているため、そばにいて安全を確保し、応援を呼ぶ。道具を取りに離れたり、声だけで降りてもらったりすると、足元が不安定なまま動く危険がある。',
+          src: '厚生労働省「医療安全対策 転落」 https://www.mhlw.go.jp/topics/bukyoku/isei/i-anzen/1/torikumi/naiyou/manual/5l.html'
+        },
+        {
+          q: '応援が来てベッド上で安全を確保した。今後の転倒予防と報告はどうする？',
+          a: [
+            '排泄を介助し、ベッドや足元を整え、急な注意力の変化を報告する',
+            '排泄を朝まで見合わせ、柵を増やしていつもの巡視間隔に戻す',
+            '認知症による夜間の混乱と考え、トイレ介助だけをして報告を待つ',
+            '転倒予防として眠くなる薬を先に相談し、注意力の変化は翌朝に伝える'
+          ],
+          why: '付き添いでの排泄や適切な高さ・照明にすると、安全に動きやすくなる。急な注意力の変化はせん妄（急に注意や意識の状態が乱れること）の手がかりで、原因を調べるために報告する。柵を増やしたり薬で眠らせたりする対応だけでは、排泄の必要や急な変化の原因に対応できない。',
+          src: '英国国立医療技術評価機構「せん妄の予防・診断・管理」 https://www.nice.org.uk/guidance/cg103/chapter/Recommendations ／ 山梨大学医学部附属病院「身体的拘束最小化（行動制限も含む）に関する指針」 https://www.hosp.yamanashi.ac.jp/about/8399/'
+        }
+      ],
+      sbar: null,
+      senpai: '落ち着いてからも痛みや発熱、排泄の変化を確かめて伝えよう。実際は院内の手順に従う。',
+      exam: {
+        q: '認知症のある患者で、せん妄を疑う手がかりはどれか。',
+        a: [
+          '今夜になって急に注意がそれ、会話が続かない',
+          '半年前から物忘れが少しずつ増え、予定を忘れる',
+          '入院前から初めての場所ではトイレを尋ねる',
+          '数年前から難しい計算に時間がかかっている'
+        ],
+        why: 'せん妄では短い時間で注意力などが変わり、時間帯によって状態が揺れることがある。数か月から年単位で続く物忘れや、慣れない場所で道を尋ねる行動だけでは、今夜の急な変化を説明できない。',
+        kind: '国試'
+      }
+    },
+    {
+      id: 'water-intoxication',
+      time: '04:00',
+      place: '洗面所前',
+      who: {
+        name: '長谷さん',
+        age: 41,
+        sex: '男',
+        dx: '統合失調症',
+        key: ['水を繰り返し飲むことがある', '昨夜20:00の体重は62.0 kg', '昨夜の血液中のナトリウム（Na）は138 mmol/L']
+      },
+      look: 'トイレと洗面所を何度も往復し、コップを満たして飲む。まぶたが普段よりむくみ、「頭が痛い、気持ち悪い」と話す。',
+      vis: '往復の足取りとコップの水位を見せ、まぶたの腫れぼったさを普段の顔と並べる。場面が進んだら、時刻のついた体重と採血の値を左右に並べる。',
+      qs: [
+        {
+          q: '繰り返し水を飲み、頭痛と吐き気を訴えている。何を優先する？',
+          a: [
+            '意識や呼吸、血圧・脈拍を確認し、応援を呼んで当直医に報告する',
+            '体重の測定とコップの数の集計を済ませ、朝の回診で報告する',
+            '夜間に何回排尿したかだけ聞き取り、いったんベッドに戻ってもらう',
+            '頭痛は不眠の影響と考え、いつもの時刻まで洗面所の利用を見守る'
+          ],
+          why: '水を多く飲んだ後の頭痛や吐き気は、水中毒（水分のとり過ぎで血液中のナトリウムが薄まる状態）の手がかりになる。意識が悪化することがあるので、回数や測定結果をそろえるために報告を遅らせない。',
+          src: '山梨県立北病院「多飲症、水中毒とは何ですか？」 https://www.ych.pref.yamanashi.jp/kitabyo/qa/1308/ ／ 英国内分泌学会「症状を伴う成人の低ナトリウム血症に対する緊急対応」 https://www.endocrinology.org/media/xhrhxhxm/emergency-management-of-severe-and-moderately-severely-symptomatic-hyponatraemia-in-adult-patients-2022.pdf'
+        },
+        {
+          q: '応援と当直医に連絡した。長谷さんが安全に立てる状態で測った体重は64.2 kg。医師の指示で採った血液のNaは124 mmol/Lだった。どう読む？',
+          a: [
+            '短時間の体重増加とNa低下を合わせて、水中毒を疑う',
+            'トイレに何度も行ったので、体の水分は減ったと考える',
+            '前夜のNaは正常だったので、今夜の値は判断に使わない',
+            'まぶたのむくみから、体重の変化は食事の影響と考える'
+          ],
+          why: '短時間で体重が増え、同時にNaが下がったことは、水分が過剰になった手がかりになる。排尿回数やむくみだけで水分の増減や原因は決められず、前夜の正常値は今夜の低値を打ち消さない。',
+          src: '吉川・木下「多飲を呈する統合失調症患者に対する申告飲水の試み」 https://www.jstage.jst.go.jp/article/nccj/2/1/2_8/_article/-char/ja'
+        }
+      ],
+      // 未確認：採血・再測定の流れと飲水の扱いは施設の手順および医師の指示を確認。
+      sbar: {
+        S: [
+          '長谷さんが多量に水を飲み、新たに頭痛と吐き気を訴えています',
+          '長谷さんは夜間のトイレが多く、今は睡眠の相談を希望しています',
+          'まぶたがむくんでいますが、本人から新しい訴えはありません',
+          '洗面所にコップがあり、明日からの定時測定について相談です'
+        ],
+        B: [
+          '以前から水を繰り返し飲み、昨夜20時は62.0 kgで、昨夜のNaは138です',
+          '以前から水を繰り返し飲みますが、体重は毎朝同じと聞いています',
+          '昨夜の体重と採血は確認していませんが、今夜も変わりはないと思います',
+          '前夜のNaが正常だったので、今夜も水分の異常は考えていません'
+        ],
+        A: [
+          '今は64.2 kg、採血のNaは124で、水中毒が疑われます',
+          'トイレの回数が多いので、水分不足で頭痛が出たと考えます',
+          '以前も多飲があったので、体重の変化は様子をみてよいと考えます',
+          'まぶたのむくみだけで、食事の塩分が原因と考えます'
+        ],
+        R: [
+          '今すぐ再評価をお願いします。観察を続けるので、検査と対応の指示をください',
+          '朝の回診まで体重の記録を続けるので、その後に対応の指示をください',
+          'Naは前夜に正常だったので、頭痛への頓服だけを指示してください',
+          'いったん本人に水をとってもらい、頭痛が続く場合に診察をお願いします'
+        ],
+        why: '頭痛と吐き気が出たこと、体重とNaの変化を伝える。初回の連絡は採血を待たず、結果が出たら再度報告し、診察と対応の指示を求める。前夜の値や排尿回数だけで判断すると、今の異常に対応できない。'
+      },
+      senpai: '意識や呼吸が悪化したら、院内の緊急対応をすぐ始めよう。実際は院内の手順に従う。',
+      exam: {
+        q: '多飲がある患者で、水中毒を疑う所見の組み合わせはどれか。',
+        a: [
+          '短時間で体重が増え、血液中のNaが下がる',
+          '短時間で体重が減り、血液中のNaが上がる',
+          '数日かけて体重が減り、血液中のNaは変わらない',
+          '数日かけて体重が増え、血液中のNaも上がる'
+        ],
+        why: '余分な水分が体にたまると体重が増え、血液中のNaが薄まる。体重減少やNa上昇を伴う組み合わせは、この場面でみられた変化と合わない。',
+        kind: '国試'
+      }
+    },
+    {
+      id: 'malignant-syndrome',
+      time: '05:00',
+      place: '病室',
+      who: {
+        name: '榎本さん',
+        age: 33,
+        sex: '男',
+        dx: '統合失調症',
+        key: ['昨日夕方に抗精神病薬を増量', '昨夜22:00は体温36.6 ℃、脈拍78回/分']
+      },
+      look: '寝間着が汗で湿り、首と腕の動きが硬い。呼びかけには答えるが遅い。体温39.1 ℃、脈拍122回/分。',
+      vis: '汗ばんだ額と、体の向きを変えようとしたときに首と腕がこわばって動きにくい様子を描く。続いて、薬を増量した時刻と体温・脈拍の変化を時系列で見せる。',
+      qs: [
+        {
+          q: '体温39.1 ℃で体がこわばり、返事も遅い。抗精神病薬を昨日増量した。何を疑い、どう動く？',
+          a: [
+            '悪性症候群を疑い、応援を呼んで呼吸と循環を見ながら当直医に急報する',
+            '薬で体がこわばったと考え、ベッドで休んでもらい朝の回診を待つ',
+            '発熱は感染症と考え、前夜の体温が記録されているかを先に調べる',
+            '緊張で汗をかいたと考え、寝間着を交換してから落ち着くまで待つ'
+          ],
+          why: '悪性症候群は、抗精神病薬などに関連して発熱や筋肉の強いこわばり、意識の変化を起こす重い副作用なので、疑った時点で急報する。感染症なども含めて早く評価が必要で、休息や着替え、記録の確認だけで様子を見続けると対応が遅れる。',
+          src: '厚生労働省「重篤副作用疾患別対応マニュアル 悪性症候群」 https://www.info.pmda.go.jp/juutoku/file/jfm2203025.pdf'
+        },
+        {
+          q: '応援を呼び、当直医に連絡した。医師が来るまで、応援の看護師と分担して確かめる情報は？',
+          a: [
+            '発症時刻と薬の変更・最終投与、意識や呼吸、血圧・脈拍の変化',
+            '入院前の起床時刻と最近の食事量、過去の面会予定の変更',
+            '同室者の睡眠時間と病室の室温、起床後の病棟の活動予定',
+            '今回の体温の最高値と着替えの回数、朝の検温予定の時刻'
+          ],
+          why: '薬の変更と症状の時間関係、意識・呼吸・循環の変化が、診察の急ぎ方と原因の評価に役立つ。体温だけや病棟の日程では、状態の重さや薬との関係が伝わらない。',
+          src: '厚生労働省「重篤副作用疾患別対応マニュアル 悪性症候群」 https://www.info.pmda.go.jp/juutoku/file/jfm2203025.pdf ／ 米国医療研究品質庁「TeamSTEPPS コミュニケーションツール SBAR」 https://www.ahrq.gov/teamstepps-program/curriculum/communication/tools/sbar.html'
+        }
+      ],
+      sbar: {
+        S: [
+          '榎本さんが39.1 ℃で、体のこわばりと反応の遅さがあります',
+          '榎本さんが朝の着替えを希望し、寝間着が汗で湿っています',
+          '昨夜は平熱で、朝の定時検温の時刻について相談があります',
+          '抗精神病薬を変更したので、日勤で服薬記録の更新をお願いします'
+        ],
+        B: [
+          '昨日夕方に抗精神病薬を増量し、昨夜22時は36.6 ℃、脈拍78回/分でした',
+          '昨夜22時は平熱だったので、薬を変えた時期については確認不要です',
+          '病棟の消灯は昨夜22時で、今朝の着替えはまだ済んでいません',
+          '入院時から同じ薬を使っており、昨日の増量はなかったと思います'
+        ],
+        A: [
+          '発熱、こわばり、発汗と脈拍122回/分があり、悪性症候群を疑います',
+          '問いかけに答えるので、発熱とこわばりは緊急性が低いと考えます',
+          '汗で寝間着がぬれているので、こわばりは寝冷えのためと考えます',
+          '昨夜は平熱だったので、今朝の発熱は再検温だけでよいと考えます'
+        ],
+        R: [
+          '今すぐ診察をお願いします。状態を見続けるので、次の投薬と対応を指示してください',
+          '朝の定時検温で熱が下がらなければ、回診を早めるか指示してください',
+          '寝間着を取り替えて休んでもらうので、投薬は前の指示のまま続けさせてください',
+          '検査で悪性症候群と分かってから連絡するので、それまで診察は保留してください'
+        ],
+        why: '今の状態、薬の変更、悪性症候群を疑う理由、すぐ診察してほしいことの順に伝える。検査を待たず、次回投薬の扱いも確認する。昨夜の平熱や今の返事だけで様子を見続けると、処置が遅れる。'
+      },
+      senpai: '今の症状から伝え、薬を増やした時刻を添えよう。実際は院内の手順に従う。',
+      exam: {
+        q: '抗精神病薬の増量後に、悪性症候群を疑う所見の組み合わせはどれか。',
+        a: [
+          '発熱、強い筋肉のこわばり、反応の遅さ',
+          '口の渇き、便秘、普段どおりの受け答え',
+          '座っていられない足の動き、平熱、意識は明瞭',
+          '立ち上がるときのめまい、血圧低下、平熱'
+        ],
+        why: '発熱、筋肉の強いこわばり、意識の変化がそろうと悪性症候群を疑う。口の渇きや便秘、足の落ち着かなさ、立ち上がったときの血圧低下は、それぞれ別の副作用を考える手がかりになる。',
+        kind: '国試'
+      }
+    },
+    {
+      id: 'handoff',
+      time: '06:00',
+      place: 'ナースステーション',
+      who: {
+        name: '長谷さん',
+        age: 41,
+        sex: '男',
+        dx: '統合失調症',
+        key: ['04:00に多飲後の頭痛・吐き気', '採血のNaは124 mmol/L', '当直医が診察済み', '医師の指示で06:30に再採血予定']
+      },
+      look: '日勤の看護師が来た。長谷さんは05:50には呼びかけに普段どおり答えたが、頭痛は続いていた。06:30の再採血はこれから行う。',
+      vis: '机上で記録の札を「04:00 症状」「05:50 現在の状態」「06:30 再採血予定」と時刻順に並べる。未実施の札は担当欄を空けて見せ、受け手が引き受けたら担当欄を埋める。',
+      qs: [
+        {
+          q: '日勤の看護師に、長谷さんのどの情報を優先して申し送る？',
+          a: [
+            '多飲後の症状とNa、診察後の状態、再採血の時刻と悪化時の連絡',
+            '夜間に廊下で会った全員の時刻と、長谷さんが使ったコップの数',
+            '夜勤中の出来事を最初から順に伝え、再採血の時刻は記録を見てもらう',
+            '医師が診察済みとだけ伝え、頭痛の経過と観察は後から記録に足す'
+          ],
+          why: '直近の状態と検査結果、次にすること、悪化時の対応を伝えると、受け手がすぐに観察を引き継げる。経過を全部並べたり診察済みだけを伝えたりすると、予定と注意点が埋もれる。',
+          src: '米国医療研究品質庁「TeamSTEPPS コミュニケーションツール I-PASS」 https://www.ahrq.gov/teamstepps-program/curriculum/communication/tools/ipass.html'
+        },
+        {
+          q: 'まだ実施していない06:30の再採血について、何をして申し送りを終える？',
+          a: [
+            '担当者を決め、相手に時刻と結果の連絡先を言い返してもらう',
+            '再採血の時刻を口頭で伝え、誰が担当するかはその場で決めない',
+            '予定を記録に入力し、相手がどこまで確認したかは確かめずに終える',
+            '結果が出たら考えればよいと伝え、連絡先は後で取り決める'
+          ],
+          why: '担当、時刻、連絡先を一緒に確かめると、受け手が引き受けた内容を確認できる。口頭や記録で予定を伝えるだけ、または連絡先を後回しにすると、採血や報告が抜けるおそれがある。',
+          src: '米国医療研究品質庁「TeamSTEPPS コミュニケーションの主要概念とツール」 https://www.ahrq.gov/teamstepps-program/curriculum/communication/overview/index.html'
+        }
+      ],
+      sbar: null,
+      senpai: '経過と今の状態を短く伝え、次に誰が何をするかを一緒に確認しよう。実際は院内の手順に従う。',
+      exam: {
+        q: '申し送りを受けた看護師が、つぎの対応を正しく受け取ったことを示す言葉はどれか。',
+        a: [
+          '私が06:30に再採血し、結果を担当医に報告します',
+          '検査の予定は分かりました。必要ならあとで記録を見ます',
+          '診察が済んでいるので、結果が出た後で担当を決めます',
+          '落ち着いているので、再採血の時刻は朝の回診で確認します'
+        ],
+        why: '受け手が自分の担当と時刻、結果の連絡先を具体的に言い返せば、伝えた内容と一致するか確認できる。あいまいな返答や担当の保留は、実施の責任を確かめられない。',
+        kind: '認定'
+      }
+    }
+  ]
+};
+
+</script>
+<script>
+/* はじめての夜勤：画面の動き・懐中電灯巡視・SBAR組み立て・全画面 */
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'nurse-yakin-v1';
+  var D = window.DATA || { id: 'yakin', title: 'はじめての夜勤', ward: { name: '架空の病棟', note: '' }, scenes: [] };
+  var scenes = Array.isArray(D.scenes) ? D.scenes : [];
+
+  /* ---------- 記録（try/catch で包む） ---------- */
+  function loadSave() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function writeSave(patch) {
+    try {
+      var cur = loadSave();
+      for (var k in patch) cur[k] = patch[k];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cur));
+    } catch (e) { /* 保存できない環境でも止めない */ }
+  }
+
+  var saved = loadSave();
+
+  /* ---------- 音（Web Audio・オフ既定） ---------- */
+  var audioCtx = null;
+  function playTone(freq, dur, type, vol) {
+    if (!state.sound) return;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!audioCtx) audioCtx = new AC();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      var o = audioCtx.createOscillator();
+      var g = audioCtx.createGain();
+      o.type = type || 'sine';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(vol || 0.05, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+      o.connect(g);
+      g.connect(audioCtx.destination);
+      o.start();
+      o.stop(audioCtx.currentTime + dur);
+    } catch (e) { /* 無視 */ }
+  }
+  function sfxOk() { playTone(587, 0.12, 'triangle', 0.06); setTimeout(function () { playTone(880, 0.18, 'triangle', 0.06); }, 90); }
+  function sfxNg() { playTone(260, 0.18, 'sine', 0.06); }
+  function sfxSpot() { playTone(720, 0.09, 'sine', 0.04); }
+
+  /* ---------- ユーティリティ ---------- */
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function shuffleIdx(n, seed) {
+    var arr = [];
+    for (var i = 0; i < n; i++) arr.push(i);
+    var x = (seed || 1) * 9301 + 49297;
+    for (var j = n - 1; j > 0; j--) {
+      x = (x * 9301 + 49297) % 233280;
+      var r = Math.floor((x / 233280) * (j + 1));
+      var t = arr[j]; arr[j] = arr[r]; arr[r] = t;
+    }
+    return arr;
+  }
+
+  /* ---------- 場面の種類を判定（8場面すべて対応） ---------- */
+  function detectKind(sc) {
+    var s = ((sc.id || '') + ' ' + (sc.time || '') + ' ' + (sc.place || '') + ' ' + (sc.look || '') + ' ' + (sc.vis || '')).toLowerCase();
+    if (/apnea|snore|いびき|無呼吸|窒息|誤嚥/.test(s)) return 'apnea';
+    if (/nms|fever|悪性症候群|こわばり|筋強剛|39\.|高熱/.test(s)) return 'nms';
+    if (/sleepless|corridor|廊下|不眠|歩き回/.test(s)) return 'sleepless';
+    if (/empty|missing|離院|空っぽ|ベッドが空/.test(s)) return 'empty';
+    if (/blanket|cover|suicide|布団|頭まで|紐|タオル/.test(s)) return 'blanket';
+    if (/fall|rail|climb|せん妄|ベッド柵|乗り越え/.test(s)) return 'fall';
+    if (/water|polydipsia|多飲|水中毒|むくみ|洗面所/.test(s)) return 'water';
+    if (/handoff|morning|申し送り|6:00|06:00/.test(s)) return 'handoff';
+    return 'apnea';
+  }
+
+  /* ---------- 先輩ナースのアイコン（SVG自作・統一画風） ---------- */
+  var SENPAI_SVG =
+    '<svg viewBox="0 0 64 64" aria-hidden="true">' +
+    '<rect width="64" height="64" fill="#DEF3EF"/>' +
+    /* 肩と白衣 */
+    '<path d="M10 64 C11 50 19 45 32 45 C45 45 53 50 54 64 Z" fill="#FFFFFF" stroke="#1E2B2A" stroke-width="2"/>' +
+    '<path d="M24 46 L32 56 L40 46" fill="none" stroke="#0C766A" stroke-width="2.4" stroke-linejoin="round"/>' +
+    /* 首 */
+    '<path d="M27 38 L27 47 C29 49 35 49 37 47 L37 38 Z" fill="#F4CBB2" stroke="#1E2B2A" stroke-width="1.8"/>' +
+    /* 髪（後ろ・まとめ髪） */
+    '<circle cx="48" cy="24" r="7.5" fill="#3B3538" stroke="#1E2B2A" stroke-width="1.8"/>' +
+    '<path d="M16 29 C16 14 23 9 32 9 C41 9 48 14 48 29 C48 34 45 37 43 38 L21 38 C19 37 16 34 16 29 Z" fill="#3B3538" stroke="#1E2B2A" stroke-width="1.8"/>' +
+    /* 顔 */
+    '<path d="M20 24 C20 17 25 14 32 14 C39 14 44 17 44 24 C44 33 39 40 32 40 C25 40 20 33 20 24 Z" fill="#F7D5BE" stroke="#1E2B2A" stroke-width="1.9"/>' +
+    /* 前髪 */
+    '<path d="M19 24 C22 18 27 16 33 17 C37 18 41 19 44 23 C43 15 38 11 32 11 C25 11 20 16 19 24 Z" fill="#3B3538" stroke="#1E2B2A" stroke-width="1.6"/>' +
+    /* 表情（穏やかな笑顔） */
+    '<circle cx="27" cy="26.5" r="1.7" fill="#1E2B2A"/>' +
+    '<circle cx="37" cy="26.5" r="1.7" fill="#1E2B2A"/>' +
+    '<path d="M24.5 23 Q27 21.5 29.5 23 M34.5 23 Q37 21.5 39.5 23" fill="none" stroke="#3B3538" stroke-width="1.4" stroke-linecap="round"/>' +
+    '<path d="M28.5 33 Q32 36 35.5 33" fill="none" stroke="#8C4A3B" stroke-width="1.8" stroke-linecap="round"/>' +
+    '<circle cx="24" cy="30.5" r="2.2" fill="#EFA89B" opacity=".55"/>' +
+    '<circle cx="40" cy="30.5" r="2.2" fill="#EFA89B" opacity=".55"/>' +
+    '</svg>';
+
+  /* ---------- 各場面のイラスト＆観察スポット定義 ---------- */
+  function buildSceneVisual(sc) {
+    var kind = detectKind(sc);
+
+    /* 共通の病室背景（壁・腰板・窓・床・ベッド土台） */
+    function roomBase(opts) {
+      opts = opts || {};
+      var nightWindow = opts.dawn
+        ? '<rect x="442" y="34" width="156" height="122" rx="4" fill="url(#dawnSky)" stroke="#233247" stroke-width="2.2"/>'
+        : '<rect x="442" y="34" width="156" height="122" rx="4" fill="url(#nightSky)" stroke="#233247" stroke-width="2.2"/>' +
+          '<circle cx="558" cy="68" r="13" fill="#EDE8C4" opacity=".88"/>' +
+          '<circle cx="563" cy="64" r="11" fill="#15233D"/>' +
+          '<circle cx="476" cy="60" r="1.5" fill="#DCE8FF" opacity=".7"/>' +
+          '<circle cx="508" cy="52" r="1.3" fill="#DCE8FF" opacity=".6"/>';
+      var curtain = opts.ajar
+        ? '<path class="anim-curtain" d="M442 34 L486 34 L474 156 L442 156 Z" fill="#4E6380" stroke="#1E2B3D" stroke-width="1.8"/>' +
+          '<rect x="524" y="36" width="14" height="118" fill="#0B1324" opacity=".65"/>' +
+          '<path d="M524 36 L524 154" stroke="#9BB4D4" stroke-width="2" stroke-dasharray="4 4"/>'
+        : '<path d="M442 34 L478 34 L472 156 L442 156 Z" fill="#4A5F7A" stroke="#1E2B3D" stroke-width="1.8"/>' +
+          '<path d="M562 34 L598 34 L598 156 L568 156 Z" fill="#4A5F7A" stroke="#1E2B3D" stroke-width="1.8"/>';
+
+      return (
+        /* 壁と腰板 */
+        '<rect x="0" y="0" width="640" height="248" fill="' + (opts.dawn ? '#DDE5EC' : '#CBD6DE') + '"/>' +
+        '<rect x="0" y="176" width="640" height="72" fill="' + (opts.dawn ? '#C5D1DA' : '#B4C2CC') + '"/>' +
+        '<line x1="0" y1="176" x2="640" y2="176" stroke="#899AA8" stroke-width="2"/>' +
+        /* 床 */
+        '<rect x="0" y="248" width="640" height="112" fill="' + (opts.dawn ? '#C2B7A6' : '#A9A091') + '"/>' +
+        '<line x1="0" y1="248" x2="640" y2="248" stroke="#6E7882" stroke-width="2.2"/>' +
+        /* 窓と安全格子 */
+        nightWindow +
+        '<line x1="494" y1="34" x2="494" y2="156" stroke="#31445E" stroke-width="2"/>' +
+        '<line x1="546" y1="34" x2="546" y2="156" stroke="#31445E" stroke-width="2"/>' +
+        '<line x1="442" y1="95" x2="598" y2="95" stroke="#31445E" stroke-width="2"/>' +
+        curtain +
+        /* 壁のネームプレート・ナースコールパネル */
+        '<rect x="52" y="76" width="54" height="32" rx="4" fill="#E9EFEF" stroke="#536570" stroke-width="1.8"/>' +
+        '<circle cx="67" cy="92" r="5" fill="#D9534F" stroke="#222" stroke-width="1.4"/>' +
+        '<rect x="78" y="85" width="20" height="5" rx="2" fill="#8A9CA6"/>' +
+        '<rect x="78" y="94" width="14" height="4" rx="2" fill="#8A9CA6"/>'
+      );
+    }
+
+    /* 共通の病院ベッド（左頭側） */
+    function bedFrame(opts) {
+      opts = opts || {};
+      return (
+        /* 床頭台（サイドテーブル） */
+        '<rect x="30" y="196" width="88" height="114" rx="5" fill="#B99974" stroke="#3A2D20" stroke-width="2.2"/>' +
+        '<rect x="38" y="208" width="72" height="24" rx="3" fill="#CCA982" stroke="#3A2D20" stroke-width="1.6"/>' +
+        '<rect x="64" y="218" width="20" height="4" rx="2" fill="#5A4632"/>' +
+        '<rect x="38" y="240" width="72" height="56" rx="3" fill="#C4A07A" stroke="#3A2D20" stroke-width="1.6"/>' +
+        /* ベッド脚・フレーム */
+        '<rect x="132" y="278" width="14" height="50" rx="3" fill="#5B6975" stroke="#1E2730" stroke-width="2"/>' +
+        '<rect x="504" y="278" width="14" height="50" rx="3" fill="#5B6975" stroke="#1E2730" stroke-width="2"/>' +
+        /* ヘッドボード・フットボード */
+        '<path d="M126 168 Q126 154 140 154 L154 154 Q162 154 162 168 L162 288 L126 288 Z" fill="#7D8D9B" stroke="#1E2730" stroke-width="2.2"/>' +
+        '<path d="M498 188 Q498 178 508 178 L518 178 Q526 178 526 188 L526 288 L498 288 Z" fill="#7D8D9B" stroke="#1E2730" stroke-width="2.2"/>' +
+        /* マットレス */
+        '<rect x="148" y="232" width="356" height="46" rx="10" fill="#F2F5F7" stroke="#24313D" stroke-width="2.2"/>' +
+        '<rect x="148" y="258" width="356" height="20" rx="6" fill="#DCE4EA" stroke="#24313D" stroke-width="2"/>' +
+        /* 枕 */
+        '<path d="M160 228 Q162 204 198 204 Q236 204 238 228 Q238 238 198 238 Q160 238 160 228 Z" fill="#FFFFFF" stroke="#2D3D4A" stroke-width="2"/>' +
+        (opts.rail ? (
+          '<path d="M210 250 L210 198 Q210 190 218 190 L416 190 Q424 190 424 198 L424 250" fill="none" stroke="#6E808F" stroke-width="5.5" stroke-linecap="round"/>' +
+          '<path d="M210 250 L210 198 Q210 190 218 190 L416 190 Q424 190 424 198 L424 250" fill="none" stroke="#C7D3DC" stroke-width="2.4" stroke-linecap="round"/>' +
+          '<line x1="275" y1="192" x2="275" y2="248" stroke="#6E808F" stroke-width="4"/>' +
+          '<line x1="355" y1="192" x2="355" y2="248" stroke="#6E808F" stroke-width="4"/>'
+        ) : '')
+      );
+    }
+
+    if (kind === 'apnea') {
+      return {
+        beamInit: { x: 255, y: 205 },
+        subtitle: '字幕：「ガー……ガー……（急に無音）……」',
+        spots: [
+          { x: 196, y: 162, label: '顔色・口元', detail: '口が少し開き、顔色がやや青白い。いびきが途絶えている。' },
+          { x: 344, y: 184, label: '胸の動き', detail: '掛け布団越しに胸の上下が見えず、呼吸が止まっている疑い。' },
+          { x: 74, y: 166, label: '床頭台', detail: '就寝前の内服コップと入れ歯ケース。眠剤を服用済み。' }
+        ],
+        art:
+          roomBase() +
+          bedFrame() +
+          /* 床頭台：コップ・入れ歯ケース */
+          '<rect x="44" y="174" width="22" height="22" rx="3" fill="#D5EBF5" stroke="#253545" stroke-width="1.8"/>' +
+          '<rect x="47" y="184" width="16" height="10" rx="1" fill="#8CC5E3" opacity=".75"/>' +
+          '<rect x="74" y="180" width="28" height="16" rx="4" fill="#F2F6F8" stroke="#253545" stroke-width="1.8"/>' +
+          '<line x1="74" y1="188" x2="102" y2="188" stroke="#6E8494" stroke-width="1.4"/>' +
+          /* 仰向けの高齢男性（頭・首・肩・胸・腕が自然に連結） */
+          '<g>' +
+            /* 首の自然な接続 */
+            '<path d="M216 214 C226 215 236 213 245 212 L245 232 C234 233 224 232 214 229 Z" fill="#DFC2B0" stroke="#1E2832" stroke-width="2"/>' +
+            /* パジャマの肩・胸元・襟 */
+            '<path d="M236 205 C252 197 284 196 306 204 L306 244 L236 244 Z" fill="#9CB8CE" stroke="#1E2832" stroke-width="2.1"/>' +
+            '<path d="M242 205 L258 219 L246 238" fill="none" stroke="#4D6A82" stroke-width="2" stroke-linejoin="round"/>' +
+            /* 頭部（高齢男性・自然な仰向け横顔） */
+            '<path d="M174 205 C174 185 190 175 209 177 C224 179 234 191 234 206 C234 221 221 230 203 230 C185 230 174 219 174 205 Z" fill="#E6CABB" stroke="#1E2832" stroke-width="2.2"/>' +
+            /* 青白い頬〜顎の影 */
+            '<path d="M180 218 C192 227 216 227 228 215 C222 225 203 229 180 218 Z" fill="#AEBAC9" opacity=".55"/>' +
+            /* 白髪まじりの髪 */
+            '<path d="M173 206 C172 190 183 177 202 175 C193 182 188 193 189 208 C184 215 177 214 173 206 Z" fill="#C6CBD0" stroke="#1E2832" stroke-width="1.9"/>' +
+            /* 耳 */
+            '<path d="M196 207 C192 207 191 216 197 217" fill="#DFC0AE" stroke="#1E2832" stroke-width="1.7"/>' +
+            /* 高齢者の穏やかな皺・閉じた目・開いた口（蒼白リップ） */
+            '<path d="M204 186 Q209 184 214 186" fill="none" stroke="#A68B7C" stroke-width="1.2" stroke-linecap="round"/>' +
+            '<path d="M207 192 Q212 189 218 192" fill="none" stroke="#535D68" stroke-width="1.8" stroke-linecap="round"/>' +
+            '<path d="M209 198 Q213 201 218 198" fill="none" stroke="#1E2832" stroke-width="1.9" stroke-linecap="round"/>' +
+            '<path d="M223 196 L229 203 L223 206" fill="none" stroke="#8C6E60" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '<ellipse cx="222" cy="214" rx="4.2" ry="2.7" fill="#6F7A94" stroke="#1E2832" stroke-width="1.5"/>' +
+          '</g>' +
+          /* 掛け布団（呼吸停止サイクルアニメ） */
+          '<g class="anim-apnea">' +
+            '<path d="M258 205 C298 190 366 192 424 205 C456 212 486 218 498 228 L498 258 L254 258 Z" fill="#DCE8F2" stroke="#1E2832" stroke-width="2.2"/>' +
+            '<path d="M258 205 C270 211 278 228 276 258 L254 258 Z" fill="#BDD2E4" stroke="#1E2832" stroke-width="2"/>' +
+            '<path d="M312 206 Q344 222 384 218 M360 232 Q410 242 462 232" fill="none" stroke="#9EB4C7" stroke-width="1.8" stroke-linecap="round"/>' +
+            /* 肩口から布団の上へ自然に出る腕と手 */
+            '<path d="M254 216 C272 214 306 226 328 236 C334 239 332 248 324 248 L266 239 C256 236 250 226 254 216 Z" fill="#9CB8CE" stroke="#1E2832" stroke-width="2"/>' +
+            '<path d="M326 236 C335 235 344 239 343 245 C342 250 333 250 325 247 Z" fill="#E6CABB" stroke="#1E2832" stroke-width="1.8"/>' +
+          '</g>' +
+          /* いびき波形 → 突然の無音インジケータ */
+          '<g class="anim-snore">' +
+            '<rect x="234" y="128" width="98" height="28" rx="10" fill="#132238" stroke="#9EC5EB" stroke-width="1.6"/>' +
+            '<text x="283" y="147" text-anchor="middle" fill="#E6F2FF" font-size="13" font-weight="700">ガー… ガー…</text>' +
+          '</g>' +
+          '<g class="anim-silent">' +
+            '<rect x="230" y="124" width="146" height="30" rx="10" fill="#3B1618" stroke="#FF8C7E" stroke-width="1.8"/>' +
+            '<text x="303" y="144" text-anchor="middle" fill="#FFD9D4" font-size="13" font-weight="700">……（呼吸が止まった？）</text>' +
+          '</g>'
+      };
+    }
+
+    if (kind === 'nms') {
+      return {
+        beamInit: { x: 255, y: 205 },
+        subtitle: '体温 39.2℃・大量の汗・首と腕のこわばり',
+        spots: [
+          { x: 196, y: 158, label: '額の汗・顔色', detail: '顔が赤く大粒の汗が流れている。声かけへの反応が鈍い。' },
+          { x: 326, y: 186, label: '首と腕のこわばり', detail: '両腕が硬く突っ張った姿勢（筋強剛）。全身に力が入っている。' },
+          { x: 74, y: 162, label: '体温計・薬メモ', detail: '体温計は39.2℃。2日前に抗精神病薬が増量された記録。' }
+        ],
+        art:
+          roomBase() +
+          bedFrame() +
+          /* 床頭台：デジタル体温計（39.2℃）と処方メモ */
+          '<rect x="36" y="176" width="44" height="20" rx="4" fill="#F7FAFC" stroke="#22303D" stroke-width="1.8"/>' +
+          '<rect x="41" y="180" width="34" height="12" rx="2" fill="#3D1818"/>' +
+          '<text x="58" y="189" text-anchor="middle" fill="#FF8C7E" font-size="9" font-weight="700" font-family="monospace">39.2℃</text>' +
+          '<rect x="85" y="170" width="28" height="26" rx="2" fill="#FFF7D6" stroke="#4D4226" stroke-width="1.6"/>' +
+          '<line x1="89" y1="178" x2="108" y2="178" stroke="#BF3325" stroke-width="2.2"/>' +
+          '<line x1="89" y1="184" x2="106" y2="184" stroke="#6E6242" stroke-width="1.5"/>' +
+          '<line x1="89" y1="190" x2="104" y2="190" stroke="#6E6242" stroke-width="1.5"/>' +
+          /* 仰向けの成人男性（発熱・発汗・筋強剛で首と腕がこわばる） */
+          '<g>' +
+            /* 硬直した首（枕からわずかに力が入る） */
+            '<path d="M214 214 L248 210 L248 228 L214 228 Z" fill="#E8AE98" stroke="#1E2832" stroke-width="2"/>' +
+            /* 肩と胸（パジャマに汗じみ） */
+            '<path d="M238 198 C258 190 292 192 316 202 L316 244 L238 244 Z" fill="#89A89C" stroke="#1E2832" stroke-width="2.1"/>' +
+            '<ellipse cx="268" cy="216" rx="14" ry="8" fill="#638075" opacity=".65"/>' +
+            /* 頭部（紅潮した顔） */
+            '<path d="M174 198 C174 178 190 170 208 172 C224 174 234 186 234 202 C234 218 222 227 204 227 C185 227 174 215 174 198 Z" fill="#F2B8A2" stroke="#1E2832" stroke-width="2.2"/>' +
+            /* 紅潮チーク */
+            '<ellipse cx="215" cy="208" rx="8" ry="5" fill="#E06C62" opacity=".48"/>' +
+            /* 黒髪（汗で額に貼り付く） */
+            '<path d="M172 201 C170 181 186 168 209 170 C216 171 221 174 224 178 C214 177 204 179 196 186 C189 192 188 203 188 212 C180 214 174 209 172 201 Z" fill="#2A2D34" stroke="#1E2832" stroke-width="1.9"/>' +
+            /* 耳 */
+            '<path d="M196 202 C192 202 192 211 197 212" fill="#E8AC96" stroke="#1E2832" stroke-width="1.7"/>' +
+            /* 苦悶の眉・半開きの目・食いしばった口 */
+            '<path d="M206 186 L218 190" stroke="#1E2832" stroke-width="2.2" stroke-linecap="round"/>' +
+            '<path d="M208 194 Q213 192 219 195" fill="none" stroke="#1E2832" stroke-width="2"/>' +
+            '<circle cx="213.5" cy="195" r="1.5" fill="#1E2832"/>' +
+            '<path d="M219 211 L226 211" stroke="#7A2D2B" stroke-width="2.2" stroke-linecap="round"/>' +
+            /* 流れ落ちる汗 */
+            '<path class="anim-sweat" d="M203 182 Q206 188 203 191 Q200 188 203 182 Z" fill="#8CD6FF" stroke="#245C82" stroke-width="1.1"/>' +
+            '<path class="anim-sweat-2" d="M196 192 Q199 198 196 201 Q193 198 196 192 Z" fill="#8CD6FF" stroke="#245C82" stroke-width="1.1"/>' +
+          '</g>' +
+          /* 掛け布団（乱れて少しはだけている） */
+          '<path d="M266 208 C312 198 378 198 438 210 C464 215 488 220 498 228 L498 258 L264 258 Z" fill="#D9E5EC" stroke="#1E2832" stroke-width="2.2"/>' +
+          /* 肩から出て硬直・屈曲した腕（鉛管様のこわばり） */
+          '<g>' +
+            '<path d="M256 208 C276 208 292 218 304 232 L338 215 C345 212 350 220 344 226 L306 246 C298 250 290 245 282 236 L252 224 C248 218 250 210 256 208 Z" fill="#89A89C" stroke="#1E2832" stroke-width="2.1"/>' +
+            /* 握りしめた拳 */
+            '<path d="M341 214 C349 210 356 215 355 222 C354 228 346 230 340 226 Z" fill="#F2B8A2" stroke="#1E2832" stroke-width="1.9"/>' +
+            /* こわばり強調の微細な波紋 */
+            '<path class="anim-rigid" d="M294 202 Q308 194 322 202 M344 202 Q358 206 364 218" fill="none" stroke="#FF8C7E" stroke-width="2" stroke-linecap="round"/>' +
+          '</g>' +
+          '<rect x="330" y="132" width="138" height="28" rx="9" fill="#3B1618" stroke="#FF8C7E" stroke-width="1.7"/>' +
+          '<text x="399" y="151" text-anchor="middle" fill="#FFD9D4" font-size="12.5" font-weight="700">39.2℃・発汗・筋強剛</text>'
+      };
+    }
+
+    if (kind === 'sleepless') {
+      return {
+        beamInit: { x: 310, y: 185 },
+        subtitle: '消灯後の廊下：足音が行ったり来たりしている',
+        spots: [
+          { x: 310, y: 150, label: '表情と姿勢', detail: '肩を落とし、額に手を当てて落ち着かない様子。' },
+          { x: 118, y: 168, label: '病室のドア', detail: '201号室のドアが少し開いたままになっている。' },
+          { x: 520, y: 132, label: '廊下の窓', detail: '外は真っ暗。消灯後の22時を過ぎている。' }
+        ],
+        art:
+          /* 廊下の遠近感背景 */
+          '<rect x="0" y="0" width="640" height="248" fill="#C4D0DA"/>' +
+          '<rect x="0" y="170" width="640" height="78" fill="#AEBCC8"/>' +
+          '<rect x="0" y="248" width="640" height="112" fill="#9E978B"/>' +
+          /* 遠くのナースステーションの小さな灯り */
+          '<rect x="266" y="88" width="108" height="160" fill="#98A6B5" stroke="#293645" stroke-width="2"/>' +
+          '<rect x="288" y="114" width="64" height="38" rx="3" fill="#F5E7B8" opacity=".45" stroke="#3B4959" stroke-width="1.8"/>' +
+          /* 左の病室ドア */
+          '<rect x="64" y="68" width="96" height="180" fill="#B59B7C" stroke="#2D241C" stroke-width="2.2"/>' +
+          '<rect x="80" y="90" width="44" height="58" rx="2" fill="#1D2A42" stroke="#2D241C" stroke-width="1.8"/>' +
+          '<circle cx="144" cy="166" r="5" fill="#DCE2E8" stroke="#2D241C" stroke-width="1.6"/>' +
+          /* 右の窓 */
+          '<rect x="466" y="54" width="128" height="118" rx="4" fill="url(#nightSky)" stroke="#233247" stroke-width="2.2"/>' +
+          '<circle cx="554" cy="88" r="12" fill="#EDE8C4" opacity=".85"/>' +
+          '<line x1="530" y1="54" x2="530" y2="172" stroke="#31445E" stroke-width="2"/>' +
+          /* 廊下を歩く成人患者（自然な7頭身前後、肩・腕・脚が連動） */
+          '<g class="anim-pace">' +
+            /* 足元の影 */
+            '<ellipse cx="315" cy="308" rx="34" ry="8" fill="#1E2530" opacity=".32"/>' +
+            /* 脚（パジャマズボン＋スリッパ） */
+            '<path d="M298 228 L292 296 L310 296 L314 234 Z" fill="#6F869E" stroke="#1E2832" stroke-width="2"/>' +
+            '<path d="M316 230 L328 296 L345 294 L331 228 Z" fill="#5D748B" stroke="#1E2832" stroke-width="2"/>' +
+            '<ellipse cx="300" cy="300" rx="13" ry="5.5" fill="#D2DCE4" stroke="#1E2832" stroke-width="1.8"/>' +
+            '<ellipse cx="337" cy="298" rx="13" ry="5.5" fill="#D2DCE4" stroke="#1E2832" stroke-width="1.8"/>' +
+            /* 胴体（パジャマ上衣） */
+            '<path d="M286 156 C288 144 302 140 315 140 C328 140 342 145 344 157 L340 232 L290 232 Z" fill="#8FAAC4" stroke="#1E2832" stroke-width="2.1"/>' +
+            '<line x1="314" y1="146" x2="314" y2="230" stroke="#536C85" stroke-width="1.6"/>' +
+            /* 首 */
+            '<path d="M308 130 L308 144 C312 147 318 147 322 144 L322 130 Z" fill="#EBC5AF" stroke="#1E2832" stroke-width="1.8"/>' +
+            /* 頭・顔 */
+            '<path d="M297 110 C297 96 305 90 315 90 C325 90 333 96 333 110 C333 124 326 134 315 134 C304 134 297 124 297 110 Z" fill="#F0CCB7" stroke="#1E2832" stroke-width="2"/>' +
+            '<path d="M296 108 C295 94 304 86 316 86 C328 86 335 94 334 108 C329 99 321 97 312 97 C305 97 300 101 296 108 Z" fill="#2F333B" stroke="#1E2832" stroke-width="1.8"/>' +
+            '<path d="M306 112 L312 114 M318 114 L324 112" stroke="#1E2832" stroke-width="1.7" stroke-linecap="round"/>' +
+            '<path d="M311 124 Q315 121 319 124" fill="none" stroke="#6E4A3E" stroke-width="1.6" stroke-linecap="round"/>' +
+            /* 左腕（自然におろす） */
+            '<path d="M288 156 L276 206 L288 210 L296 168 Z" fill="#8FAAC4" stroke="#1E2832" stroke-width="2"/>' +
+            '<circle cx="282" cy="212" r="6" fill="#F0CCB7" stroke="#1E2832" stroke-width="1.7"/>' +
+            /* 右腕（曲げて額・こめかみを押さえる） */
+            '<path d="M342 156 L354 186 L334 126 L325 130 L338 182 L332 164 Z" fill="#8FAAC4" stroke="#1E2832" stroke-width="2" stroke-linejoin="round"/>' +
+            '<circle cx="329" cy="122" r="5.5" fill="#F0CCB7" stroke="#1E2832" stroke-width="1.7"/>' +
+          '</g>'
+      };
+    }
+
+    if (kind === 'empty') {
+      return {
+        beamInit: { x: 320, y: 215 },
+        subtitle: 'ベッドが空っぽ・スリッパがない・カーテンが揺れている',
+        spots: [
+          { x: 315, y: 215, label: '空のベッド', detail: '掛け布団が大きくめくられ、枕にくぼみが残っている。' },
+          { x: 260, y: 304, label: 'ベッド下の床', detail: 'いつも揃えてあるスリッパが見当たらない。' },
+          { x: 525, y: 112, label: '窓とカーテン', detail: 'カーテンの隙間からわずかに夜風が入り揺れている。' }
+        ],
+        art:
+          roomBase({ ajar: true }) +
+          bedFrame() +
+          /* めくれた掛け布団（空ベッド） */
+          '<path d="M274 232 C312 198 378 190 432 214 C466 228 486 218 498 232 L498 260 L264 260 Z" fill="#DCE8F2" stroke="#1E2832" stroke-width="2.2"/>' +
+          '<path d="M274 232 C304 222 332 238 358 242 C326 248 294 252 264 260 Z" fill="#B8CEE0" stroke="#1E2832" stroke-width="1.8"/>' +
+          /* 枕のくぼみ */
+          '<path d="M180 218 Q198 226 216 218" fill="none" stroke="#9AAAB8" stroke-width="2" stroke-linecap="round"/>' +
+          /* 空のベッド下（スリッパ跡の点線） */
+          '<ellipse cx="246" cy="306" rx="16" ry="7" fill="none" stroke="#DCE8FF" stroke-width="1.6" stroke-dasharray="4 4" opacity=".7"/>' +
+          '<ellipse cx="284" cy="306" rx="16" ry="7" fill="none" stroke="#DCE8FF" stroke-width="1.6" stroke-dasharray="4 4" opacity=".7"/>'
+      };
+    }
+
+    if (kind === 'blanket') {
+      return {
+        beamInit: { x: 280, y: 205 },
+        subtitle: '頭まで布団をかぶり動かない・枕元にタオルの端',
+        spots: [
+          { x: 245, y: 202, label: '頭までかぶった布団', detail: '顔が見えず、呼びかけへの返事や動きがない。' },
+          { x: 162, y: 224, label: '枕元のタオルの端', detail: '長いタオル状の布の端が布団の隙間から見えている。' },
+          { x: 74, y: 184, label: '床頭台', detail: 'メモ用紙が伏せて置かれている。' }
+        ],
+        art:
+          roomBase() +
+          bedFrame() +
+          '<rect x="48" y="182" width="46" height="14" rx="2" fill="#F2EFE4" stroke="#3A3528" stroke-width="1.6"/>' +
+          /* 枕元からのぞく長いタオルの端 */
+          '<path d="M150 226 C164 218 184 220 198 228 L194 238 C178 232 162 232 146 238 Z" fill="#C97E6B" stroke="#2D1D1A" stroke-width="1.9"/>' +
+          /* 頭まですっぽり覆う布団 */
+          '<path d="M168 222 C180 184 232 178 286 188 C354 192 436 198 498 224 L498 258 L162 258 Z" fill="#CBDCE8" stroke="#1E2832" stroke-width="2.2"/>' +
+          '<path d="M210 196 Q248 214 294 206 M318 214 Q380 232 456 222" fill="none" stroke="#92A8BA" stroke-width="2" stroke-linecap="round"/>'
+      };
+    }
+
+    if (kind === 'fall') {
+      return {
+        beamInit: { x: 335, y: 185 },
+        subtitle: 'ベッド柵に足をかけ、乗り越えようとしている',
+        spots: [
+          { x: 332, y: 136, label: '表情と視線', detail: 'ぼんやりとした表情で「帰らなきゃ」と前かがみになっている。' },
+          { x: 356, y: 214, label: 'ベッド柵と足', detail: '高い柵の上に片脚を掛けており、転落の危険が高い。' },
+          { x: 344, y: 306, label: 'ベッド下の床', detail: '硬い床。転落すると頭部打撲や骨折のおそれがある。' }
+        ],
+        art:
+          roomBase() +
+          bedFrame({ rail: true }) +
+          /* 柵を乗り越えようとする高齢患者 */
+          '<g class="anim-climb">' +
+            /* 胴体（前傾） */
+            '<path d="M300 156 C308 144 332 144 344 156 L354 214 L306 218 Z" fill="#A6B9C9" stroke="#1E2832" stroke-width="2.1"/>' +
+            /* 首と頭 */
+            '<path d="M318 136 L320 149 L333 149 L333 136 Z" fill="#E6C7B5" stroke="#1E2832" stroke-width="1.8"/>' +
+            '<path d="M308 114 C308 98 318 92 329 92 C340 92 349 100 349 114 C349 128 340 138 328 138 C316 138 308 128 308 114 Z" fill="#E9CCB9" stroke="#1E2832" stroke-width="2.1"/>' +
+            '<path d="M306 112 C305 97 316 88 330 88 C341 88 349 95 350 107 C342 100 330 98 319 102 C313 105 310 109 306 112 Z" fill="#CFD4D9" stroke="#1E2832" stroke-width="1.8"/>' +
+            '<circle cx="337" cy="114" r="1.9" fill="#1E2832"/>' +
+            '<path d="M332 126 Q338 123 342 127" fill="none" stroke="#7A5246" stroke-width="1.7"/>' +
+            /* 柵をつかむ腕 */
+            '<path d="M338 162 L372 188 L364 198 L332 174 Z" fill="#A6B9C9" stroke="#1E2832" stroke-width="2"/>' +
+            '<circle cx="372" cy="192" r="6.5" fill="#E9CCB9" stroke="#1E2832" stroke-width="1.8"/>' +
+            /* 柵に掛けた脚 */
+            '<path d="M326 206 L372 188 L382 238 L366 242 L358 206 L326 222 Z" fill="#778FA3" stroke="#1E2832" stroke-width="2" stroke-linejoin="round"/>' +
+          '</g>'
+      };
+    }
+
+    if (kind === 'water') {
+      return {
+        beamInit: { x: 300, y: 185 },
+        subtitle: '洗面所とベッドを往復・空のペットボトルが並ぶ',
+        spots: [
+          { x: 298, y: 126, label: '顔のむくみ', detail: 'まぶたと頬がむくみ、少しぼんやりしている。' },
+          { x: 108, y: 182, label: '大量の空ボトル', detail: '空になった500mLペットボトルが何本も並んでいる。' },
+          { x: 492, y: 196, label: '洗面台', detail: '蛇口から水がしたたり、大きなコップが置かれている。' }
+        ],
+        art:
+          roomBase() +
+          /* 左のサイドテーブルと並ぶペットボトル */
+          '<rect x="36" y="198" width="144" height="108" rx="5" fill="#B99974" stroke="#3A2D20" stroke-width="2.2"/>' +
+          '<g stroke="#284B63" stroke-width="1.6" fill="#CBE7F5">' +
+            '<rect x="50" y="160" width="16" height="38" rx="4"/>' +
+            '<rect x="72" y="160" width="16" height="38" rx="4"/>' +
+            '<rect x="94" y="160" width="16" height="38" rx="4"/>' +
+            '<rect x="116" y="160" width="16" height="38" rx="4"/>' +
+            '<rect x="138" y="164" width="16" height="34" rx="4"/>' +
+          '</g>' +
+          /* 右の洗面台 */
+          '<rect x="446" y="196" width="132" height="34" rx="6" fill="#F0F4F7" stroke="#2D3D4A" stroke-width="2.2"/>' +
+          '<rect x="498" y="230" width="28" height="72" fill="#CBD5DD" stroke="#2D3D4A" stroke-width="2"/>' +
+          '<path d="M512 196 L512 174 Q512 164 500 164 L492 164" fill="none" stroke="#6E808F" stroke-width="5" stroke-linecap="round"/>' +
+          '<circle class="anim-drip" cx="492" cy="172" r="3.5" fill="#70C4F5"/>' +
+          /* 大きなコップを持つ患者（むくみのある顔・自然な立ち姿） */
+          '<g>' +
+            '<path d="M282 224 L276 298 L296 298 L302 232 Z" fill="#6F869E" stroke="#1E2832" stroke-width="2"/>' +
+            '<path d="M304 232 L310 298 L330 298 L322 224 Z" fill="#60768C" stroke="#1E2832" stroke-width="2"/>' +
+            '<path d="M270 154 C274 142 288 138 302 138 C316 138 330 142 334 154 L330 228 L274 228 Z" fill="#9EB5A8" stroke="#1E2832" stroke-width="2.1"/>' +
+            '<path d="M294 128 L294 142 L310 142 L310 128 Z" fill="#EBC5AF" stroke="#1E2832" stroke-width="1.8"/>' +
+            /* やや丸くむくんだ顔輪郭 */
+            '<path d="M280 110 C280 94 290 87 302 87 C314 87 324 94 324 110 C324 125 316 135 302 135 C288 135 280 125 280 110 Z" fill="#F0CEBA" stroke="#1E2832" stroke-width="2"/>' +
+            '<path d="M280 106 C280 91 290 83 302 83 C314 83 324 91 324 106 C318 96 310 94 302 94 C294 94 286 96 280 106 Z" fill="#3B3D42" stroke="#1E2832" stroke-width="1.8"/>' +
+            /* むくんだ目元 */
+            '<path d="M290 111 Q295 109 299 111 M305 111 Q310 109 314 111" fill="none" stroke="#1E2832" stroke-width="1.9" stroke-linecap="round"/>' +
+            '<path d="M289 115 Q295 118 300 115 M304 115 Q310 118 315 115" fill="none" stroke="#C59885" stroke-width="1.4"/>' +
+            /* 大きなマグカップを持つ手 */
+            '<path d="M332 156 L354 188 L340 198 L322 174 Z" fill="#9EB5A8" stroke="#1E2832" stroke-width="2"/>' +
+            '<rect x="346" y="176" width="24" height="28" rx="4" fill="#E6F2FA" stroke="#1E2832" stroke-width="1.9"/>' +
+          '</g>'
+      };
+    }
+
+    /* handoff（6:00 申し送り・夜明けのナースステーション） */
+    return {
+      beamInit: { x: 320, y: 180 },
+      subtitle: '朝6:00 ナースステーション：夜の出来事を短く正確に申し送り',
+      spots: [
+        { x: 215, y: 175, label: '夜勤メモ', detail: '時刻・観察事実・医師への報告と指示を整理してある。' },
+        { x: 430, y: 162, label: '日勤スタッフ', detail: '引き継ぎ事項と朝の注意点をメモしながら聞いている。' },
+        { x: 520, y: 92, label: '夜明けの窓', detail: '長い夜勤の終わり。朝日が病棟に差し込んでいる。' }
+      ],
+      art:
+        roomBase({ dawn: true }) +
+        /* カウンター机 */
+        '<rect x="46" y="226" width="548" height="22" rx="4" fill="#D2C2AA" stroke="#3A3024" stroke-width="2.2"/>' +
+        '<rect x="64" y="248" width="512" height="92" fill="#B8AA96" stroke="#3A3024" stroke-width="2"/>' +
+        /* 新人ナース（左・クリップボードを持つ） */
+        '<g>' +
+          '<path d="M138 226 C142 184 162 172 192 172 C222 172 242 184 246 226 Z" fill="#FFFFFF" stroke="#1E2832" stroke-width="2.2"/>' +
+          '<path d="M174 174 L192 198 L210 174" fill="none" stroke="#0C766A" stroke-width="3"/>' +
+          '<path d="M182 154 L182 174 L202 174 L202 154 Z" fill="#F4CBB2" stroke="#1E2832" stroke-width="1.9"/>' +
+          '<path d="M168 128 C168 110 179 102 192 102 C205 102 216 110 216 128 C216 146 206 158 192 158 C178 158 168 146 168 128 Z" fill="#F7D5BE" stroke="#1E2832" stroke-width="2.1"/>' +
+          '<path d="M166 128 C165 106 178 96 193 96 C208 96 219 106 218 128 C212 115 203 111 190 111 C179 111 171 116 166 128 Z" fill="#323038" stroke="#1E2832" stroke-width="1.9"/>' +
+          '<circle cx="185" cy="131" r="2" fill="#1E2832"/><circle cx="201" cy="131" r="2" fill="#1E2832"/>' +
+          '<path d="M188 144 Q193 147 198 144" fill="none" stroke="#8C4A3B" stroke-width="1.8" stroke-linecap="round"/>' +
+          /* クリップボード */
+          '<rect x="206" y="182" width="54" height="42" rx="4" fill="#8C6A46" stroke="#2D2217" stroke-width="2"/>' +
+          '<rect x="212" y="188" width="42" height="32" fill="#FFFDF5" stroke="#5A4B38" stroke-width="1.2"/>' +
+          '<line x1="218" y1="196" x2="248" y2="196" stroke="#2744D1" stroke-width="2"/>' +
+          '<line x1="218" y1="204" x2="246" y2="204" stroke="#6E7C85" stroke-width="1.6"/>' +
+          '<line x1="218" y1="212" x2="242" y2="212" stroke="#6E7C85" stroke-width="1.6"/>' +
+        '</g>' +
+        /* 日勤・先輩ナース（右） */
+        '<g>' +
+          '<path d="M368 226 C372 184 394 172 424 172 C454 172 474 184 478 226 Z" fill="#EBF5F3" stroke="#1E2832" stroke-width="2.2"/>' +
+          '<path d="M406 174 L424 198 L442 174" fill="none" stroke="#2744D1" stroke-width="3"/>' +
+          '<path d="M414 154 L414 174 L434 174 L434 154 Z" fill="#F2C8AF" stroke="#1E2832" stroke-width="1.9"/>' +
+          '<path d="M400 128 C400 110 411 102 424 102 C437 102 448 110 448 128 C448 146 438 158 424 158 C410 158 400 146 400 128 Z" fill="#F6D4BD" stroke="#1E2832" stroke-width="2.1"/>' +
+          '<path d="M398 128 C397 106 410 96 425 96 C440 96 451 106 450 128 C444 115 435 111 422 111 C411 111 403 116 398 128 Z" fill="#443832" stroke="#1E2832" stroke-width="1.9"/>' +
+          '<circle cx="415" cy="131" r="2" fill="#1E2832"/><circle cx="431" cy="131" r="2" fill="#1E2832"/>' +
+          '<path d="M418 144 Q423 148 428 144" fill="none" stroke="#8C4A3B" stroke-width="1.8" stroke-linecap="round"/>' +
+        '</g>'
+    };
+  }
+
+  /* ---------- アプリ状態 ---------- */
+  var state = {
+    idx: 0,
+    view: 'play', // 'play' | 'summary'
+    sound: !!saved.sound,
+    theme: saved.theme || '',
+    isMax: false,
+    lightAll: false,
+    beam: { x: 255, y: 205 },
+    foundSpots: {},    // { sceneIdx: { spotIdx: true } }
+    activeSpot: null,  // 現在表示中の観察メモ
+    qIndex: 0,
+    qPicked: null,
+    qOrder: [],
+    sbarStep: false,   // SBARフェーズ中か
+    sbarOrder: null,   // { S:[], B:[], A:[], R:[] }
+    sbarPicked: {},    // { S: origIdx, ... }
+    sbarDone: false,
+    wrapStep: false,   // 先輩＆試験おまけフェーズか
+    examOrder: [],
+    examPicked: null,
+    results: {}        // { sceneIdx: { qOk, qTot, sbarOk, examOk } }
+  };
+
+  /* ---------- テーマ適用 ---------- */
+  function applyTheme() {
+    if (state.theme === 'dark' || state.theme === 'light') {
+      document.documentElement.setAttribute('data-theme', state.theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    var btn = document.getElementById('themebtn');
+    if (btn) {
+      var dark = state.theme === 'dark' || (!state.theme && window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches);
+      btn.textContent = dark ? '☀' : '☾';
+      btn.title = dark ? '明るい画面に切り替え' : '暗い画面に切り替え';
+      btn.setAttribute('aria-label', btn.title);
+    }
+  }
+
+  /* ---------- 全画面（⛶ 全画面） ---------- */
+  function syncMaxBtn() {
+    var btn = document.getElementById('maxbtn');
+    if (!btn) return;
+    btn.setAttribute('aria-pressed', state.isMax ? 'true' : 'false');
+    btn.innerHTML = state.isMax ? '✕ <span class="lbl-sm">終了</span>' : '⛶ <span class="lbl-sm">全画面</span>';
+  }
+  function setMax(on) {
+    state.isMax = !!on;
+    document.documentElement.classList.toggle('is-max', state.isMax);
+    syncMaxBtn();
+  }
+  function toggleFullscreen() {
+    var want = !state.isMax;
+    setMax(want);
+    try {
+      var el = document.documentElement;
+      if (want) {
+        if (el.requestFullscreen) el.requestFullscreen().catch(function () {});
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      } else {
+        if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+        else if (document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+    } catch (e) { /* iPhone Safari は class だけで動作 */ }
+  }
+  document.addEventListener('fullscreenchange', function () {
+    if (!document.fullscreenElement && state.isMax) setMax(false);
+  });
+  document.addEventListener('webkitfullscreenchange', function () {
+    if (!document.webkitFullscreenElement && state.isMax) setMax(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && state.isMax) setMax(false);
+  });
+
+  /* ---------- 場面初期化 ---------- */
+  function initScene(i) {
+    state.idx = i;
+    state.view = 'play';
+    state.lightAll = false;
+    state.activeSpot = null;
+    state.qIndex = 0;
+    state.qPicked = null;
+    state.sbarStep = false;
+    state.sbarPicked = {};
+    state.sbarDone = false;
+    state.wrapStep = false;
+    state.examPicked = null;
+
+    var sc = scenes[i];
+    if (!sc) return;
+    var vis = buildSceneVisual(sc);
+    state.beam = { x: vis.beamInit.x, y: vis.beamInit.y };
+
+    var qs = sc.qs || [];
+    state.qOrder = qs.length ? shuffleIdx((qs[0].a || []).length, i * 17 + 3) : [];
+    if (sc.sbar) {
+      state.sbarOrder = {
+        S: shuffleIdx((sc.sbar.S || []).length, i * 31 + 5),
+        B: shuffleIdx((sc.sbar.B || []).length, i * 31 + 11),
+        A: shuffleIdx((sc.sbar.A || []).length, i * 31 + 17),
+        R: shuffleIdx((sc.sbar.R || []).length, i * 31 + 23)
+      };
+    } else {
+      state.sbarOrder = null;
+    }
+    state.examOrder = sc.exam ? shuffleIdx((sc.exam.a || []).length, i * 43 + 7) : [];
+
+    if (!state.results[i]) {
+      state.results[i] = { qOk: 0, qTot: qs.length, sbarOk: null, examOk: null };
+    }
+    render();
+  }
+
+  /* ---------- 懐中電灯の移動（DOM直接更新で滑らかに） ---------- */
+  function updateBeamDOM(vis) {
+    var maskCircle = document.getElementById('beam-hole');
+    var glowCircle = document.getElementById('beam-glow');
+    var ringCircle = document.getElementById('beam-ring');
+    var r = state.lightAll ? 680 : 122;
+    if (maskCircle) {
+      maskCircle.setAttribute('cx', state.beam.x.toFixed(1));
+      maskCircle.setAttribute('cy', state.beam.y.toFixed(1));
+      maskCircle.setAttribute('r', String(r));
+    }
+    if (glowCircle) {
+      glowCircle.setAttribute('cx', state.beam.x.toFixed(1));
+      glowCircle.setAttribute('cy', state.beam.y.toFixed(1));
+      glowCircle.setAttribute('r', state.lightAll ? '0' : '128');
+    }
+    if (ringCircle) {
+      ringCircle.setAttribute('cx', state.beam.x.toFixed(1));
+      ringCircle.setAttribute('cy', state.beam.y.toFixed(1));
+      ringCircle.setAttribute('opacity', state.lightAll ? '0' : '0.45');
+    }
+    /* スポット発見判定 */
+    if (!vis || !vis.spots) return;
+    if (!state.foundSpots[state.idx]) state.foundSpots[state.idx] = {};
+    var changed = false;
+    for (var s = 0; s < vis.spots.length; s++) {
+      var sp = vis.spots[s];
+      var dx = state.beam.x - sp.x;
+      var dy = state.beam.y - sp.y;
+      if (Math.sqrt(dx * dx + dy * dy) < 76) {
+        if (!state.foundSpots[state.idx][s]) {
+          state.foundSpots[state.idx][s] = true;
+          state.activeSpot = sp;
+          changed = true;
+          sfxSpot();
+        }
+      }
+    }
+    if (changed) updateSpotChipsDOM(vis);
+  }
+
+  function updateSpotChipsDOM(vis) {
+    var foundMap = state.foundSpots[state.idx] || {};
+    var cnt = 0;
+    vis.spots.forEach(function (sp, s) {
+      if (foundMap[s]) cnt++;
+      var b = document.getElementById('spot-btn-' + s);
+      if (b) b.classList.toggle('is-found', !!foundMap[s]);
+    });
+    var hud = document.getElementById('hud-found');
+    if (hud) hud.innerHTML = '🔦 観察 <b>' + cnt + '/' + vis.spots.length + '</b>';
+    var sub = document.getElementById('stage-sub-txt');
+    if (sub && state.activeSpot) {
+      sub.textContent = '【' + state.activeSpot.label + '】' + state.activeSpot.detail;
+    }
+  }
+
+  /* ---------- タイムライン描画 ---------- */
+  function renderTimeline() {
+    var el = document.getElementById('timeline');
+    if (!el) return;
+    var cleared = saved.cleared || {};
+    el.innerHTML = scenes.map(function (sc, i) {
+      var done = !!cleared[sc.id] || (state.results[i] && state.results[i].done);
+      var cls = 'tl-item' + (state.view === 'play' && i === state.idx ? ' is-now' : done ? ' is-done' : '');
+      return '<button type="button" class="' + cls + '" data-jump="' + i + '">' +
+        '<span class="tl-clock">' + esc(sc.time || ('#' + (i + 1))) + '</span>' +
+        '<span>' + esc(sc.place || '') + '</span>' +
+        (done ? ' ✓' : '') +
+        '</button>';
+    }).join('');
+    el.querySelectorAll('[data-jump]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        initScene(Number(b.getAttribute('data-jump')));
+      });
+    });
+  }
+
+  /* ---------- ステージ描画 ---------- */
+  function renderStageHTML(sc, vis) {
+    var foundMap = state.foundSpots[state.idx] || {};
+    var foundCount = Object.keys(foundMap).length;
+    var r = state.lightAll ? 680 : 122;
+    var subText = state.activeSpot
+      ? '【' + state.activeSpot.label + '】' + state.activeSpot.detail
+      : vis.subtitle;
+
+    var spotMarks = vis.spots.map(function (sp, s) {
+      var found = !!foundMap[s];
+      return '<g class="spot-pin" data-spot="' + s + '" style="cursor:pointer">' +
+        '<circle class="spot-ring" cx="' + sp.x + '" cy="' + sp.y + '" r="12" fill="none" stroke="' + (found ? '#4FD1C0' : '#FFE48A') + '" stroke-width="1.8"/>' +
+        '<circle cx="' + sp.x + '" cy="' + sp.y + '" r="4.5" fill="' + (found ? '#4FD1C0' : '#FFF2B8') + '" stroke="#0D1628" stroke-width="1.6"/>' +
+        '</g>';
+    }).join('');
+
+    var spotBtns = vis.spots.map(function (sp, s) {
+      var found = !!foundMap[s];
+      return '<button type="button" id="spot-btn-' + s + '" class="spot-btn' + (found ? ' is-found' : '') + '" data-focus-spot="' + s + '">' +
+        (found ? '✓ ' : '🔦 ') + esc(sp.label) + '</button>';
+    }).join('');
+
+    return (
+      '<div class="stage-card">' +
+        '<div class="stage-box" id="stage-box" aria-label="暗い病室の巡視画面。指やマウスで懐中電灯を動かせます">' +
+          '<div class="stage-hud">' +
+            '<span class="hud-pill" id="hud-found">🔦 観察 <b>' + foundCount + '/' + vis.spots.length + '</b></span>' +
+            '<span class="hud-pill">指・マウスで照らす</span>' +
+          '</div>' +
+          '<svg id="ward-svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + esc(sc.vis || sc.look || '') + '">' +
+            '<defs>' +
+              '<linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">' +
+                '<stop offset="0%" stop-color="#0C172B"/><stop offset="100%" stop-color="#1C3152"/>' +
+              '</linearGradient>' +
+              '<linearGradient id="dawnSky" x1="0" y1="0" x2="0" y2="1">' +
+                '<stop offset="0%" stop-color="#5B78A8"/><stop offset="65%" stop-color="#D9A882"/><stop offset="100%" stop-color="#F6D8AE"/>' +
+              '</linearGradient>' +
+              '<radialGradient id="beamFade" cx="50%" cy="50%" r="50%">' +
+                '<stop offset="0%" stop-color="#000000" stop-opacity="1"/>' +
+                '<stop offset="68%" stop-color="#000000" stop-opacity="0.96"/>' +
+                '<stop offset="100%" stop-color="#000000" stop-opacity="0"/>' +
+              '</radialGradient>' +
+              '<radialGradient id="beamGlow" cx="50%" cy="50%" r="50%">' +
+                '<stop offset="0%" stop-color="#FFF5C4" stop-opacity="0.22"/>' +
+                '<stop offset="65%" stop-color="#FFF2B8" stop-opacity="0.08"/>' +
+                '<stop offset="100%" stop-color="#FFF2B8" stop-opacity="0"/>' +
+              '</radialGradient>' +
+              '<mask id="beamMask">' +
+                '<rect x="0" y="0" width="640" height="360" fill="#FFFFFF"/>' +
+                '<circle id="beam-hole" cx="' + state.beam.x + '" cy="' + state.beam.y + '" r="' + r + '" fill="url(#beamFade)"/>' +
+              '</mask>' +
+            '</defs>' +
+            vis.art +
+            /* 暗い病棟の影オーバーレイ（懐中電灯の部分だけ透ける） */
+            '<rect x="0" y="0" width="640" height="360" fill="#050A16" fill-opacity="' + (state.lightAll ? '0.24' : '0.88') + '" mask="url(#beamMask)" style="pointer-events:none"/>' +
+            '<circle id="beam-glow" cx="' + state.beam.x + '" cy="' + state.beam.y + '" r="' + (state.lightAll ? '0' : '128') + '" fill="url(#beamGlow)" style="pointer-events:none"/>' +
+            '<circle id="beam-ring" cx="' + state.beam.x + '" cy="' + state.beam.y + '" r="118" fill="none" stroke="#FFF2B8" stroke-width="1.2" stroke-dasharray="6 6" opacity="' + (state.lightAll ? '0' : '0.45') + '" style="pointer-events:none"/>' +
+            spotMarks +
+          '</svg>' +
+          '<div class="stage-sub"><div class="sub-chip" id="stage-sub-txt">' + esc(subText) + '</div></div>' +
+        '</div>' +
+        '<div class="stage-bar">' +
+          spotBtns +
+          '<button type="button" id="light-toggle" class="spot-btn is-light" aria-pressed="' + (state.lightAll ? 'true' : 'false') + '">' +
+            (state.lightAll ? '🔦 <span class="lbl-lit">電灯</span>' : '💡 <span class="lbl-lit">薄明かり</span>') +
+          '</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  /* ---------- 右ペイン描画（設問 → SBAR → 先輩＆試験） ---------- */
+  function renderRightPaneHTML(sc) {
+    var hasSbar = !!sc.sbar;
+    var step1Cls = 'step-tag' + (!state.sbarStep && !state.wrapStep ? ' is-on' : ' is-done');
+    var step2Cls = 'step-tag' + (state.sbarStep ? ' is-on' : state.wrapStep ? ' is-done' : '');
+    var step3Cls = 'step-tag' + (state.wrapStep ? ' is-on' : '');
+
+    var tabs =
+      '<div class="step-tabs">' +
+        '<span class="' + step1Cls + '">1. 巡視の判断</span>' +
+        (hasSbar ? '<span class="' + step2Cls + '">2. SBAR報告</span>' : '') +
+        '<span class="' + step3Cls + '">' + (hasSbar ? '3' : '2') + '. 先輩・試験</span>' +
+      '</div>';
+
+    /* フェーズ 1: 設問 */
+    if (!state.sbarStep && !state.wrapStep) {
+      var qs = sc.qs || [];
+      var qObj = qs[state.qIndex];
+      if (!qObj) {
+        return tabs + '<div class="right-scroll"><p>この場面の設問はありません。</p></div>';
+      }
+      var answered = state.qPicked !== null;
+      var ok = state.qPicked === 0;
+      var optsHTML = state.qOrder.map(function (origIdx, dispIdx) {
+        var cls = 'opt';
+        if (answered) {
+          if (origIdx === 0) cls += ' is-ok';
+          else if (origIdx === state.qPicked) cls += ' is-ng';
+        }
+        return '<button type="button" class="' + cls + '" data-opt="' + origIdx + '"' + (answered ? ' disabled' : '') + '>' +
+          '<span class="opt-num">' + (dispIdx + 1) + '</span>' +
+          '<span>' + esc(qObj.a[origIdx]) + '</span>' +
+          '</button>';
+      }).join('');
+
+      var expHTML = '';
+      if (answered) {
+        expHTML =
+          '<div class="exp ' + (ok ? 'is-ok' : 'is-ng') + '">' +
+            '<div class="exp-head">' + (ok ? '✓ 正解！' : '△ もう一歩（正解は緑の選択肢）') + '</div>' +
+            '<div>' + esc(qObj.why || '') + '</div>' +
+            '<div class="exp-src">参考：' + esc(qObj.src || '院内の手順で確認') + '</div>' +
+          '</div>';
+      }
+
+      var nextLabel = state.qIndex + 1 < qs.length
+        ? '次の問いへ →'
+        : hasSbar ? '当直医へ SBAR で報告する →' : '先輩のひとこと・試験へ →';
+
+      return (
+        tabs +
+        '<div class="right-scroll">' +
+          '<h2 class="q-title">' + esc(qObj.q) + '</h2>' +
+          '<div class="opts">' + optsHTML + '</div>' +
+          expHTML +
+        '</div>' +
+        '<div class="act-row">' +
+          '<button type="button" id="btn-next-q" class="btn-primary"' + (answered ? '' : ' disabled') + '>' + nextLabel + '</button>' +
+        '</div>'
+      );
+    }
+
+    /* フェーズ 2: SBAR 組み立て */
+    if (state.sbarStep && sc.sbar) {
+      var meta = [
+        ['S', '状況（Situation）', 'いま起きていること'],
+        ['B', '背景（Background）', '経過・薬の変化'],
+        ['A', '評価（Assessment）', '疑っていること'],
+        ['R', '提案（Recommendation）', 'してほしいこと']
+      ];
+      var allPicked = meta.every(function (m) { return state.sbarPicked[m[0]] !== undefined; });
+      var rowsHTML = meta.map(function (m) {
+        var key = m[0];
+        var list = sc.sbar[key] || [];
+        var order = state.sbarOrder[key] || [];
+        var picked = state.sbarPicked[key];
+        var rowCls = 'sbar-row' + (state.sbarDone ? (picked === 0 ? ' is-ok' : ' is-ng') : '');
+        var cards = order.map(function (origIdx) {
+          var cCls = 'sbar-card';
+          if (state.sbarDone) {
+            if (origIdx === 0) cCls += ' is-ok';
+            else if (origIdx === picked) cCls += ' is-ng';
+          } else if (origIdx === picked) {
+            cCls += ' is-sel';
+          }
+          return '<button type="button" class="' + cCls + '" data-sbar-k="' + key + '" data-sbar-i="' + origIdx + '"' + (state.sbarDone ? ' disabled' : '') + '>' +
+            esc(list[origIdx]) + '</button>';
+        }).join('');
+        return '<div class="' + rowCls + '">' +
+          '<div class="sbar-hd"><span class="sbar-letter">' + key + '</span><span>' + m[1] + '</span></div>' +
+          '<div class="sbar-cards">' + cards + '</div>' +
+        '</div>';
+      }).join('');
+
+      var previewLines = meta.map(function (m) {
+        var idx = state.sbarPicked[m[0]];
+        var txt = idx !== undefined ? sc.sbar[m[0]][idx] : '（札を選んでください）';
+        return '<div><b>' + m[0] + ':</b> ' + esc(txt) + '</div>';
+      }).join('');
+
+      var sbarExp = '';
+      if (state.sbarDone) {
+        var sbarHits = meta.filter(function (m) { return state.sbarPicked[m[0]] === 0; }).length;
+        sbarExp =
+          '<div class="exp ' + (sbarHits === 4 ? 'is-ok' : 'is-ng') + '">' +
+            '<div class="exp-head">' + (sbarHits === 4 ? '✓ SBAR ばっちり（4/4）' : 'SBAR の確認（' + sbarHits + '/4 正解）') + '</div>' +
+            '<div>' + esc(sc.sbar.why || '') + '</div>' +
+          '</div>';
+      }
+
+      return (
+        tabs +
+        '<div class="right-scroll">' +
+          '<h2 class="q-title">当直医へ電話報告（SBAR を札で組み立て）</h2>' +
+          sbarExp +
+          '<div class="sbar-preview">' + previewLines + '</div>' +
+          '<div class="sbar-grid">' + rowsHTML + '</div>' +
+        '</div>' +
+        '<div class="act-row">' +
+          (!state.sbarDone
+            ? '<button type="button" id="btn-sbar-go" class="btn-primary"' + (allPicked ? '' : ' disabled') + '>当直医へ報告する</button>'
+            : '<button type="button" id="btn-sbar-next" class="btn-primary">先輩のひとこと・試験へ →</button>') +
+        '</div>'
+      );
+    }
+
+    /* フェーズ 3: 先輩のひとこと ＋ おまけ「試験ならこう問われる」 */
+    var ex = sc.exam;
+    var exAnswered = state.examPicked !== null;
+    var exOk = state.examPicked === 0;
+    var exHTML = '';
+    if (ex) {
+      var exOpts = state.examOrder.map(function (origIdx, dispIdx) {
+        var cls = 'opt';
+        if (exAnswered) {
+          if (origIdx === 0) cls += ' is-ok';
+          else if (origIdx === state.examPicked) cls += ' is-ng';
+        }
+        return '<button type="button" class="' + cls + '" data-exam="' + origIdx + '"' + (exAnswered ? ' disabled' : '') + '>' +
+          '<span class="opt-num">' + (dispIdx + 1) + '</span>' +
+          '<span>' + esc(ex.a[origIdx]) + '</span>' +
+          '</button>';
+      }).join('');
+
+      exHTML =
+        '<div><span class="exam-badge">おまけ・試験ならこう問われる（' + esc(ex.kind || '国試') + '）</span></div>' +
+        '<h2 class="q-title">' + esc(ex.q) + '</h2>' +
+        '<div class="opts">' + exOpts + '</div>' +
+        (exAnswered
+          ? '<div class="exp ' + (exOk ? 'is-ok' : 'is-ng') + '">' +
+              '<div class="exp-head">' + (exOk ? '✓ 正解！' : '△ もう一歩（正解は緑の選択肢）') + '</div>' +
+              '<div>' + esc(ex.why || '') + '</div>' +
+            '</div>'
+          : '');
+    }
+
+    var isLast = state.idx + 1 >= scenes.length;
+    return (
+      tabs +
+      '<div class="right-scroll">' +
+        '<div class="senpai-box">' +
+          '<div class="senpai-av">' + SENPAI_SVG + '</div>' +
+          '<div class="senpai-body">' +
+            '<div class="senpai-name">プリセプター（先輩ナース）</div>' +
+            '<div>' + esc(sc.senpai || '落ち着いて観察できたね。') + '</div>' +
+          '</div>' +
+        '</div>' +
+        exHTML +
+      '</div>' +
+      '<div class="act-row">' +
+        '<button type="button" id="btn-scene-next" class="btn-primary">' +
+          (isLast ? '夜勤の振り返りを見る →' : '次の巡視（' + esc(scenes[state.idx + 1].time || '') + '）へ →') +
+        '</button>' +
+      '</div>'
+    );
+  }
+
+  /* ---------- 振り返り画面 ---------- */
+  function renderSummary() {
+    var qOk = 0, qTot = 0, sbarOk = 0, sbarTot = 0, exOk = 0, exTot = 0;
+    var rows = scenes.map(function (sc, i) {
+      var r = state.results[i] || {};
+      qOk += r.qOk || 0;
+      qTot += (sc.qs || []).length;
+      if (sc.sbar) { sbarTot++; if (r.sbarOk) sbarOk++; }
+      if (sc.exam) { exTot++; if (r.examOk) exOk++; }
+      return '<div class="rec-item">' +
+        '<div><b>' + esc(sc.time) + ' ' + esc(sc.place) + '</b> — ' + esc((sc.who && sc.who.name) || '') + '</div>' +
+        '<button type="button" class="btn-ghost" style="min-height:44px;padding:0 12px" data-retry="' + i + '">見直す</button>' +
+      '</div>';
+    }).join('');
+
+    var app = document.getElementById('app');
+    app.innerHTML =
+      '<div class="summary-card">' +
+        '<h1 class="summary-title">夜勤おつかれさまでした！</h1>' +
+        '<div class="score-grid">' +
+          '<div class="score-box"><div class="score-num">' + qOk + '/' + qTot + '</div><div class="score-lbl">巡視の判断</div></div>' +
+          '<div class="score-box"><div class="score-num">' + (sbarTot ? sbarOk + '/' + sbarTot : '—') + '</div><div class="score-lbl">SBAR報告</div></div>' +
+          '<div class="score-box"><div class="score-num">' + (exTot ? exOk + '/' + exTot : '—') + '</div><div class="score-lbl">試験おまけ</div></div>' +
+        '</div>' +
+        '<div class="senpai-box">' +
+          '<div class="senpai-av">' + SENPAI_SVG + '</div>' +
+          '<div class="senpai-body">' +
+            '<div class="senpai-name">プリセプター（先輩ナース）</div>' +
+            '<div>はじめての夜勤、よく観察して動けたね。「いつもと違う音・呼吸・姿勢」に気づいて、1人で抱えず報告するのが一番の安全管理だよ。</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="rec-list">' + rows + '</div>' +
+        '<div class="act-row">' +
+          '<button type="button" id="btn-restart" class="btn-primary">最初からもう一度巡視する</button>' +
+        '</div>' +
+      '</div>';
+
+    app.querySelectorAll('[data-retry]').forEach(function (b) {
+      b.addEventListener('click', function () { initScene(Number(b.getAttribute('data-retry'))); });
+    });
+    var re = document.getElementById('btn-restart');
+    if (re) re.addEventListener('click', function () { state.results = {}; initScene(0); });
+  }
+
+  /* ---------- メイン描画 ---------- */
+  function render() {
+    renderTimeline();
+    var app = document.getElementById('app');
+    if (!app) return;
+
+    if (state.view === 'summary' || !scenes.length) {
+      renderSummary();
+      return;
+    }
+
+    var sc = scenes[state.idx];
+    var vis = buildSceneVisual(sc);
+    var who = sc.who || {};
+    var keysHTML = (who.key || []).map(function (k) {
+      return '<span class="key-chip">' + esc(k) + '</span>';
+    }).join('');
+
+    app.innerHTML =
+      '<div class="play-grid">' +
+        '<div class="left-pane">' +
+          '<div class="chart-strip">' +
+            '<span class="time-badge">🕒 ' + esc(sc.time || '') + '</span>' +
+            '<span class="place-badge">' + esc(sc.place || '') + '</span>' +
+            '<span class="who-main">' + esc(who.name || '') + '（' + esc(who.age || '') + '歳・' + esc(who.sex || '') + '）</span>' +
+            '<span class="who-dx">' + esc(who.dx || '') + '</span>' +
+            (keysHTML ? '<div class="who-keys">' + keysHTML + '</div>' : '') +
+          '</div>' +
+          renderStageHTML(sc, vis) +
+          '<div class="look-box"><span class="look-label">観察メモ</span>' + esc(sc.look || '') + '</div>' +
+        '</div>' +
+        '<div class="right-pane">' +
+          renderRightPaneHTML(sc) +
+        '</div>' +
+      '</div>';
+
+    /* 懐中電灯ポインタ操作 */
+    var stageBox = document.getElementById('stage-box');
+    var svg = document.getElementById('ward-svg');
+    if (stageBox && svg) {
+      var dragging = false;
+      function moveFromEvent(e) {
+        var ctm = svg.getScreenCTM();
+        if (ctm) {
+          var pt = svg.createSVGPoint();
+          pt.x = e.clientX;
+          pt.y = e.clientY;
+          var loc = pt.matrixTransform(ctm.inverse());
+          state.beam.x = Math.max(16, Math.min(624, loc.x));
+          state.beam.y = Math.max(16, Math.min(344, loc.y));
+          updateBeamDOM(vis);
+          return;
+        }
+        var rect = svg.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        var sx = ((e.clientX - rect.left) / rect.width) * 640;
+        var sy = ((e.clientY - rect.top) / rect.height) * 360;
+        state.beam.x = Math.max(16, Math.min(624, sx));
+        state.beam.y = Math.max(16, Math.min(344, sy));
+        updateBeamDOM(vis);
+      }
+      stageBox.addEventListener('pointerdown', function (e) {
+        dragging = true;
+        moveFromEvent(e);
+      });
+      stageBox.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'mouse' || dragging) moveFromEvent(e);
+      });
+      window.addEventListener('pointerup', function () { dragging = false; }, { passive: true });
+
+      svg.querySelectorAll('[data-spot]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var s = Number(el.getAttribute('data-spot'));
+          var sp = vis.spots[s];
+          if (!sp) return;
+          state.beam.x = sp.x;
+          state.beam.y = sp.y;
+          state.activeSpot = sp;
+          if (!state.foundSpots[state.idx]) state.foundSpots[state.idx] = {};
+          state.foundSpots[state.idx][s] = true;
+          sfxSpot();
+          updateBeamDOM(vis);
+          updateSpotChipsDOM(vis);
+        });
+      });
+    }
+
+    /* スポットフォーカスボタン・全体薄明かり切替 */
+    app.querySelectorAll('[data-focus-spot]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var s = Number(b.getAttribute('data-focus-spot'));
+        var sp = vis.spots[s];
+        if (!sp) return;
+        state.beam.x = sp.x;
+        state.beam.y = sp.y;
+        state.activeSpot = sp;
+        if (!state.foundSpots[state.idx]) state.foundSpots[state.idx] = {};
+        state.foundSpots[state.idx][s] = true;
+        sfxSpot();
+        updateBeamDOM(vis);
+        updateSpotChipsDOM(vis);
+      });
+    });
+
+    var lt = document.getElementById('light-toggle');
+    if (lt) {
+      lt.addEventListener('click', function () {
+        state.lightAll = !state.lightAll;
+        render();
+      });
+    }
+
+    /* 設問の選択肢イベント */
+    app.querySelectorAll('[data-opt]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (state.qPicked !== null) return;
+        var origIdx = Number(b.getAttribute('data-opt'));
+        state.qPicked = origIdx;
+        if (origIdx === 0) {
+          state.results[state.idx].qOk++;
+          sfxOk();
+        } else {
+          sfxNg();
+        }
+        render();
+      });
+    });
+
+    var btnNextQ = document.getElementById('btn-next-q');
+    if (btnNextQ) {
+      btnNextQ.addEventListener('click', function () {
+        var qs = sc.qs || [];
+        if (state.qIndex + 1 < qs.length) {
+          state.qIndex++;
+          state.qPicked = null;
+          state.qOrder = shuffleIdx((qs[state.qIndex].a || []).length, state.idx * 17 + state.qIndex * 13 + 3);
+        } else if (sc.sbar) {
+          state.sbarStep = true;
+        } else {
+          state.wrapStep = true;
+        }
+        render();
+      });
+    }
+
+    /* SBAR 札の選択と報告 */
+    app.querySelectorAll('[data-sbar-k]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (state.sbarDone) return;
+        var k = b.getAttribute('data-sbar-k');
+        var i = Number(b.getAttribute('data-sbar-i'));
+        state.sbarPicked[k] = i;
+        playTone(520, 0.06, 'sine', 0.03);
+        render();
+      });
+    });
+
+    var btnSbarGo = document.getElementById('btn-sbar-go');
+    if (btnSbarGo) {
+      btnSbarGo.addEventListener('click', function () {
+        state.sbarDone = true;
+        var ok = ['S', 'B', 'A', 'R'].every(function (k) { return state.sbarPicked[k] === 0; });
+        state.results[state.idx].sbarOk = ok;
+        if (ok) sfxOk(); else sfxNg();
+        render();
+      });
+    }
+
+    var btnSbarNext = document.getElementById('btn-sbar-next');
+    if (btnSbarNext) {
+      btnSbarNext.addEventListener('click', function () {
+        state.sbarStep = false;
+        state.wrapStep = true;
+        render();
+      });
+    }
+
+    /* おまけ試験問題 */
+    app.querySelectorAll('[data-exam]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (state.examPicked !== null) return;
+        var origIdx = Number(b.getAttribute('data-exam'));
+        state.examPicked = origIdx;
+        state.results[state.idx].examOk = (origIdx === 0);
+        if (origIdx === 0) sfxOk(); else sfxNg();
+        render();
+      });
+    });
+
+    /* 次の巡視へ */
+    var btnSceneNext = document.getElementById('btn-scene-next');
+    if (btnSceneNext) {
+      btnSceneNext.addEventListener('click', function () {
+        state.results[state.idx].done = true;
+        var cleared = saved.cleared || {};
+        cleared[sc.id] = true;
+        saved.cleared = cleared;
+        writeSave({ cleared: cleared });
+
+        if (state.idx + 1 < scenes.length) {
+          initScene(state.idx + 1);
+        } else {
+          state.view = 'summary';
+          render();
+        }
+      });
+    }
+  }
+
+  /* ---------- 初期化 ---------- */
+  function boot() {
+    var wardEl = document.getElementById('ward-name');
+    if (wardEl && D.ward && D.ward.name) wardEl.textContent = D.ward.name;
+
+    var themeBtn = document.getElementById('themebtn');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', function () {
+        var curDark = state.theme === 'dark' || (!state.theme && window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches);
+        state.theme = curDark ? 'light' : 'dark';
+        writeSave({ theme: state.theme });
+        applyTheme();
+      });
+    }
+
+    var soundBtn = document.getElementById('soundbtn');
+    if (soundBtn) {
+      function syncSound() {
+        soundBtn.setAttribute('aria-pressed', state.sound ? 'true' : 'false');
+        soundBtn.innerHTML = state.sound ? '🔊 <span class="lbl-sm">音オン</span>' : '🔇 <span class="lbl-sm">音オフ</span>';
+      }
+      syncSound();
+      soundBtn.addEventListener('click', function () {
+        state.sound = !state.sound;
+        writeSave({ sound: state.sound });
+        syncSound();
+        if (state.sound) playTone(660, 0.1, 'sine', 0.04);
+      });
+    }
+
+    var maxBtn = document.getElementById('maxbtn');
+    if (maxBtn) maxBtn.addEventListener('click', toggleFullscreen);
+
+    applyTheme();
+    syncMaxBtn();
+    initScene(0);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+
+</script>
+</body>
+</html>

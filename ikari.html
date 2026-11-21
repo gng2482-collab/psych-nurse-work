@@ -1,0 +1,2340 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>怒りが高まる前に｜精神科ナースのお仕事</title>
+<meta name="description" content="新人看護師のためのディエスカレーション実践トレーニング。怒りのゲージと上から見た見取り図で、声のかけ方・安全な立ち位置と退路・応援を呼ぶタイミングを学ぶ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+/* 怒りが高まる前に（精神科ナースのお仕事 C）
+   方針：紙の色の背景と落ち着いた病院の青磁色、怒りのゲージ（緑→黄→赤）、
+   左に患者の表情・肩・手・呼吸の再現イラスト、右に上から見た見取り図（立ち位置と退路）。
+   全画面（html.is-max）で1場面がページ全体をスクロールせずに収まる設計。 */
+:root{
+  --bg:#E8EDEB;--paper:#FFFFFF;--paper-2:#F2F6F4;--paper-3:#E5ECE9;
+  --ink:#141E1C;--ink-2:#3C4A47;--ink-3:#54635F;
+  --line:#CFDAD6;--line-strong:#9EAEA9;
+  --accent:#2744D1;--accent-2:#1E36AE;--accent-soft:#E5EAFB;--on-accent:#FFFFFF;
+  --nurse:#0C766A;--nurse-2:#095B51;--nurse-soft:#DEF3EF;
+  --stage-bg:#142030;--stage-bg-2:#1B2B40;--stage-ink:#EEF4FA;--stage-sub:#A9BDD4;
+  --amber:#C67A08;--amber-soft:#FFF3D6;
+  --ok:#127844;--ok-soft:#E0F3E8;--ng:#BF3325;--ng-soft:#FDEAE8;
+  --g-low:#128253;--g-mid:#D47A08;--g-high:#C93022;
+  --f-display:"DotGothic16","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic","Meiryo",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --gut-l:max(12px,env(safe-area-inset-left,0px));
+  --gut-r:max(12px,env(safe-area-inset-right,0px));
+  --shadow:0 1px 2px rgba(16,24,22,.06),0 6px 18px rgba(16,24,22,.07);
+  --radius:14px;
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1513;--paper:#17211F;--paper-2:#202D2A;--paper-3:#283734;
+    --ink:#ECF2F0;--ink-2:#C1CECA;--ink-3:#99AAA5;
+    --line:#2D3C39;--line-strong:#4D615B;
+    --accent:#8CA2FF;--accent-2:#A8B8FF;--accent-soft:#1D2754;--on-accent:#0B102E;
+    --nurse:#4FD1C0;--nurse-2:#76E0D2;--nurse-soft:#123833;
+    --amber:#F2B84B;--amber-soft:#382A0E;
+    --ok:#5FD493;--ok-soft:#163322;--ng:#FF8C7E;--ng-soft:#3D1E1B;
+    --g-low:#39C488;--g-mid:#F09B24;--g-high:#F25A4B;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 22px rgba(0,0,0,.32);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1513;--paper:#17211F;--paper-2:#202D2A;--paper-3:#283734;
+  --ink:#ECF2F0;--ink-2:#C1CECA;--ink-3:#99AAA5;
+  --line:#2D3C39;--line-strong:#4D615B;
+  --accent:#8CA2FF;--accent-2:#A8B8FF;--accent-soft:#1D2754;--on-accent:#0B102E;
+  --nurse:#4FD1C0;--nurse-2:#76E0D2;--nurse-soft:#123833;
+  --amber:#F2B84B;--amber-soft:#382A0E;
+  --ok:#5FD493;--ok-soft:#163322;--ng:#FF8C7E;--ng-soft:#3D1E1B;
+  --g-low:#39C488;--g-mid:#F09B24;--g-high:#F25A4B;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 22px rgba(0,0,0,.32);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--f-body);font-size:15px;line-height:1.65;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;
+}
+button{font:inherit;color:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+[hidden]{display:none!important}
+
+/* ---------- 相互リンク帯 ---------- */
+.sister-bar{
+  background:var(--paper-2);border-bottom:1px solid var(--line);
+  font-size:12.5px;
+}
+.sister-in{
+  max-width:1120px;margin:0 auto;
+  padding:4px var(--gut-r) 4px var(--gut-l);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;
+}
+.sister-link{
+  display:inline-flex;align-items:center;gap:4px;
+  min-height:44px;padding:2px 6px;border-radius:8px;
+  text-decoration:none;font-weight:700;color:var(--accent);
+}
+.sister-link:hover{background:var(--accent-soft)}
+.ward-pill{
+  font-size:11.5px;color:var(--ink-3);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:100%;
+}
+
+/* ---------- 上部バー ---------- */
+.top{
+  position:sticky;top:0;z-index:30;
+  background:var(--bg);border-bottom:1px solid var(--line);
+}
+.top-in{
+  max-width:1120px;margin:0 auto;
+  padding:6px var(--gut-r) 6px var(--gut-l);
+  min-height:56px;display:flex;align-items:center;gap:6px;flex-wrap:nowrap;
+}
+.brand{
+  display:inline-flex;align-items:center;gap:6px;min-height:44px;
+  font-family:var(--f-display);font-size:18px;letter-spacing:.02em;
+  color:var(--ink);text-decoration:none;white-space:nowrap;min-width:0;
+}
+.brand-ic{
+  width:28px;height:28px;border-radius:8px;flex:none;
+  display:grid;place-items:center;background:var(--stage-bg);color:#FFD980;
+  font-size:15px;
+}
+.brand b{font-weight:inherit;color:var(--nurse)}
+.top-tools{margin-left:auto;display:flex;align-items:center;gap:6px;flex:none}
+.tbtn{
+  display:inline-flex;align-items:center;justify-content:center;gap:4px;
+  min-height:44px;min-width:44px;padding:0 11px;border-radius:999px;
+  border:1.5px solid var(--line-strong);background:var(--paper);color:var(--ink);
+  font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;
+  touch-action:manipulation;transition:border-color .15s,background .15s,transform .1s;
+}
+.tbtn:hover{border-color:var(--nurse)}
+.tbtn:active{transform:scale(.96)}
+.tbtn[aria-pressed="true"]{background:var(--nurse);border-color:var(--nurse);color:#fff}
+.tbtn-max{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.tbtn-max:hover{background:var(--accent);color:var(--on-accent)}
+.tbtn-icon{width:44px;padding:0}
+@media (max-width:480px){
+  .brand{font-size:15.5px}
+  .tbtn{padding:0 9px;font-size:12px}
+  .lbl-sm{display:none}
+}
+
+/* ---------- メイン領域 ---------- */
+.wrap{
+  max-width:1120px;margin:0 auto;
+  padding:12px var(--gut-r) 24px var(--gut-l);
+}
+
+/* 場面タイムライン */
+.timeline{
+  display:flex;align-items:center;gap:6px;overflow-x:auto;
+  padding:2px 0 8px;margin-bottom:8px;scrollbar-width:thin;
+}
+.tl-item{
+  flex:none;display:inline-flex;align-items:center;gap:5px;
+  min-height:44px;padding:0 12px;border-radius:999px;
+  border:1.5px solid var(--line);background:var(--paper);
+  font-size:12.5px;font-weight:700;color:var(--ink-2);
+  cursor:pointer;white-space:nowrap;transition:all .15s;
+}
+.tl-item:hover{border-color:var(--nurse)}
+.tl-item.is-now{
+  background:var(--stage-bg);border-color:var(--stage-bg);color:#FFE8A3;
+}
+.tl-item.is-done{
+  background:var(--ok-soft);border-color:var(--ok);color:var(--ok);
+}
+.tl-clock{font-family:var(--f-mono);font-size:12px}
+
+/* ---------- ステージと設問の2列レイアウト ---------- */
+.play-grid{
+  display:grid;grid-template-columns:1fr;gap:12px;align-items:start;
+}
+@media (min-width:900px){
+  .play-grid{grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);gap:14px}
+}
+
+/* 左ペイン：患者カード＋怒りゲージ＆見取り図ステージ */
+.left-pane{display:flex;flex-direction:column;gap:8px;min-width:0}
+
+.chart-strip{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:9px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;
+  box-shadow:var(--shadow);
+}
+.time-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 9px;border-radius:8px;background:var(--stage-bg);color:#FFE8A3;
+  font-family:var(--f-mono);font-size:13px;font-weight:700;
+}
+.place-badge{
+  font-size:12.5px;font-weight:700;color:var(--nurse);
+  background:var(--nurse-soft);padding:3px 9px;border-radius:8px;
+}
+.who-main{font-weight:700;font-size:14.5px;color:var(--ink)}
+.who-dx{font-size:12.5px;color:var(--ink-2)}
+.who-keys{display:flex;flex-wrap:wrap;gap:5px;width:100%}
+.key-chip{
+  font-size:11.5px;padding:2px 8px;border-radius:999px;
+  background:var(--paper-2);border:1px solid var(--line);color:var(--ink-2);
+}
+
+/* ---------- 怒りのゲージ＆見取り図ステージ ---------- */
+.stage-card{
+  background:var(--stage-bg);border:1.5px solid #2A3F5A;border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);position:relative;
+}
+.gauge-bar{
+  background:var(--stage-bg-2);border-bottom:1px solid #2B425E;
+  padding:8px 12px;display:flex;flex-direction:column;gap:5px;
+}
+.gauge-top{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;
+}
+.gauge-title{
+  display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;
+  font-size:12.5px;font-weight:700;color:var(--stage-ink);min-width:0;max-width:100%;
+}
+.gauge-val{
+  font-family:var(--f-mono);font-size:12.5px;font-weight:700;
+  padding:2px 8px;border-radius:999px;max-width:100%;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.gauge-val.is-high{background:#4A1818;color:#FFB3A8;border:1px solid #E05246}
+.gauge-val.is-mid{background:#422C0E;color:#FFE09E;border:1px solid #E09B2D}
+.gauge-val.is-low{background:#123829;color:#A3F5CC;border:1px solid #35B87B}
+
+.pos-pill{
+  font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.pos-pill.is-safe{background:#123833;color:#9CF5E8;border:1px solid #3CC4B2}
+.pos-pill.is-danger{background:#4D1616;color:#FFC2BA;border:1px solid #FF6B5E;animation:warnBlink 1.3s ease-in-out infinite}
+
+.gauge-track{
+  width:100%;height:11px;border-radius:999px;background:#0C141F;
+  border:1px solid #314966;overflow:hidden;position:relative;
+}
+.gauge-fill{
+  height:100%;border-radius:999px;
+  transition:width .45s cubic-bezier(.22,1,.36,1),background-color .35s;
+}
+.gauge-fill.is-high{background:linear-gradient(90deg,#D46A08,#E03B2D)}
+.gauge-fill.is-mid{background:linear-gradient(90deg,#249E6B,#E0921B)}
+.gauge-fill.is-low{background:linear-gradient(90deg,#0E7C6B,#28B57B)}
+
+.stage-box{
+  position:relative;width:100%;aspect-ratio:16/8.6;
+  background:#101A28;user-select:none;-webkit-user-select:none;
+  overflow:hidden;
+}
+.stage-box svg{display:block;width:100%;height:100%}
+
+/* 声の大きさ（字幕の大きさ）の変化 */
+.stage-sub{
+  position:absolute;left:8px;right:8px;bottom:6px;z-index:4;
+  pointer-events:none;display:flex;justify-content:center;
+}
+.sub-chip{
+  background:rgba(10,16,26,.92);color:#FFF9DE;
+  padding:5px 12px;border-radius:10px;font-weight:700;text-align:center;
+  max-width:98%;box-shadow:0 4px 14px rgba(0,0,0,.45);
+  transition:font-size .25s,border-color .25s,transform .25s;
+  display:inline-flex;align-items:center;gap:6px;line-height:1.35;
+}
+.sub-chip.is-loud{
+  font-size:15.5px;border:2px solid #FF7A6E;color:#FFE6E2;
+  background:rgba(44,14,16,.94);
+}
+.sub-chip.is-mid{
+  font-size:13.5px;border:1.5px solid #F2B84B;color:#FFF5D6;
+}
+.sub-chip.is-calm{
+  font-size:12.5px;border:1.5px solid #4FD1C0;color:#E3FFF9;
+  background:rgba(12,32,34,.92);
+}
+.vol-tag{
+  font-size:10.5px;padding:1px 6px;border-radius:6px;white-space:nowrap;flex:none;
+  background:rgba(255,255,255,.12);
+}
+
+/* ステージ下部操作バー（立ち位置・表情変化の体験ボタン） */
+.stage-bar{
+  background:var(--stage-bg-2);border-top:1px solid #2A3F5A;
+  padding:6px 10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+}
+.spot-btn{
+  min-height:44px;padding:0 10px;border-radius:10px;
+  border:1.5px solid #365073;background:#192A40;color:var(--stage-ink);
+  font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:5px;touch-action:manipulation;
+  transition:all .15s;
+}
+.spot-btn:hover{border-color:#88B4E8}
+.spot-btn.is-on{background:#153D38;border-color:#4FD1C0;color:#D9FFF8}
+.spot-btn.is-danger-on{background:#4A1A1A;border-color:#FF7A6E;color:#FFE3E0}
+.spot-btn.is-toggle{margin-left:auto;background:#262315;border-color:#D4A73B;color:#FFF2B8}
+.spot-btn.is-toggle[aria-pressed="true"]{background:#173D2E;border-color:#5FD493;color:#E3FFF0}
+
+.look-box{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:9px 12px;font-size:13.5px;color:var(--ink);
+}
+.look-label{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11.5px;font-weight:700;color:var(--amber);
+  background:var(--amber-soft);padding:2px 8px;border-radius:999px;margin-right:6px;
+}
+
+/* ---------- 右ペイン：問い・選択肢・先輩・試験 ---------- */
+.right-pane{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:13px 14px;box-shadow:var(--shadow);min-width:0;
+  display:flex;flex-direction:column;gap:10px;
+}
+.step-tabs{
+  display:flex;gap:5px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:8px;
+}
+.step-tag{
+  font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;
+  background:var(--paper-2);color:var(--ink-3);border:1px solid var(--line);
+}
+.step-tag.is-on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.step-tag.is-done{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+
+.q-title{
+  margin:0;font-family:var(--f-display);font-size:17px;line-height:1.45;color:var(--ink);
+}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{
+  width:100%;min-height:46px;padding:9px 12px;border-radius:11px;
+  border:1.5px solid var(--line-strong);background:var(--paper-2);
+  color:var(--ink);text-align:left;font-size:14px;line-height:1.45;
+  display:flex;align-items:flex-start;gap:9px;cursor:pointer;
+  touch-action:manipulation;transition:border-color .15s,background .15s,transform .1s;
+}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+.opt:active:not(:disabled){transform:scale(.99)}
+.opt:disabled{cursor:default}
+.opt-num{
+  flex:none;width:24px;height:24px;border-radius:7px;margin-top:1px;
+  background:var(--paper);border:1.5px solid var(--line-strong);
+  display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--ink-2);
+}
+.opt.is-ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.opt.is-ok .opt-num{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-ng{background:var(--ng-soft);border-color:var(--ng);color:var(--ink)}
+.opt.is-ng .opt-num{background:var(--ng);border-color:var(--ng);color:#fff}
+
+/* 解説ボックス */
+.exp{
+  border-radius:12px;padding:10px 12px;border:1.5px solid var(--line);
+  background:var(--paper-2);font-size:13.5px;line-height:1.55;
+}
+.exp.is-ok{border-color:var(--ok);background:var(--ok-soft)}
+.exp.is-ng{border-color:var(--ng);background:var(--ng-soft)}
+.exp-head{font-weight:700;font-size:14px;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.exp-src{margin-top:5px;font-size:11.5px;color:var(--ink-2);word-break:break-all}
+
+/* 先輩のひとこと */
+.senpai-box{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 12px;border-radius:12px;
+  background:var(--nurse-soft);border:1.5px solid var(--nurse);
+}
+.senpai-av{width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;background:var(--paper);border:1.5px solid var(--nurse)}
+.senpai-body{min-width:0;font-size:13.5px;line-height:1.5}
+.senpai-name{font-size:11.5px;font-weight:700;color:var(--nurse);margin-bottom:2px}
+
+.exam-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700;
+  background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber);
+}
+
+/* アクションボタン */
+.act-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.btn-primary{
+  flex:1;min-height:46px;padding:0 16px;border-radius:12px;
+  border:none;background:var(--accent);color:var(--on-accent);
+  font-size:14.5px;font-weight:700;cursor:pointer;touch-action:manipulation;
+  transition:background .15s,transform .1s;
+}
+.btn-primary:hover:not(:disabled){background:var(--accent-2)}
+.btn-primary:active:not(:disabled){transform:scale(.98)}
+.btn-primary:disabled{opacity:.48;cursor:not-allowed}
+.btn-ghost{
+  min-height:46px;padding:0 14px;border-radius:12px;
+  border:1.5px solid var(--line-strong);background:var(--paper);color:var(--ink);
+  font-size:13.5px;font-weight:700;cursor:pointer;touch-action:manipulation;
+}
+.btn-ghost:hover{border-color:var(--nurse)}
+
+/* ---------- 振り返り画面 ---------- */
+.summary-card{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);max-width:760px;margin:0 auto;
+  display:flex;flex-direction:column;gap:14px;
+}
+.summary-title{margin:0;font-family:var(--f-display);font-size:22px;color:var(--ink)}
+.score-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.score-box{
+  background:var(--paper-2);border:1.5px solid var(--line);border-radius:12px;
+  padding:10px;text-align:center;
+}
+.score-num{font-family:var(--f-display);font-size:22px;color:var(--nurse)}
+.score-lbl{font-size:12px;color:var(--ink-2)}
+.rec-list{display:flex;flex-direction:column;gap:7px}
+.rec-item{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:9px 12px;border-radius:10px;background:var(--paper-2);border:1px solid var(--line);
+  font-size:13.5px;
+}
+
+/* ---------- フッター ---------- */
+.foot{
+  max-width:1120px;margin:0 auto;
+  padding:10px var(--gut-r) 24px var(--gut-l);
+  font-size:12px;color:var(--ink-3);text-align:center;
+  border-top:1px solid var(--line);
+}
+
+/* ---------- SVG アニメーション（なめらかなイージング） ---------- */
+@keyframes shoulderTense{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-3.5px)}
+}
+@keyframes fastBreath{
+  0%,100%{transform:translateY(0) scaleY(1)}
+  50%{transform:translateY(-3px) scaleY(1.03)}
+}
+@keyframes calmBreath{
+  0%,100%{transform:translateY(0) scaleY(1)}
+  50%{transform:translateY(-1.8px) scaleY(1.015)}
+}
+@keyframes paperGrip{
+  0%,100%{transform:rotate(0deg) scale(1)}
+  35%{transform:rotate(-2.5deg) scale(.97)}
+  70%{transform:rotate(2deg) scale(.98)}
+}
+@keyframes gazeDart{
+  0%,35%,100%{transform:translateX(0)}
+  45%,80%{transform:translateX(-4.5px) translateY(-1.5px)}
+}
+@keyframes voiceWave{
+  0%{opacity:.9;transform:scale(.92)}
+  50%{opacity:1;transform:scale(1.08)}
+  100%{opacity:.35;transform:scale(1.22)}
+}
+@keyframes dangerPulse{
+  0%,100%{opacity:.35}
+  50%{opacity:.78}
+}
+@keyframes warnBlink{
+  0%,100%{opacity:1}
+  50%{opacity:.65}
+}
+@keyframes nodePulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+
+.anim-tense{transform-origin:155px 190px;animation:shoulderTense 1.5s ease-in-out infinite}
+.anim-fast-breath{transform-origin:155px 195px;animation:fastBreath 1.15s ease-in-out infinite}
+.anim-calm-breath{transform-origin:155px 195px;animation:calmBreath 3.8s ease-in-out infinite}
+.anim-grip{transform-origin:225px 215px;animation:paperGrip 1.4s ease-in-out infinite}
+.anim-gaze{animation:gazeDart 3.4s ease-in-out infinite}
+.anim-wave{transform-box:fill-box;transform-origin:center;animation:voiceWave 1.3s ease-in-out infinite}
+.anim-danger-zone{animation:dangerPulse 1.2s ease-in-out infinite}
+.map-node{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:opacity .15s}
+.map-node:hover{opacity:.92}
+
+@media (prefers-reduced-motion:reduce){
+  .anim-tense,.anim-fast-breath,.anim-calm-breath,.anim-grip,
+  .anim-gaze,.anim-wave,.anim-danger-zone,.pos-pill.is-danger{
+    animation:none!important;
+  }
+}
+
+/* ---------- 全画面モード（html.is-max） ----------
+   ページ全体のスクロールを禁止し、1場面を画面内に収める。 */
+html.is-max,html.is-max body{
+  height:100dvh;max-height:100dvh;overflow:hidden!important;
+}
+html.is-max .sister-bar,
+html.is-max .foot,
+html.is-max .timeline{
+  display:none!important;
+}
+html.is-max .top{
+  position:static;flex:none;
+}
+html.is-max .top-in{
+  max-width:none;min-height:48px;padding:3px var(--gut-r) 3px var(--gut-l);
+}
+html.is-max .brand{min-height:44px;font-size:16px}
+html.is-max body{
+  display:flex;flex-direction:column;
+}
+html.is-max .wrap{
+  flex:1;min-height:0;max-width:none;width:100%;
+  padding:8px var(--gut-r) 8px var(--gut-l);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+html.is-max #app{
+  flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;
+}
+html.is-max .play-grid{
+  flex:1;min-height:0;display:grid;gap:10px;overflow:hidden;
+}
+html.is-max .left-pane{
+  min-height:0;height:100%;display:flex;flex-direction:column;gap:6px;overflow:hidden;
+}
+html.is-max .chart-strip{
+  flex:none;padding:6px 10px;gap:4px 8px;
+}
+html.is-max .who-keys{gap:4px}
+html.is-max .stage-card{
+  flex:1;min-height:0;display:flex;flex-direction:column;
+}
+html.is-max .gauge-bar{
+  flex:none;padding:5px 10px;gap:4px;
+}
+html.is-max .stage-box{
+  flex:1;min-height:0;aspect-ratio:auto;
+}
+html.is-max .stage-bar{
+  flex:none;padding:4px 8px;gap:4px;overflow-x:auto;flex-wrap:nowrap;
+}
+html.is-max .spot-btn{min-height:44px;padding:0 8px;font-size:11.5px}
+html.is-max .look-box{
+  flex:none;padding:6px 10px;font-size:12.5px;line-height:1.45;
+  max-height:70px;overflow-y:auto;
+}
+html.is-max .right-pane{
+  min-height:0;height:100%;padding:10px 12px;gap:8px;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+html.is-max .right-scroll{
+  flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
+  padding-right:2px;
+}
+html.is-max .q-title{font-size:15.5px;line-height:1.38}
+html.is-max .opt{min-height:44px;padding:7px 10px;font-size:13px;line-height:1.38}
+html.is-max .exp{padding:8px 10px;font-size:12.5px;line-height:1.45}
+html.is-max .act-row{flex:none;padding-top:4px;border-top:1px solid var(--line)}
+html.is-max .summary-card{
+  flex:1;min-height:0;overflow-y:auto;width:100%;
+}
+
+/* 横長画面（PC・iPad横）：左右2列 */
+@media (min-width:840px){
+  html.is-max .play-grid{
+    grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+    grid-template-rows:minmax(0,1fr);
+    align-items:stretch;
+  }
+}
+
+/* 縦長画面（iPhone・iPad縦）：上コンパクト絵・下スクロール可能設問 */
+@media (max-width:839px){
+  html.is-max .play-grid{
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(185px,41%) minmax(0,59%);
+    gap:6px;
+  }
+  html.is-max .chart-strip{padding:4px 8px;font-size:12px}
+  html.is-max .who-keys{display:none}
+  html.is-max .look-box{display:none}
+  html.is-max .stage-bar{padding:3px 6px}
+  html.is-max .right-pane{padding:8px 10px;gap:6px}
+}
+@media (max-width:480px){
+  html.is-max .play-grid{
+    grid-template-rows:minmax(165px,36%) minmax(0,64%);
+  }
+  html.is-max .gauge-bar{padding:4px 8px}
+  html.is-max .gauge-title{font-size:11.5px}
+  html.is-max .gauge-val{font-size:11.5px}
+  html.is-max .pos-pill{font-size:10.5px;padding:1px 6px}
+  html.is-max .sub-chip{font-size:11px!important;padding:3px 8px}
+  html.is-max .spot-btn{padding:0 6px;font-size:11px;gap:3px}
+  html.is-max .q-title{font-size:14.5px;line-height:1.35}
+  html.is-max .opts{gap:5px}
+  html.is-max .opt{min-height:44px;padding:5px 9px;font-size:12.5px;line-height:1.32}
+  html.is-max .exp{padding:7px 9px;font-size:12px;line-height:1.4}
+}
+</style>
+</head>
+<body>
+<div class="sister-bar">
+  <div class="sister-in">
+    <a class="sister-link" href="https://gng2482-collab.github.io/psycho-games/" target="_blank" rel="noopener">← 精神科試験ゲーム（医師向け）</a>
+    <span class="ward-pill" id="ward-name">架空の第3病棟（急性期・閉鎖・40床）</span>
+  </div>
+</div>
+<header class="top">
+  <div class="top-in">
+    <span class="brand"><span class="brand-ic" aria-hidden="true">🧭</span>怒りが<b>高まる前に</b></span>
+    <div class="top-tools">
+      <button type="button" id="soundbtn" class="tbtn" aria-pressed="false">🔇 <span class="lbl-sm">音オフ</span></button>
+      <button type="button" id="themebtn" class="tbtn tbtn-icon" aria-label="画面の明るさを切り替え">☾</button>
+      <button type="button" id="maxbtn" class="tbtn tbtn-max" aria-pressed="false">⛶ <span class="lbl-sm">全画面</span></button>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <nav class="timeline" id="timeline" aria-label="場面の一覧"></nav>
+  <div id="app"></div>
+</main>
+<footer class="foot">登場する人物・病院はすべて架空。実際は院内の手順に従う。</footer>
+<script>
+var DATA = {
+  id: 'ikari',
+  title: '怒りが高まる前に',
+  ward: {
+    name: '架空の第3病棟（急性期・閉鎖・40床）',
+    note: '登場する人物・病院はすべて架空'
+  },
+  // 怒りのゲージは、架空の場面での緊張の変化を示す演出用。
+  scenes: [
+    {
+      id: 'discharge-delay',
+      time: '09:30',
+      place: '談話室',
+      who: {
+        name: '森下さん',
+        age: 46,
+        sex: '男',
+        dx: 'うつ病',
+        key: ['今朝の診察で退院の延期を知った', '家族には今日帰ると伝えていた']
+      },
+      look: '森下さんは椅子から立ち上がり、「家には今日帰るって言ったのに」と繰り返す。先ほどより声が大きく、持っていた予定表を握りしめている。',
+      vis: '見取り図にテーブルと廊下へのドアを描き、紙を握る手、上がった肩、声が大きくなる様子を字幕の大きさと怒りのゲージで示す。気持ちを受け止める声かけのあとに本人が話し始めたら、肩が下がり紙を握る指が緩む様子を描く。',
+      qs: [
+        {
+          q: '距離を保ち、先輩が見守っている。森下さんに最初にどう声をかける？',
+          a: [
+            '「急に予定が変わって、困りましたね。いちばん気がかりなのは何ですか」',
+            '「退院を延ばす理由をもう一度説明します。まず私の話を最後まで聞いてください」',
+            '「退院が延びることはよくあります。今日はいつもどおりの予定で過ごしましょう」',
+            '「そんなに困るなら、今日帰れるようにします。ひとまず椅子でお待ちください」'
+          ],
+          why: '困りごとを言葉にして返し、質問を一つに絞ると、本人が何に困っているか話しやすくなる。説明や励ましを先にすると気がかりを聞きそびれ、決まっていない退院の約束は信頼を損ねる。',
+          src: '米国救急精神医学会 Project BETA「興奮した患者への言葉によるディエスカレーション」第IV〜VI・IX領域 https://pmc.ncbi.nlm.nih.gov/articles/PMC3298202/'
+        },
+        {
+          q: '森下さんは少し声を落とし、「家族にどう言えばいいか分からない」と話した。次の提案は？',
+          a: [
+            '「伝える内容を一緒に整理しますか。それとも担当者に確認してからにしますか」',
+            '「話が難しそうなので、私から先にご家族へ退院延期の事情を伝えておきますね」',
+            '「ご家族には次の退院日が決まってからで十分です。今日は連絡せずにいましょう」',
+            '「今すぐご家族に電話しましょう。延期の説明はご自身でお願いします」'
+          ],
+          why: '実行できる選択肢を示すと、いつどう伝えるかを本人と一緒に決められる。本人の意向を聞かずに連絡したり、逆に連絡を先送りしたり一人で電話するよう求めたりすると、本人が挙げた困りごとを一緒に解けない。',
+          src: '米国救急精神医学会 Project BETA「興奮した患者への言葉によるディエスカレーション」第IX領域 https://pmc.ncbi.nlm.nih.gov/articles/PMC3298202/'
+        }
+      ],
+      sbar: null,
+      senpai: 'ディエスカレーションは、相手が落ち着きを取り戻せるよう、声や距離、周りの環境を整える関わりだよ。実際は院内の手順に従う。',
+      exam: {
+        q: '退院延期を告げられていら立つ患者への、共感を示す声かけはどれか。',
+        a: [
+          '「帰れると思って準備していたんですね。どんなことが心配ですか」',
+          '「退院できる日を考えても、今は仕方がありません。休んでください」',
+          '「退院のことは担当医の判断です。なぜ決まったのかを説明します」',
+          '「予定が変わるのは誰にでもあります。前向きに考えてみましょう」'
+        ],
+          why: '本人が何を期待していたかを言葉にして返すと、心配を話すきっかけになる。話を切り上げること、説明を急ぐこと、一般論で励ますことでは、本人の思いを確かめられない。',
+        kind: '国試'
+      }
+    },
+    {
+      id: 'visit-postponed',
+      time: '11:00',
+      place: '面会室前の廊下',
+      who: {
+        name: '平井さん',
+        age: 30,
+        sex: '女',
+        dx: '双極症',
+        key: ['来院した姉は面会の延期を頼まれて帰った', '平井さんには延期の事情がまだ伝わっていない']
+      },
+      look: '平井さんは面会室前で息を短く吐き、「姉に会わせてくれなかったの？」と尋ねる。面会室のドア脇には台車があり、近くの椅子には別の患者が座っている。',
+      vis: '上から見た図にドア、台車、椅子と人の位置を描き、近づきすぎると二人の間を赤く示す。距離を取って静かな場所を選べたら、先輩が見える位置に残り、本人の眉間のしわと短い呼吸が和らぐのに合わせてゲージを下げる。',
+      qs: [
+        {
+          q: '平井さんに声をかけるとき、どこに立つ？',
+          a: [
+            '少し斜めに立ち、間を空け、どちらも廊下を通れる位置に立つ',
+            '話を聞き取りやすいよう正面に立ち、顔を近づけて小声で話す',
+            '平井さんが面会室に戻らないよう、ドアの正面に立って話す',
+            '人を通すため、台車と壁の間に並び、話が終わるまでそこに立つ'
+          ],
+          why: '斜めに立って距離を保ち、互いが離れられる通路を空けると、圧迫感を減らせる。顔を近づけたり、ドアをふさいだり、狭い隙間で話したりすると、離れにくくなる。',
+          src: '米国救急精神医学会 Project BETA「興奮した患者への言葉によるディエスカレーション」第I・II領域 https://pmc.ncbi.nlm.nih.gov/articles/PMC3298202/'
+        },
+        {
+          q: '平井さんが「ここでは人に聞かれる」と言った。廊下の先には先輩から見える静かな一角がある。どうする？',
+          a: [
+            '静かな一角で話すか尋ね、先輩に近くで見守ってもらう',
+            'ここで事情を聞けば早いと説明し、近くの椅子で話し続ける',
+            '確実に聞かれないよう、先輩から離れた部屋で二人で話す',
+            '事情を正しく伝えるため、職員を呼んで廊下で一緒に説明する'
+          ],
+          why: '静かな場所を本人に提案し、応援が届く状態で話すと、話の内容と安全の両方を守りやすい。人前で話を続けたり職員を集めたりすると刺激が増え、職員が孤立する場所では助けを求めにくい。',
+          src: '英国国立医療技術評価機構（NICE）「暴力と攻撃性の短期管理」NG10 1.3.14–1.3.20 https://www.nice.org.uk/guidance/ng10/resources/violence-and-aggression-shortterm-management-in-mental-health-health-and-community-settings-1837264712389#page=31'
+        }
+      ],
+      // 未確認：面会の再調整、連絡手段と相談窓口は施設ごとに確認。
+      sbar: null,
+      senpai: '会えなかったことへの気持ちを聞き、延期の事情と次に相談できる先を確認しよう。実際は院内の手順に従う。',
+      exam: {
+        q: 'いら立ちのある患者と話すとき、距離と立ち位置の取り方で適切なのはどれか。',
+        a: [
+          '本人の反応に合わせて距離を取り、双方が移動できる通路を空ける',
+          '声が聞き取りにくくならないよう、本人の正面で一歩ずつ近づく',
+          '落ち着くまで話を聞けるよう、職員がドア側に並んで立つ',
+          '他の患者との接触を避けるため、廊下の行き止まりで向き合う'
+        ],
+        why: '移動できる空間を確保すると、本人も職員も必要に応じて離れられる。接近、出口をふさぐ配置、行き止まりはいずれも離れる余地を狭める。',
+        kind: '認定'
+      }
+    },
+    {
+      id: 'money-rules',
+      time: '13:10',
+      place: 'ナースステーションの窓口',
+      who: {
+        name: '野田さん',
+        age: 57,
+        sex: '男',
+        dx: 'アルコール使用障害',
+        key: ['売店で使う預け金を受け取りに来た', '担当者が席を外しており、受け取れる時刻は確認中', '少し前にタバコを吸えず落ち着かないと話していた']
+      },
+      look: '野田さんは窓口に開いた手を置き、「自分のお金なのに、なんで今もらえないんだ」と声を強める。そばの椅子から他の患者が振り向く。',
+      vis: '窓口、廊下と椅子の位置を上から示し、野田さんが前のめりになって同じ言葉を繰り返す間は、字幕を大きくしてゲージを上げる。確認できることを短く伝え、返事を待つ場面では、沈黙のあとに手が窓口から離れる動きを見せる。',
+      qs: [
+        {
+          q: '受け取れる時刻はまだ分からない。最初の返事は？',
+          a: [
+            '「ご自分のお金を今使いたいんですね。いつ受け取れるか確認します」',
+            '「手続きが決まっているので、順番をお守りください。説明書をお渡しします」',
+            '「私が話を通しておきますので、あと十分で必ずお渡しできます」',
+            '「みなさん同じように待っています。落ち着いてからまた来てください」'
+          ],
+          why: '希望を言葉にして返し、今できる確認だけを伝えると、次に何が起きるか分かる。規則を繰り返すだけでは疑問が残り、未確認の時刻を約束したり他の人と比べたりすると不信につながる。',
+          src: '米国救急精神医学会 Project BETA「興奮した患者への言葉によるディエスカレーション」第IV・V・IX領域 https://pmc.ncbi.nlm.nih.gov/articles/PMC3298202/'
+        },
+        {
+          q: '先輩に確認を頼んだ。あなたは十五分後に経過を伝えられる。野田さんに「どれくらい待ちますか」と聞かれたら？',
+          a: [
+            '「十五分後に確認の途中でも私からお伝えします。どこでお待ちになりますか」',
+            '「分かり次第お伝えします。席を外すと行き違うので、窓口でお待ちください」',
+            '「売店へ先に行ってください。支払いを待ってくれるかは、あとで私が聞きます」',
+            '「担当者が戻ったら分かります。連絡はせず、次に来られたときにお答えします」'
+          ],
+          why: '払出しの時刻と、看護師が途中経過を伝える時刻を分けると、守れる約束を作れる。更新時刻を決めずに待ってもらったり、確認前に売店へ向かわせたりすると、本人の疑問が残る。',
+          src: '米国救急精神医学会 Project BETA「興奮した患者への言葉によるディエスカレーション」第IX領域 https://pmc.ncbi.nlm.nih.gov/articles/PMC3298202/'
+        }
+      ],
+      // 未確認：預け金の管理・払出しの方法と、担当者が不在のときの確認先は施設ごとに確認。
+      sbar: null,
+      senpai: '約束した時刻には結果がまだでも声をかけ、タバコを吸えずにつらいという話も聞こう。実際は院内の手順に従う。',
+      exam: {
+        q: 'いら立っている患者への説明で、信頼を保ちやすい対応はどれか。',
+        a: [
+          '今分かる範囲を短く説明し、次にいつ経過を伝えるか本人と決める',
+          '安心できるよう、担当者に確認する前に希望の時刻を約束する',
+          '説明を揃えるため、質問があっても手続きの全文を先に読み上げる',
+          'やり取りを減らすため、確認が終わるまで今後の予定を伝えずに待つ'
+        ],
+        why: '分かっていることと次に知らせる時刻を伝えると、本人が見通しを持てる。確かめていない約束、長い説明、連絡の見通しがない待ち時間は、疑問や不安を残しやすい。',
+        kind: '国試'
+      }
+    },
+    {
+      id: 'commanding-voice',
+      time: '14:00',
+      place: '病室前の廊下',
+      who: {
+        name: '三田さん',
+        age: 24,
+        sex: '女',
+        dx: '統合失調症',
+        key: ['今朝は自分から職員に話しかけていた', '先輩が近くにいる']
+      },
+      look: '三田さんは立ったまま片耳を覆い、誰もいない方へ何度か顔を向ける。「声に何かしろって言われる。怖い」と話し、問いかけに返事をするまで間が空く。',
+      vis: '片耳に当てた手、視線がそれる動きと返事までの間を描き、声の体験は本人の発言の字幕で示す。見取り図で本人、距離を保つ看護師、近くの先輩、廊下を通る別の患者を見せ、助けを呼ぶ選択で先輩が加わる動きを描く。',
+      qs: [
+        {
+          q: '三田さんは看護師の声に反応し、会話できる。何と声をかける？',
+          a: [
+            '「怖いですね。今、その声は何をするように言っていますか」',
+            '「この廊下には誰もいません。声が聞こえるはずがないので安心してください」',
+            '「私にも同じ声が聞こえます。まず、その声がどこから来るのか探しましょう」',
+            '「その話はやめて、昨日の出来事を思い出しましょう。声の話は診察で聞きます」'
+          ],
+          why: '怖さを受け止め、低めの穏やかな声でゆっくり一つずつ聞く。幻聴（周りに音のもとがなくても声などが聞こえる体験）の内容が分かると、安全に関わる指示か確かめられる。聞こえる体験を頭ごなしに否定したり、自分にも聞こえると言ったり、話をそらしたりすると、必要な情報を得にくい。',
+          src: 'OpenStax「精神看護学」15.1 統合失調症の看護アセスメント https://openstax.org/books/psychiatric-mental-health/pages/15-1-schizophrenia'
+        },
+        {
+          q: '三田さんは「近くの人を傷つけろと聞こえる。今は逆らえるか分からない」と答えた。どう動く？',
+          a: [
+            '距離を保ってすぐ応援を呼び、周囲の人を離してもらい、医師に急報する',
+            '本人が声に従うつもりか詳しく聞き切ってから、先輩を呼ぶかどうか決める',
+            '刺激を減らすため、人のいない部屋まで一人で案内し、そこで経過をみる',
+            '声が落ち着いたら記録に残すと伝え、本人に一人で静かに待ってもらう'
+          ],
+          why: '人を傷つけるよう命じる声があり本人も抵抗できるか分からないため、すぐ応援を得て安全を確保し、急いで評価につなげる。詳しい聞き取りを優先したり一人で対応したり本人だけで待たせたりすると、安全の確保が遅れる。',
+          src: '米国退役軍人省・国防総省「初回精神病エピソードと統合失調症の診療ガイドライン」緊急相談の目安 https://www.health.mil/Reference-Center/Publications/2023/12/14/Schizophrenia-Pocket-Card'
+        }
+      ],
+      // 未確認：応援・当直医への連絡順と安全確保後の観察体制は施設ごとに確認。
+      sbar: null,
+      senpai: '聞こえる声の内容と、本人が今どれくらい抵抗できそうかをチームに伝えよう。実際は院内の手順に従う。',
+      exam: {
+        q: '幻聴を訴える患者のうち、安全について緊急に評価を要する訴えはどれか。',
+        a: [
+          '「近くの人を傷つけろと言われます。今は逆らえるか分かりません」',
+          '「遠くから名前を呼ばれることがありますが、特に困ってはいません」',
+          '「昨夜は小さな歌声が聞こえました。今はいつもどおり過ごせます」',
+          '「廊下に人の声がする気がします。今朝もそうでしたが、気になりません」'
+        ],
+        why: '危害を命じる幻聴があり、従わずにいられるか分からないときは、安全について急いで評価する。声が聞こえるという情報からは、内容や本人の対処できる程度まで分からない。',
+        kind: '認定'
+      }
+    },
+    {
+      id: 'crowded-station',
+      time: '15:15',
+      place: 'ナースステーション前',
+      who: {
+        name: '井口さん',
+        age: 39,
+        sex: '男',
+        dx: '適応障害',
+        key: ['頼んだ連絡に返事が来るのを待っていた', '廊下から先輩に声をかけられる']
+      },
+      look: '井口さんが立ったまま「何度言えば聞いてくれるんだ」と大声を出す。何人かの患者が近くの椅子に座ったまま、井口さんの方を見ている。',
+      vis: '上から見た廊下に窓口と椅子、職員と他の患者を配置し、大声は大きい字幕とゲージで示す。職員の一人が話し、別の職員が周囲の患者を案内する動きと、本人が急に距離を縮めたときに話し手が離れる動きを描く。',
+      qs: [
+        {
+          q: '今は互いに距離があり、廊下を通れる。先輩とどう分担する？',
+          a: [
+            '一人が距離を保って話を聞き、もう一人が周囲の患者を離れた所へ案内する',
+            '二人が交互に声をかけ、周囲の患者には席で待ってもらってから事情を聞く',
+            '二人で廊下の両側に立って通り道を閉じ、井口さんにその場で説明する',
+            '一人で井口さんと話し続け、声がさらに大きくなった時点で先輩に知らせる'
+          ],
+          why: '話し手を一人にすると声が重ならず、もう一人が周囲の安全を確保できる。通路をふさぐと離れにくくなり、応援を後回しにすると状況が変わったときに一人で対応することになる。',
+          src: '英国国立医療技術評価機構（NICE）「暴力と攻撃性の短期管理」NG10 1.3.14、1.3.18 https://www.nice.org.uk/guidance/ng10/resources/violence-and-aggression-shortterm-management-in-mental-health-health-and-community-settings-1837264712389#page=31 ／ 米国救急精神医学会 Project BETA 第I・III領域 https://pmc.ncbi.nlm.nih.gov/articles/PMC3298202/'
+        },
+        {
+          q: '先輩が周囲の患者を案内し始めた。井口さんが「殴るぞ」と言って急に距離を縮めた。どうする？',
+          a: [
+            '空いている通路を使って安全な距離まで離れ、院内の緊急応援を呼ぶ',
+            '落ち着いた声が届くように今の位置にとどまり、連絡の経過を説明する',
+            '話に集中できるように井口さんへ近づき、二人で静かな場所に移るよう誘う',
+            '井口さんのそばにとどまって椅子を勧め、座ってもらってから応援を頼む'
+          ],
+          why: '具体的な脅しと急な接近があり、安全に話を続けられる距離を取り直して、すぐ緊急応援を得る。立ち止まって説明する、近づいて誘う、その場で座るよう求めて待つ対応はいずれも接触のおそれを残す。',
+          src: '日本看護協会「保健医療福祉施設における暴力対策指針―看護者のために―」第7章 https://www.nurse.or.jp/nursing/home/publication/pdf/guideline/bouryokusisin.pdf ／ 米国救急精神医学会 Project BETA 第I領域 https://pmc.ncbi.nlm.nih.gov/articles/PMC3298202/'
+        }
+      ],
+      // 未確認：院内の緊急応援の呼び方と周囲の患者を案内する場所は施設ごとに確認。
+      sbar: null,
+      senpai: '助けを求めるときは、場所と今起きていることを短く伝えよう。実際は院内の手順に従う。',
+      exam: {
+        q: 'いら立ちが高まる患者に複数の職員で関わるとき、適切な役割分担はどれか。',
+        a: [
+          '話す職員を一人決め、ほかの職員は周囲への配慮と応援の連絡を担う',
+          '返事が早くもらえるよう、複数の職員がそれぞれの立場から説明する',
+          '話を最後まで聞けるよう、職員が出口側に並んで患者の移動を止める',
+          '患者が顔を知っている職員に任せ、ほかの職員は別の場所で待機する'
+        ],
+        why: '話し手を一人にして、周囲の安全と連絡を別の職員が担うと、刺激を抑えながら助けを得られる。声を重ねる、通路をふさぐ、話し手を孤立させる対応は負担を増やす。',
+        kind: '認定'
+      }
+    },
+    {
+      id: 'debrief',
+      time: '16:20',
+      place: '談話室・職員室',
+      who: {
+        name: '井口さん',
+        age: 39,
+        sex: '男',
+        dx: '適応障害',
+        key: ['応援の看護師が到着し、周囲の安全を確保した', 'けがの有無と状態は確認済み', '井口さんが話せる状態に戻り、話すことに同意した']
+      },
+      look: '井口さんは談話室の椅子に座り、普段に近い声で「みんなに見られている気がして、余計に焦った」と話す。応援に入った職員にも、あとで話を聞いてほしいという人がいた。',
+      vis: '談話室ではドアまでの通路を空けて椅子を置き、手を膝に置いて普段に近い声で話す様子を低いゲージとともに示す。職員室に切り替えたら、廊下の見取り図で当時の人の位置を再現し、「待っていた返事」「集まった視線」「次にできる工夫」の札を並べる。',
+      qs: [
+        {
+          q: '井口さんと、次に同じように困ったときのことを振り返る。どう尋ねる？',
+          a: [
+            '「焦ったとき、何が助けになりそうですか。次のために一緒に決めませんか」',
+            '「先にこちらで対応を決めました。守ってほしいことを今から確認しましょう」',
+            '「声を上げた順番を最初から全部話してください。そのあと理由を考えます」',
+            '「もう落ち着けたので、この話はここまでにして、明日の予定を立てましょう」'
+          ],
+          why: '本人が何をつらいと感じ、どんな手助けを望むかを聞くと、次の対応を一緒に決められる。職員だけで手順を決めたり、詳しい説明を強いたり、話を切り上げたりすると、本人の経験をケアに生かしにくい。',
+          src: '英国国立医療技術評価機構（NICE）「暴力と攻撃性の短期管理」NG10 1.3.16 https://www.nice.org.uk/guidance/ng10/resources/violence-and-aggression-shortterm-management-in-mental-health-health-and-community-settings-1837264712389#page=31 ／ 米国救急精神医学会 Project BETA 第X領域 https://pmc.ncbi.nlm.nih.gov/articles/PMC3298202/'
+        },
+        {
+          q: '職員同士では、何を振り返る？',
+          a: [
+            '職員の負担も聞き、返事が途切れた経過と応援の動きを確認し、次の工夫を共有する',
+            '最初に応じた職員の声かけだけを評価し、次から上手に説明するよう本人に任せる',
+            '時刻と発言を記録して終え、話を聞いてほしい職員には各自で対処してもらう',
+            '応援が間に合った点だけを共有し、返事を待っていた時間や人の集まり方は省く'
+          ],
+          why: '本人や職員が受けた影響を確かめ、経過と環境を振り返ると、支援が必要な人と次の改善点が分かる。個人に責任を負わせたり、記録やうまくいった点だけで終えたりすると、気持ちの支援や再発予防の機会を逃す。',
+          src: '静岡県立こころの医療センター「CVPPP（包括的暴力防止プログラム）」つらい思いへの支援 https://www.shizuoka-pho.jp/kokoro/about/features/cvppp/ ／ 日本看護協会「保健医療福祉施設における暴力対策指針―看護者のために―」第7・8章 https://www.nurse.or.jp/nursing/home/publication/pdf/guideline/bouryokusisin.pdf'
+        }
+      ],
+      // 未確認：出来事の報告・記録と職員への支援の窓口は施設ごとに確認。
+      sbar: null,
+      senpai: 'CVPPP（包括的暴力防止プログラム）は、本人の尊厳と安全を大切にして関わる考え方を学ぶ研修だよ。実際は院内の手順に従う。',
+      exam: {
+        q: '患者が落ち着き、話し合いに同意した。次のケアに生かす振り返りとして適切なのはどれか。',
+        a: [
+          '本人が気づいた前触れと望む支援を聞き、次に試すことを一緒に決めて記録する',
+          '職員が確認した事実を読み上げ、本人の感じたことは職員間の報告だけで補う',
+          'ほかの患者がいる場所で全員の印象を聞き、どの意見が正しいか本人と決める',
+          '落ち着いた時刻だけを記録し、次に同じ状況が起きてから対応を考える'
+        ],
+        why: '本人が気づく前触れや望む支援を一緒に決めて記録すると、別の職員も次のケアに生かせる。職員の見方だけに頼ること、人前で聞くこと、次まで保留することでは、本人が安心して話す機会を逃す。',
+        kind: '認定'
+      }
+    }
+  ]
+};
+</script>
+<script>
+/* 怒りが高まる前に（精神科ナースのお仕事 C）：
+   怒りのゲージ・上から見た見取り図（立ち位置シミュレーション）・患者の表情と姿勢のアニメ・全画面 */
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'nurse-ikari-v1';
+  var D = window.DATA || { id: 'ikari', title: '怒りが高まる前に', ward: { name: '架空の病棟', note: '' }, scenes: [] };
+  var scenes = Array.isArray(D.scenes) ? D.scenes : [];
+
+  /* ---------- 記録（try/catch で包む） ---------- */
+  function loadSave() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function writeSave(patch) {
+    try {
+      var cur = loadSave();
+      for (var k in patch) cur[k] = patch[k];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cur));
+    } catch (e) { /* 保存できない環境でも動作 */ }
+  }
+
+  var saved = loadSave();
+
+  /* ---------- 音（Web Audio・オフ既定） ---------- */
+  var audioCtx = null;
+  function playTone(freq, dur, type, vol) {
+    if (!state.sound) return;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!audioCtx) audioCtx = new AC();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      var o = audioCtx.createOscillator();
+      var g = audioCtx.createGain();
+      o.type = type || 'sine';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(vol || 0.05, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+      o.connect(g);
+      g.connect(audioCtx.destination);
+      o.start();
+      o.stop(audioCtx.currentTime + dur);
+    } catch (e) { /* 無視 */ }
+  }
+  function sfxOk() { playTone(587, 0.12, 'triangle', 0.06); setTimeout(function () { playTone(880, 0.18, 'triangle', 0.06); }, 90); }
+  function sfxNg() { playTone(250, 0.18, 'sine', 0.06); }
+  function sfxTap() { playTone(640, 0.07, 'sine', 0.035); }
+
+  /* ---------- ユーティリティ ---------- */
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function shuffleIdx(n, seed) {
+    var arr = [];
+    for (var i = 0; i < n; i++) arr.push(i);
+    var x = (seed || 1) * 9301 + 49297;
+    for (var j = n - 1; j > 0; j--) {
+      x = (x * 9301 + 49297) % 233280;
+      var r = Math.floor((x / 233280) * (j + 1));
+      var t = arr[j]; arr[j] = arr[r]; arr[r] = t;
+    }
+    return arr;
+  }
+
+  /* ---------- 場面の種類を判定（6場面すべて対応） ---------- */
+  function detectKind(sc) {
+    var s = ((sc.id || '') + ' ' + (sc.place || '') + ' ' + (sc.look || '') + ' ' + (sc.vis || '')).toLowerCase();
+    if (/discharge|退院|予定表|森下/.test(s)) return 'discharge';
+    if (/visit|面会|台車|平井/.test(s)) return 'visit';
+    if (/money|預け金|売店|窓口|野田/.test(s)) return 'money';
+    if (/command|voice|幻聴|片耳|三田/.test(s)) return 'voice';
+    if (/debrief|職員室|振り返り|16:20/.test(s)) return 'debrief';
+    if (/crowd|station|殴る|大声|井口/.test(s)) return 'crowded';
+    return 'discharge';
+  }
+
+  /* ---------- 先輩ナースのアイコン（SVG自作・統一画風） ---------- */
+  var SENPAI_SVG =
+    '<svg viewBox="0 0 64 64" aria-hidden="true">' +
+    '<rect width="64" height="64" fill="#DEF3EF"/>' +
+    '<path d="M10 64 C11 50 19 45 32 45 C45 45 53 50 54 64 Z" fill="#FFFFFF" stroke="#1E2B2A" stroke-width="2"/>' +
+    '<path d="M24 46 L32 56 L40 46" fill="none" stroke="#0C766A" stroke-width="2.4" stroke-linejoin="round"/>' +
+    '<path d="M27 38 L27 47 C29 49 35 49 37 47 L37 38 Z" fill="#F4CBB2" stroke="#1E2B2A" stroke-width="1.8"/>' +
+    '<circle cx="48" cy="24" r="7.5" fill="#3B3538" stroke="#1E2B2A" stroke-width="1.8"/>' +
+    '<path d="M16 29 C16 14 23 9 32 9 C41 9 48 14 48 29 C48 34 45 37 43 38 L21 38 C19 37 16 34 16 29 Z" fill="#3B3538" stroke="#1E2B2A" stroke-width="1.8"/>' +
+    '<path d="M20 24 C20 17 25 14 32 14 C39 14 44 17 44 24 C44 33 39 40 32 40 C25 40 20 33 20 24 Z" fill="#F7D5BE" stroke="#1E2B2A" stroke-width="1.9"/>' +
+    '<path d="M19 24 C22 18 27 16 33 17 C37 18 41 19 44 23 C43 15 38 11 32 11 C25 11 20 16 19 24 Z" fill="#3B3538" stroke="#1E2B2A" stroke-width="1.6"/>' +
+    '<circle cx="27" cy="26.5" r="1.7" fill="#1E2B2A"/>' +
+    '<circle cx="37" cy="26.5" r="1.7" fill="#1E2B2A"/>' +
+    '<path d="M24.5 23 Q27 21.5 29.5 23 M34.5 23 Q37 21.5 39.5 23" fill="none" stroke="#3B3538" stroke-width="1.4" stroke-linecap="round"/>' +
+    '<path d="M28.5 33 Q32 36 35.5 33" fill="none" stroke="#8C4A3B" stroke-width="1.8" stroke-linecap="round"/>' +
+    '<circle cx="24" cy="30.5" r="2.2" fill="#EFA89B" opacity=".55"/>' +
+    '<circle cx="40" cy="30.5" r="2.2" fill="#EFA89B" opacity=".55"/>' +
+    '</svg>';
+
+  /* ---------- アプリ状態 ---------- */
+  var state = {
+    idx: 0,
+    view: 'play',       // 'play' | 'summary'
+    sound: !!saved.sound,
+    theme: saved.theme || '',
+    isMax: false,
+    posMode: 'safe',    // 'safe'（斜め・退路あり） | 'close'（正面・近すぎ） | 'block'（ドア前・狭所）
+    calmPreview: null,  // null（進行に連動） | true（落ち着いた姿勢を表示） | false（緊張時の姿勢を表示）
+    qIndex: 0,
+    qPicked: null,
+    qOrder: [],
+    wrapStep: false,
+    examOrder: [],
+    examPicked: null,
+    results: {}         // { sceneIdx: { qOk, qTot, examOk, done } }
+  };
+
+  /* ---------- 現在の場面の緊張度・ムードを計算 ---------- */
+  function computeMood(sc) {
+    var kind = detectKind(sc);
+    var isCalm = false;
+    var isMid = false;
+    var isEscalated = false;
+
+    if (state.calmPreview !== null) {
+      isCalm = !!state.calmPreview;
+    } else if (state.wrapStep) {
+      isCalm = true;
+    } else if (state.qIndex === 0) {
+      if (state.qPicked === 0) isMid = true;
+      else if (state.qPicked !== null) isEscalated = true;
+    } else if (state.qIndex >= 1) {
+      if (state.qPicked === 0) isCalm = true;
+      else if (state.qPicked !== null) isEscalated = true;
+      else isMid = true;
+    }
+
+    /* 立ち位置テストで「近すぎ」「退路ふさぎ」を選んでいるときは緊張が上がる */
+    var dangerPos = state.posMode === 'close' || state.posMode === 'block';
+    if (state.qIndex === 0 && state.qPicked !== null && state.qPicked !== 0 && kind === 'visit') {
+      dangerPos = true;
+    }
+
+    var gauge = 76;
+    var statusText = '声が大きく緊張が高い';
+    var subtitle = '';
+    var volLabel = '🔊 大声';
+    var subClass = 'is-loud';
+
+    if (kind === 'discharge') {
+      if (isCalm) {
+        gauge = 24;
+        statusText = '肩が下がり、予定表を握る指が緩む';
+        subtitle = '「まずは家族に伝える内容を一緒に整理したいです」';
+        volLabel = '🔈 落ち着いた声';
+        subClass = 'is-calm';
+      } else if (isMid) {
+        gauge = 48;
+        statusText = '少し声を落とし、気がかりを話し始める';
+        subtitle = '「……家族に今日帰るって言ったのに、どう言えばいいか分からない」';
+        volLabel = '🔉 やや強い声';
+        subClass = 'is-mid';
+      } else if (isEscalated || dangerPos) {
+        gauge = 91;
+        statusText = '肩がさらに上がり、予定表を強く握りしめる';
+        subtitle = '「説明なんていい！ 家には今日帰るって言ったんだ！」';
+        volLabel = '🔊 大声';
+        subClass = 'is-loud';
+      } else {
+        gauge = 76;
+        statusText = '肩が上がり、予定表を握りしめて繰り返す';
+        subtitle = '「家には今日帰るって言ったのに！」';
+        volLabel = '🔊 大声';
+        subClass = 'is-loud';
+      }
+    } else if (kind === 'visit') {
+      if (isCalm && !dangerPos) {
+        gauge = 25;
+        statusText = '静かな一角で眉間のしわと短い呼吸が和らぐ';
+        subtitle = '「ここなら話せます……姉にはどう伝わったんでしょうか」';
+        volLabel = '🔈 落ち着いた声';
+        subClass = 'is-calm';
+      } else if (isMid && !dangerPos) {
+        gauge = 50;
+        statusText = '斜めの立ち位置と退路を確保・少し呼吸が落ち着く';
+        subtitle = '「……ここでは他の人に聞かれるから嫌なんです」';
+        volLabel = '🔉 やや強い声';
+        subClass = 'is-mid';
+      } else if (isEscalated || dangerPos) {
+        gauge = 92;
+        statusText = '距離が近すぎ・退路がふさがれ圧迫感が高まる';
+        subtitle = '「近づかないで！ なんで姉に会わせてくれなかったの？！」';
+        volLabel = '🔊 大声';
+        subClass = 'is-loud';
+      } else {
+        gauge = 74;
+        statusText = '短い呼吸・眉間にしわ・周囲に台車と他の患者';
+        subtitle = '「姉に会わせてくれなかったの？！」';
+        volLabel = '🔊 強い声';
+        subClass = 'is-loud';
+      }
+    } else if (kind === 'money') {
+      if (isCalm && !dangerPos) {
+        gauge = 26;
+        statusText = '一呼吸おいて手が窓口から離れ、見通しが立つ';
+        subtitle = '「15分後に途中でも教えてくれるんだな。あっちの椅子で待つよ」';
+        volLabel = '🔈 普段に近い声';
+        subClass = 'is-calm';
+      } else if (isMid && !dangerPos) {
+        gauge = 52;
+        statusText = '希望を受け止め確認を伝える・前のめりが少し緩む';
+        subtitle = '「……じゃあ、どれくらい待てば分かるんだ？」';
+        volLabel = '🔉 やや強い声';
+        subClass = 'is-mid';
+      } else if (isEscalated || dangerPos) {
+        gauge = 92;
+        statusText = '前のめりで窓口をたたき、同じ言葉を繰り返す';
+        subtitle = '「規則じゃなくて今すぐ出せって言ってるんだ！」';
+        volLabel = '🔊 大声';
+        subClass = 'is-loud';
+      } else {
+        gauge = 80;
+        statusText = '窓口に開いた手を置き、前のめりで声を強める';
+        subtitle = '「自分のお金なのに、なんで今もらえないんだ！」';
+        volLabel = '🔊 大声';
+        subClass = 'is-loud';
+      }
+    } else if (kind === 'voice') {
+      if (isCalm && !dangerPos) {
+        gauge = 40;
+        statusText = '応援が加わり周囲を安全に誘導・医師へ急報';
+        subtitle = '「（先輩が加わって周囲の人を離し、安全な距離で見守っている）」';
+        volLabel = '🔈 安全確保';
+        subClass = 'is-calm';
+      } else if (isMid && !dangerPos) {
+        gauge = 86;
+        statusText = '危害を命じる幻聴が判明・直ちに応援と安全確保が必要';
+        subtitle = '「……近くの人を傷つけろと聞こえる。今は逆らえるか分からない…」';
+        volLabel = '🔉 切迫した声';
+        subClass = 'is-loud';
+      } else if (isEscalated || dangerPos) {
+        gauge = 94;
+        statusText = '恐怖と混乱が強まり、視線が激しく揺れる';
+        subtitle = '「声がもっと強くなる……怖い、近づかないで！」';
+        volLabel = '🔊 切迫した声';
+        subClass = 'is-loud';
+      } else {
+        gauge = 78;
+        statusText = '片耳を覆い、誰もいない方へ顔を向け、返事まで間が空く';
+        subtitle = '「声に何かしろって言われる……怖い……」';
+        volLabel = '🔉 震える声';
+        subClass = 'is-mid';
+      }
+    } else if (kind === 'crowded') {
+      if (isCalm && !dangerPos) {
+        gauge = 48;
+        statusText = '空いている通路へ離れて安全距離を確保・緊急応援が到着';
+        subtitle = '「（通路へ離れて距離を取り直し、緊急応援チームで安全を確保）」';
+        volLabel = '🔈 安全距離確保';
+        subClass = 'is-calm';
+      } else if (isMid && !dangerPos) {
+        gauge = 94;
+        statusText = '周囲の患者を案内中、「殴るぞ」と急に距離を縮めてきた！';
+        subtitle = '「殴るぞ！！（急に距離を縮めて迫る）」';
+        volLabel = '🔊 威嚇・急接近';
+        subClass = 'is-loud';
+      } else if (isEscalated || dangerPos) {
+        gauge = 96;
+        statusText = '接触のおそれが高い危険距離！直ちに退路へ離れる';
+        subtitle = '「何度言えば分かるんだ！ 殴るぞ！！」';
+        volLabel = '🔊 大声・危険';
+        subClass = 'is-loud';
+      } else {
+        gauge = 82;
+        statusText = 'ナースステーション前で大声・近くの椅子から他患者が見ている';
+        subtitle = '「何度言えば聞いてくれるんだ！！」';
+        volLabel = '🔊 大声';
+        subClass = 'is-loud';
+      }
+    } else {
+      /* debrief（振り返り） */
+      var staffRoom = isCalm || (state.qIndex >= 1 && state.calmPreview !== false);
+      if (staffRoom) {
+        gauge = 16;
+        statusText = '職員室：当時の配置図と3枚の札で経過・環境・職員ケアを共有';
+        subtitle = '「待っていた返事・集まった視線・次にできる工夫をチームで共有」';
+        volLabel = '🔈 チームの振り返り';
+        subClass = 'is-calm';
+      } else {
+        gauge = 22;
+        statusText = '談話室：通路を空けて座り、手を膝に置いて普段に近い声で話す';
+        subtitle = '「みんなに見られている気がして、余計に焦ったんです」';
+        volLabel = '🔈 普段に近い声';
+        subClass = 'is-calm';
+      }
+    }
+
+    var level = gauge >= 70 ? 'high' : (gauge >= 40 ? 'mid' : 'low');
+    return {
+      kind: kind,
+      gauge: gauge,
+      level: level,
+      isCalm: isCalm,
+      isMid: isMid,
+      isEscalated: isEscalated,
+      dangerPos: dangerPos,
+      statusText: statusText,
+      subtitle: subtitle,
+      volLabel: volLabel,
+      subClass: subClass
+    };
+  }
+
+  /* ---------- 左パネル：患者の表情・肩・手・呼吸の再現イラスト ---------- */
+  function buildLeftArt(mood) {
+    var kind = mood.kind;
+    var calm = mood.isCalm && !mood.dangerPos;
+    var mid = mood.isMid && !mood.dangerPos;
+
+    /* 左パネル背景枠（x: 0..314, y: 0..330） */
+    var bg =
+      '<rect x="0" y="0" width="314" height="330" fill="#172436"/>' +
+      /* 病棟の明るい壁と腰板 */
+      '<rect x="8" y="32" width="298" height="202" rx="8" fill="#D8E2DC"/>' +
+      '<rect x="8" y="176" width="298" height="58" fill="#BDCBC5"/>' +
+      '<line x1="8" y1="176" x2="306" y2="176" stroke="#8FA19A" stroke-width="2"/>' +
+      '<rect x="8" y="234" width="298" height="88" rx="4" fill="#B7AA98"/>' +
+      '<line x1="8" y1="234" x2="306" y2="234" stroke="#7A7368" stroke-width="2"/>' +
+      /* 左パネル見出しピル */
+      '<rect x="8" y="6" width="298" height="22" rx="6" fill="#0F1824" stroke="#314966" stroke-width="1.2"/>' +
+      '<text x="157" y="21" text-anchor="middle" fill="#D5E5F7" font-size="11.5" font-weight="700">' +
+        (kind === 'debrief' && (calm || (state.qIndex >= 1 && state.calmPreview !== false))
+          ? '職員室での振り返り（3枚の札）'
+          : '患者の様子（表情・肩・手の動き・呼吸）') +
+      '</text>';
+
+    /* 1. 退院延期（森下さん 46歳男・談話室）：上がった肩・予定表を握る手 → 肩が下がり指が緩む */
+    if (kind === 'discharge') {
+      var shY = calm ? 8 : (mid ? 3 : 0);
+      var bodyCls = calm ? 'anim-calm-breath' : 'anim-tense';
+      return bg +
+        /* 談話室の窓とテーブル */
+        '<rect x="24" y="46" width="84" height="76" rx="4" fill="#EBF4FA" stroke="#5E7385" stroke-width="2"/>' +
+        '<line x1="66" y1="46" x2="66" y2="122" stroke="#7E93A4" stroke-width="1.6"/>' +
+        /* 後ろに引かれた椅子 */
+        '<rect x="118" y="190" width="68" height="68" rx="5" fill="#8C6D4F" stroke="#2D2218" stroke-width="2"/>' +
+        /* 森下さん（46歳男性・自然な7頭身比率・首〜肩〜腕〜指が連結） */
+        '<g class="' + bodyCls + '">' +
+          /* 脚 */
+          '<path d="M132 226 L128 292 L150 292 L154 226 Z" fill="#4D5E70" stroke="#1E2832" stroke-width="2"/>' +
+          '<path d="M160 226 L164 292 L186 292 L182 226 Z" fill="#445464" stroke="#1E2832" stroke-width="2"/>' +
+          /* 胴体と肩（緊張時は肩が上がり、緩和時は shY 下がる） */
+          '<g transform="translate(0,' + shY + ')">' +
+            '<path d="M106 142 C110 124 132 118 157 118 C182 118 204 124 208 142 L202 232 L112 232 Z" fill="#5D7E9B" stroke="#1E2832" stroke-width="2.2"/>' +
+            '<path d="M142 120 L157 144 L172 120" fill="#E4EEF5" stroke="#1E2832" stroke-width="1.8"/>' +
+            /* 左腕 */
+            '<path d="M108 138 L92 198 L108 202 L120 154 Z" fill="#5D7E9B" stroke="#1E2832" stroke-width="2"/>' +
+            '<circle cx="99" cy="204" r="7.5" fill="#F0C8B0" stroke="#1E2832" stroke-width="1.8"/>' +
+            /* 右腕（予定表を持つ） */
+            '<path d="M204 138 L226 184 L210 194 L192 154 Z" fill="#5D7E9B" stroke="#1E2832" stroke-width="2"/>' +
+          '</g>' +
+          /* 首 */
+          '<path d="M147 104 L147 125 C152 128 162 128 167 125 L167 104 Z" fill="#EABFA6" stroke="#1E2832" stroke-width="1.9"/>' +
+          /* 頭部・顔 */
+          '<path d="M131 78 C131 58 142 48 157 48 C172 48 183 58 183 78 C183 97 172 110 157 110 C142 110 131 97 131 78 Z" fill="#F2CCB4" stroke="#1E2832" stroke-width="2.2"/>' +
+          /* 髪（46歳男性・自然な短髪） */
+          '<path d="M130 76 C128 54 141 43 158 43 C174 43 186 54 184 76 C179 62 169 57 156 57 C144 57 135 63 130 76 Z" fill="#2F333B" stroke="#1E2832" stroke-width="1.9"/>' +
+          /* 耳 */
+          '<path d="M131 76 C126 76 126 88 132 89 M183 76 C188 76 188 88 182 89" fill="#EABFA6" stroke="#1E2832" stroke-width="1.7"/>' +
+          /* 眉・目・口（緊張時 vs 緩和時） */
+          (calm
+            ? '<path d="M141 70 Q147 67 152 70 M162 70 Q167 67 173 70" fill="none" stroke="#2F333B" stroke-width="1.9" stroke-linecap="round"/>' +
+              '<circle cx="147" cy="77" r="2.1" fill="#1E2832"/><circle cx="167" cy="77" r="2.1" fill="#1E2832"/>' +
+              '<path d="M150 94 Q157 98 164 94" fill="none" stroke="#7A4438" stroke-width="2" stroke-linecap="round"/>'
+            : '<path d="M140 67 L153 72 M174 67 L161 72" stroke="#2F333B" stroke-width="2.3" stroke-linecap="round"/>' +
+              '<line x1="155" y1="67" x2="155" y2="73" stroke="#9E6B58" stroke-width="1.4"/>' +
+              '<line x1="159" y1="67" x2="159" y2="73" stroke="#9E6B58" stroke-width="1.4"/>' +
+              '<circle cx="147" cy="77" r="2.2" fill="#1E2832"/><circle cx="167" cy="77" r="2.2" fill="#1E2832"/>' +
+              (mid
+                ? '<path d="M149 95 Q157 92 165 95" fill="none" stroke="#7A4438" stroke-width="2" stroke-linecap="round"/>'
+                : '<ellipse cx="157" cy="94" rx="7" ry="4.8" fill="#6E2824" stroke="#1E2832" stroke-width="1.7"/>' +
+                  '<path class="anim-wave" d="M192 78 Q202 86 192 94 M200 72 Q214 86 200 100" fill="none" stroke="#FF7A6E" stroke-width="2.2" stroke-linecap="round"/>')) +
+          /* 右手と予定表の拡大連動表現 */
+          (calm
+            ? /* 指が緩んで予定表が平らに戻る */
+              '<g transform="translate(0,8)">' +
+                '<rect x="208" y="176" width="46" height="58" rx="3" fill="#FFFFFF" stroke="#2D3D4A" stroke-width="1.9"/>' +
+                '<line x1="215" y1="188" x2="246" y2="188" stroke="#2744D1" stroke-width="2"/>' +
+                '<line x1="215" y1="198" x2="244" y2="198" stroke="#8FA1B0" stroke-width="1.5"/>' +
+                '<line x1="215" y1="208" x2="244" y2="208" stroke="#8FA1B0" stroke-width="1.5"/>' +
+                /* 緩んだ指 */
+                '<path d="M206 188 C214 186 220 190 218 196 C214 200 206 198 204 192 Z" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.7"/>' +
+                '<path d="M207 197 C215 196 220 200 218 205 C214 208 207 206 205 201 Z" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.7"/>' +
+              '</g>'
+            : /* 予定表を強く握りしめてシワが寄る */
+              '<g class="anim-grip">' +
+                '<path d="M206 172 L252 166 L246 226 L202 222 L208 196 Z" fill="#FFFDF7" stroke="#2D3D4A" stroke-width="2"/>' +
+                '<path d="M214 182 L238 194 M216 204 L242 188 M222 174 L228 216" stroke="#9AAAB8" stroke-width="1.6" stroke-linecap="round"/>' +
+                /* 強く握り込んだ拳と指 */
+                '<path d="M204 184 C216 181 226 186 225 194 C224 201 213 203 204 198 Z" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.9"/>' +
+                '<path d="M206 195 C218 193 226 198 225 205 C223 211 213 212 205 207 Z" fill="#EABFA6" stroke="#1E2832" stroke-width="1.9"/>' +
+              '</g>') +
+        '</g>' +
+        /* 手前の談話室テーブル */
+        '<rect x="26" y="252" width="262" height="18" rx="4" fill="#C9A882" stroke="#3A2D20" stroke-width="2.2"/>' +
+        '<rect x="48" y="270" width="14" height="52" fill="#8C6D4F" stroke="#3A2D20" stroke-width="2"/>' +
+        '<rect x="252" y="270" width="14" height="52" fill="#8C6D4F" stroke="#3A2D20" stroke-width="2"/>' +
+        /* 状態ラベル */
+        '<rect x="18" y="216" width="146" height="24" rx="7" fill="' + (calm ? '#123829' : '#3B1618') + '" stroke="' + (calm ? '#4FD1C0' : '#FF8C7E') + '" stroke-width="1.5"/>' +
+        '<text x="91" y="232" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">' +
+          (calm ? '肩が下がり指が緩む' : (mid ? '声が少し落ち着く' : '上がった肩・紙を握る手')) +
+        '</text>';
+    }
+
+    /* 2. 面会延期（平井さん 30歳女・面会室前廊下）：眉間のしわ・短い呼吸 → 眉間と呼吸が和らぐ */
+    if (kind === 'visit') {
+      var breathCls = calm ? 'anim-calm-breath' : 'anim-fast-breath';
+      return bg +
+        /* 面会室ドアと案内プレート */
+        '<rect x="22" y="48" width="82" height="186" fill="#B59B7C" stroke="#2D241C" stroke-width="2.2"/>' +
+        '<rect x="36" y="68" width="54" height="22" rx="3" fill="#F0F5F5" stroke="#3A4A54" stroke-width="1.6"/>' +
+        '<text x="63" y="83" text-anchor="middle" fill="#1E2832" font-size="10.5" font-weight="700">面会室</text>' +
+        /* 脇の台車 */
+        '<rect x="228" y="176" width="66" height="58" rx="4" fill="#9AAAB8" stroke="#2B3945" stroke-width="2"/>' +
+        '<circle cx="242" cy="240" r="7" fill="#3B4652"/><circle cx="280" cy="240" r="7" fill="#3B4652"/>' +
+        /* 平井さん（30歳女性・自然な体の比率） */
+        '<g class="' + breathCls + '">' +
+          '<path d="M138 232 L135 296 L154 296 L157 232 Z" fill="#495869" stroke="#1E2832" stroke-width="2"/>' +
+          '<path d="M161 232 L164 296 L183 296 L180 232 Z" fill="#3E4C5C" stroke="#1E2832" stroke-width="2"/>' +
+          /* カーディガンとインナー */
+          '<path d="M114 146 C118 128 136 122 158 122 C180 122 198 128 202 146 L198 234 L118 234 Z" fill="#D98B7C" stroke="#1E2832" stroke-width="2.2"/>' +
+          '<path d="M145 124 L158 176 L171 124 Z" fill="#FAF6F0" stroke="#1E2832" stroke-width="1.8"/>' +
+          /* 腕（緊張時は胸前で固く曲げ、緩和時は自然に下ろす） */
+          (calm
+            ? '<path d="M116 144 L104 206 L118 210 L128 158 Z" fill="#D98B7C" stroke="#1E2832" stroke-width="2"/>' +
+              '<path d="M200 144 L212 206 L198 210 L188 158 Z" fill="#D98B7C" stroke="#1E2832" stroke-width="2"/>' +
+              '<circle cx="110" cy="212" r="6.5" fill="#F5D2BC" stroke="#1E2832" stroke-width="1.7"/>' +
+              '<circle cx="206" cy="212" r="6.5" fill="#F5D2BC" stroke="#1E2832" stroke-width="1.7"/>'
+            : '<path d="M116 142 L106 184 L142 180 L142 168 L120 170 L126 148 Z" fill="#D98B7C" stroke="#1E2832" stroke-width="2" stroke-linejoin="round"/>' +
+              '<path d="M200 142 L210 184 L174 180 L174 168 L196 170 L190 148 Z" fill="#D98B7C" stroke="#1E2832" stroke-width="2" stroke-linejoin="round"/>' +
+              '<circle cx="146" cy="174" r="6.5" fill="#F5D2BC" stroke="#1E2832" stroke-width="1.7"/>' +
+              '<circle cx="170" cy="174" r="6.5" fill="#F5D2BC" stroke="#1E2832" stroke-width="1.7"/>') +
+          /* 首 */
+          '<path d="M149 106 L149 127 C154 130 162 130 167 127 L167 106 Z" fill="#F0C7B0" stroke="#1E2832" stroke-width="1.8"/>' +
+          /* セミロングの髪（背面） */
+          '<path d="M126 78 C126 50 140 42 158 42 C176 42 190 50 190 78 C190 100 186 116 180 124 L136 124 C130 116 126 100 126 78 Z" fill="#362C2A" stroke="#1E2832" stroke-width="2"/>' +
+          /* 顔 */
+          '<path d="M134 80 C134 61 144 52 158 52 C172 52 182 61 182 80 C182 98 172 110 158 110 C144 110 134 98 134 80 Z" fill="#F7D5BE" stroke="#1E2832" stroke-width="2.1"/>' +
+          /* 前髪 */
+          '<path d="M133 78 C136 62 146 56 160 57 C170 58 177 63 183 75 C181 56 171 46 158 46 C144 46 134 56 133 78 Z" fill="#362C2A" stroke="#1E2832" stroke-width="1.8"/>' +
+          /* 眉間のしわと呼吸サイン */
+          (calm
+            ? '<path d="M143 72 Q148 69 153 72 M163 72 Q168 69 173 72" fill="none" stroke="#362C2A" stroke-width="1.8" stroke-linecap="round"/>' +
+              '<circle cx="148" cy="79" r="2.1" fill="#1E2832"/><circle cx="168" cy="79" r="2.1" fill="#1E2832"/>' +
+              '<path d="M152 95 Q158 99 164 95" fill="none" stroke="#8C4A3B" stroke-width="1.9" stroke-linecap="round"/>'
+            : '<path d="M142 69 L153 74 M174 69 L163 74" stroke="#362C2A" stroke-width="2.2" stroke-linecap="round"/>' +
+              /* 眉間の深いしわ */
+              '<line x1="156" y1="68" x2="156" y2="75" stroke="#8C4A3B" stroke-width="1.6"/>' +
+              '<line x1="160" y1="68" x2="160" y2="75" stroke="#8C4A3B" stroke-width="1.6"/>' +
+              '<circle cx="148" cy="79" r="2.2" fill="#1E2832"/><circle cx="168" cy="79" r="2.2" fill="#1E2832"/>' +
+              '<ellipse cx="158" cy="95" rx="5.5" ry="3.8" fill="#7A322C" stroke="#1E2832" stroke-width="1.6"/>' +
+              /* 短い呼吸の吐息エフェクト */
+              '<path class="anim-wave" d="M174 94 Q188 90 196 96 M176 100 Q190 100 198 106" fill="none" stroke="#FFE09E" stroke-width="2" stroke-linecap="round"/>') +
+        '</g>' +
+        '<rect x="82" y="252" width="152" height="24" rx="7" fill="' + (calm ? '#123829' : '#3B1618') + '" stroke="' + (calm ? '#4FD1C0' : '#FF8C7E') + '" stroke-width="1.5"/>' +
+        '<text x="158" y="268" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">' +
+          (calm ? '眉間のしわと呼吸が和らぐ' : '眉間のしわ・短い速い呼吸') +
+        '</text>';
+    }
+
+    /* 3. 預け金・窓口（野田さん 57歳男）：窓口に開いた手を置き前のめり → 沈黙のあと手が窓口から離れる */
+    if (kind === 'money') {
+      return bg +
+        /* ナースステーション窓口のガラス枠とカウンター */
+        '<rect x="24" y="42" width="266" height="162" rx="4" fill="#E6F0F5" stroke="#536B7A" stroke-width="2.2"/>' +
+        '<line x1="157" y1="42" x2="157" y2="204" stroke="#89A2B2" stroke-width="2" stroke-dasharray="6 4"/>' +
+        /* 野田さん（57歳男性・白髪交じり） */
+        '<g class="' + (calm ? 'anim-calm-breath' : 'anim-tense') + '">' +
+          (calm
+            ? /* 落ち着いた姿勢：上体を起こし、手が窓口カウンターから離れる */
+              '<path d="M104 138 C110 120 132 114 157 114 C182 114 204 120 210 138 L204 208 L110 208 Z" fill="#637A6B" stroke="#1E2832" stroke-width="2.2"/>' +
+              '<path d="M147 98 L147 118 L167 118 L167 98 Z" fill="#E6B99E" stroke="#1E2832" stroke-width="1.9"/>' +
+              '<path d="M130 72 C130 52 142 42 157 42 C172 42 184 52 184 72 C184 91 172 103 157 103 C142 103 130 91 130 72 Z" fill="#EDC3A9" stroke="#1E2832" stroke-width="2.2"/>' +
+              '<path d="M129 70 C128 49 141 38 157 38 C173 38 186 49 185 70 C179 56 169 51 157 51 C145 51 135 56 129 70 Z" fill="#6E747C" stroke="#1E2832" stroke-width="1.9"/>' +
+              '<path d="M141 65 Q147 62 152 65 M162 65 Q167 62 173 65" fill="none" stroke="#3B4047" stroke-width="2" stroke-linecap="round"/>' +
+              '<circle cx="147" cy="72" r="2.1" fill="#1E2832"/><circle cx="167" cy="72" r="2.1" fill="#1E2832"/>' +
+              '<path d="M150 88 Q157 92 164 88" fill="none" stroke="#6E3E34" stroke-width="2" stroke-linecap="round"/>' +
+              /* カウンターから浮いて引かれた両手 */
+              '<path d="M108 138 L96 184 L122 186 L126 154 Z" fill="#637A6B" stroke="#1E2832" stroke-width="2"/>' +
+              '<path d="M206 138 L218 184 L192 186 L188 154 Z" fill="#637A6B" stroke="#1E2832" stroke-width="2"/>' +
+              '<ellipse cx="116" cy="186" rx="11" ry="6.5" fill="#EDC3A9" stroke="#1E2832" stroke-width="1.8"/>' +
+              '<ellipse cx="198" cy="186" rx="11" ry="6.5" fill="#EDC3A9" stroke="#1E2832" stroke-width="1.8"/>' +
+              /* 手が離れた矢印サイン */
+              '<path d="M116 202 L116 192 M198 202 L198 192" stroke="#4FD1C0" stroke-width="2.2" stroke-linecap="round"/>'
+            : /* 緊張時：前のめりになり、開いた両手を窓口カウンターに強く置く */
+              '<path d="M94 146 C104 124 130 118 157 118 C184 118 210 124 220 146 L216 212 L98 212 Z" fill="#637A6B" stroke="#1E2832" stroke-width="2.2"/>' +
+              '<path d="M146 106 L146 124 L168 124 L168 106 Z" fill="#E6B99E" stroke="#1E2832" stroke-width="1.9"/>' +
+              /* 前のめりで少し低く前に出た頭部 */
+              '<path d="M128 84 C128 62 140 52 157 52 C174 52 186 62 186 84 C186 104 173 116 157 116 C141 116 128 104 128 84 Z" fill="#EDC3A9" stroke="#1E2832" stroke-width="2.2"/>' +
+              '<path d="M127 81 C126 59 140 47 157 47 C174 47 188 59 187 81 C180 67 170 61 157 61 C144 61 134 67 127 81 Z" fill="#6E747C" stroke="#1E2832" stroke-width="1.9"/>' +
+              '<path d="M139 74 L152 79 M175 74 L162 79" stroke="#2D3138" stroke-width="2.4" stroke-linecap="round"/>' +
+              '<circle cx="147" cy="84" r="2.2" fill="#1E2832"/><circle cx="167" cy="84" r="2.2" fill="#1E2832"/>' +
+              '<ellipse cx="157" cy="101" rx="7.5" ry="5" fill="#6E2824" stroke="#1E2832" stroke-width="1.7"/>' +
+              /* カウンターに突っ張った両腕と開いた手 */
+              '<path d="M98 144 L78 206 L98 206 L114 156 Z" fill="#637A6B" stroke="#1E2832" stroke-width="2"/>' +
+              '<path d="M216 144 L236 206 L216 206 L200 156 Z" fill="#637A6B" stroke="#1E2832" stroke-width="2"/>' +
+              /* 開いた手のひら（窓口カウンターに押しつけ） */
+              '<path d="M68 206 C72 199 98 199 104 206 L104 212 L68 212 Z" fill="#EDC3A9" stroke="#1E2832" stroke-width="1.9"/>' +
+              '<path d="M210 206 C214 199 240 199 246 206 L246 212 L210 212 Z" fill="#EDC3A9" stroke="#1E2832" stroke-width="1.9"/>') +
+        '</g>' +
+        /* 窓口カウンター台 */
+        '<rect x="14" y="206" width="286" height="24" rx="4" fill="#C7B296" stroke="#3A2D20" stroke-width="2.2"/>' +
+        '<rect x="20" y="230" width="274" height="86" fill="#9E8C74" stroke="#3A2D20" stroke-width="2"/>' +
+        '<rect x="64" y="246" width="186" height="24" rx="7" fill="' + (calm ? '#123829' : '#3B1618') + '" stroke="' + (calm ? '#4FD1C0' : '#FF8C7E') + '" stroke-width="1.5"/>' +
+        '<text x="157" y="262" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">' +
+          (calm ? '一呼吸おいて手が窓口から離れる' : '前のめり・窓口に開いた手を置く') +
+        '</text>';
+    }
+
+    /* 4. 命令性の幻聴（三田さん 24歳女・病室前廊下）：片耳に当てた手・視線がそれる・返事までの間 */
+    if (kind === 'voice') {
+      return bg +
+        /* 誰もいない空間から響く幻聴の波形表現 */
+        '<g class="anim-wave">' +
+          '<path d="M26 56 Q48 44 66 62 T98 64" fill="none" stroke="#C77DFF" stroke-width="2.2" stroke-dasharray="4 3"/>' +
+          '<path d="M20 74 Q46 64 72 82 T106 84" fill="none" stroke="#FF7A6E" stroke-width="2"/>' +
+          '<rect x="18" y="42" width="88" height="20" rx="6" fill="#2A173B" stroke="#C77DFF" stroke-width="1.4"/>' +
+          '<text x="62" y="56" text-anchor="middle" fill="#F0D9FF" font-size="10.5" font-weight="700">（声の体験）</text>' +
+        '</g>' +
+        /* 返事までの間（沈黙インジケータ） */
+        '<rect x="186" y="44" width="110" height="22" rx="7" fill="#1A283B" stroke="#89B4E8" stroke-width="1.4"/>' +
+        '<text x="241" y="59" text-anchor="middle" fill="#DCEBFF" font-size="10.5" font-weight="700">…（返事までの間）…</text>' +
+        /* 三田さん（24歳女性・片耳を覆い視線がそれる） */
+        '<g>' +
+          '<path d="M138 232 L135 296 L154 296 L157 232 Z" fill="#526478" stroke="#1E2832" stroke-width="2"/>' +
+          '<path d="M161 232 L164 296 L183 296 L180 232 Z" fill="#465769" stroke="#1E2832" stroke-width="2"/>' +
+          '<path d="M116 146 C120 128 138 122 158 122 C178 122 196 128 200 146 L196 234 L120 234 Z" fill="#89A8C4" stroke="#1E2832" stroke-width="2.2"/>' +
+          /* 右腕（そのまま胸元へ） */
+          '<path d="M198 146 L208 204 L194 208 L186 158 Z" fill="#89A8C4" stroke="#1E2832" stroke-width="2"/>' +
+          '<circle cx="200" cy="210" r="6.5" fill="#F7D5BE" stroke="#1E2832" stroke-width="1.7"/>' +
+          /* 首 */
+          '<path d="M149 106 L149 126 L167 126 L167 106 Z" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.8"/>' +
+          /* 頭部（誰もいない左上へ視線がそれる動き） */
+          '<g class="anim-gaze">' +
+            '<path d="M128 80 C128 52 141 44 158 44 C175 44 188 52 188 80 L184 114 L132 114 Z" fill="#2A2830" stroke="#1E2832" stroke-width="2"/>' +
+            '<path d="M134 80 C134 61 144 52 158 52 C172 52 182 61 182 80 C182 98 172 110 158 110 C144 110 134 98 134 80 Z" fill="#F7D5BE" stroke="#1E2832" stroke-width="2.1"/>' +
+            '<path d="M133 77 C137 61 147 55 160 56 C171 57 178 62 183 75 C181 56 171 46 158 46 C144 46 134 56 133 77 Z" fill="#2A2830" stroke="#1E2832" stroke-width="1.8"/>' +
+            /* 不安な眉と左上へそれる瞳 */
+            '<path d="M142 72 L152 69 M164 69 L174 72" stroke="#2A2830" stroke-width="1.9" stroke-linecap="round"/>' +
+            '<circle cx="145" cy="78" r="2.3" fill="#1E2832"/><circle cx="165" cy="78" r="2.3" fill="#1E2832"/>' +
+            '<path d="M153 96 Q158 93 163 96" fill="none" stroke="#7A4438" stroke-width="1.8" stroke-linecap="round"/>' +
+          '</g>' +
+          /* 左腕を上げて片耳（画面左側の耳）を覆う手 */
+          '<path d="M118 144 L96 116 L124 78 L135 84 L112 116 L126 144 Z" fill="#89A8C4" stroke="#1E2832" stroke-width="2.1" stroke-linejoin="round"/>' +
+          '<ellipse cx="131" cy="82" rx="7.5" ry="10" fill="#F7D5BE" stroke="#1E2832" stroke-width="1.9"/>' +
+        '</g>' +
+        '<rect x="52" y="252" width="210" height="24" rx="7" fill="' + (calm ? '#123829' : '#3B1618') + '" stroke="' + (calm ? '#4FD1C0' : '#FF8C7E') + '" stroke-width="1.5"/>' +
+        '<text x="157" y="268" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">' +
+          (calm ? '距離を保ち応援と安全確保・医師へ急報' : '片耳を覆い視線がそれる・危害を命じる声') +
+        '</text>';
+    }
+
+    /* 5. ナースステーション前の大声・急接近（井口さん 39歳男）：大声 → 急に距離を縮める → 通路へ離れ緊急応援 */
+    if (kind === 'crowded') {
+      var threat = (state.qIndex >= 1 && !calm) || mood.dangerPos;
+      return bg +
+        /* 井口さん（39歳男性） */
+        '<g class="' + (calm ? 'anim-calm-breath' : 'anim-tense') + '">' +
+          '<path d="M132 228 L126 296 L148 296 L154 228 Z" fill="#465463" stroke="#1E2832" stroke-width="2"/>' +
+          '<path d="M160 228 L166 296 L188 296 L182 228 Z" fill="#3B4856" stroke="#1E2832" stroke-width="2"/>' +
+          '<path d="M106 140 C112 122 132 116 157 116 C182 116 202 122 208 140 L202 230 L112 230 Z" fill="#4B6E8C" stroke="#1E2832" stroke-width="2.2"/>' +
+          '<path d="M147 102 L147 122 L167 122 L167 102 Z" fill="#EABFA6" stroke="#1E2832" stroke-width="1.9"/>' +
+          '<path d="M131 76 C131 56 142 46 157 46 C172 46 183 56 183 76 C183 95 172 108 157 108 C142 108 131 95 131 76 Z" fill="#F2CCB4" stroke="#1E2832" stroke-width="2.2"/>' +
+          '<path d="M130 74 C128 52 141 41 158 41 C174 41 186 52 184 74 C179 60 169 55 156 55 C144 55 135 61 130 74 Z" fill="#2A2E35" stroke="#1E2832" stroke-width="1.9"/>' +
+          '<path d="M139 66 L153 72 M175 66 L161 72" stroke="#2A2E35" stroke-width="2.4" stroke-linecap="round"/>' +
+          '<circle cx="147" cy="76" r="2.2" fill="#1E2832"/><circle cx="167" cy="76" r="2.2" fill="#1E2832"/>' +
+          '<ellipse cx="157" cy="93" rx="8" ry="5.5" fill="#6E2824" stroke="#1E2832" stroke-width="1.8"/>' +
+          (threat
+            ? /* 「殴るぞ」と拳を振り上げ急に距離を縮める */
+              '<path d="M108 138 L82 104 L98 94 L122 132 Z" fill="#4B6E8C" stroke="#1E2832" stroke-width="2.2"/>' +
+              '<circle cx="88" cy="96" r="10" fill="#F2CCB4" stroke="#1E2832" stroke-width="2.1"/>' +
+              '<path d="M206 138 L226 196 L208 202 L192 152 Z" fill="#4B6E8C" stroke="#1E2832" stroke-width="2"/>' +
+              '<circle cx="216" cy="202" r="8" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.9"/>'
+            : /* 大声を出して立つ */
+              '<path d="M108 138 L92 198 L108 202 L120 152 Z" fill="#4B6E8C" stroke="#1E2832" stroke-width="2"/>' +
+              '<path d="M206 138 L222 198 L206 202 L194 152 Z" fill="#4B6E8C" stroke="#1E2832" stroke-width="2"/>' +
+              '<circle cx="99" cy="204" r="7.5" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.8"/>' +
+              '<circle cx="215" cy="204" r="7.5" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.8"/>') +
+          (!calm
+            ? '<path class="anim-wave" d="M192 74 Q206 84 192 94 M202 66 Q220 84 202 102" fill="none" stroke="#FF7A6E" stroke-width="2.4" stroke-linecap="round"/>'
+            : '') +
+        '</g>' +
+        (calm
+          ? /* 通路へ離れて安全距離を取り直し、緊急応援を呼ぶバッジ */
+            '<rect x="26" y="196" width="262" height="44" rx="9" fill="#123829" stroke="#4FD1C0" stroke-width="1.8"/>' +
+            '<text x="157" y="215" text-anchor="middle" fill="#A3F5CC" font-size="11.5" font-weight="700">✓ 空いている通路へ離れて安全距離を確保</text>' +
+            '<text x="157" y="232" text-anchor="middle" fill="#FFFFFF" font-size="11">院内の緊急応援を呼び、1人で接近しない</text>'
+          : '<rect x="44" y="252" width="226" height="24" rx="7" fill="#3B1618" stroke="#FF8C7E" stroke-width="1.5"/>' +
+            '<text x="157" y="268" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">' +
+              (threat ? '威嚇と急接近 → 通路へ離れ緊急応援！' : '大声・周囲の視線 → 話し手1人と周囲誘導') +
+            '</text>');
+    }
+
+    /* 6. 落ち着いたあとの振り返り（井口さん・談話室／職員室の3枚の札） */
+    var showStaffCards = calm || (state.qIndex >= 1 && state.calmPreview !== false);
+    if (showStaffCards) {
+      /* 職員室：vis 指定の「待っていた返事」「集まった視線」「次にできる工夫」の3枚の札 */
+      return bg +
+        '<rect x="18" y="40" width="278" height="276" rx="10" fill="#1E2F42" stroke="#4A688A" stroke-width="2"/>' +
+        '<text x="157" y="62" text-anchor="middle" fill="#FFE8A3" font-size="12.5" font-weight="700">職員室のボード：出来事とケアの振り返り札</text>' +
+        /* 札1：待っていた返事 */
+        '<rect x="30" y="74" width="254" height="66" rx="8" fill="#FFF9E6" stroke="#D4880F" stroke-width="2"/>' +
+        '<rect x="40" y="84" width="104" height="20" rx="5" fill="#D4880F"/>' +
+        '<text x="92" y="98" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">① 待っていた返事</text>' +
+        '<text x="42" y="122" fill="#1E2832" font-size="11.5" font-weight="700">頼んだ連絡の途中経過が伝わらず焦りが高まった</text>' +
+        /* 札2：集まった視線 */
+        '<rect x="30" y="148" width="254" height="66" rx="8" fill="#FDEEEB" stroke="#C94A38" stroke-width="2"/>' +
+        '<rect x="40" y="158" width="104" height="20" rx="5" fill="#C94A38"/>' +
+        '<text x="92" y="172" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">② 集まった視線</text>' +
+        '<text x="42" y="196" fill="#1E2832" font-size="11.5" font-weight="700">窓口前の椅子から見られ「余計に焦った」と本人</text>' +
+        /* 札3：次にできる工夫 */
+        '<rect x="30" y="222" width="254" height="80" rx="8" fill="#E6F7F2" stroke="#0C766A" stroke-width="2"/>' +
+        '<rect x="40" y="232" width="114" height="20" rx="5" fill="#0C766A"/>' +
+        '<text x="97" y="246" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">③ 次にできる工夫</text>' +
+        '<text x="42" y="270" fill="#1E2832" font-size="11" font-weight="700">・経過を伝える時刻を約束し、静かな場所で話す</text>' +
+        '<text x="42" y="289" fill="#1E2832" font-size="11" font-weight="700">・応援の動きを確認し、負担を受けた職員もケア</text>';
+    }
+
+    /* 談話室：椅子に座り、手を膝に置いて普段に近い声で話す井口さん */
+    return bg +
+      /* 談話室の椅子に座る井口さん（手を膝に置いて落ち着いた姿勢） */
+      '<rect x="94" y="166" width="126" height="118" rx="8" fill="#8C6D4F" stroke="#2D2218" stroke-width="2.2"/>' +
+      '<g class="anim-calm-breath">' +
+        /* 座った脚（太もも〜膝〜下腿） */
+        '<path d="M118 228 L114 294 L138 294 L142 236 Z" fill="#465463" stroke="#1E2832" stroke-width="2"/>' +
+        '<path d="M172 236 L176 294 L200 294 L196 228 Z" fill="#3B4856" stroke="#1E2832" stroke-width="2"/>' +
+        /* 胴体（リラックスして下がった肩） */
+        '<path d="M112 146 C118 130 136 124 157 124 C178 124 196 130 202 146 L196 232 L118 232 Z" fill="#5D829E" stroke="#1E2832" stroke-width="2.2"/>' +
+        /* 両腕と膝の上に置いた両手 */
+        '<path d="M114 146 L104 198 L126 226 L138 218 L120 192 L126 156 Z" fill="#5D829E" stroke="#1E2832" stroke-width="2" stroke-linejoin="round"/>' +
+        '<path d="M200 146 L210 198 L188 226 L176 218 L194 192 L188 156 Z" fill="#5D829E" stroke="#1E2832" stroke-width="2" stroke-linejoin="round"/>' +
+        '<ellipse cx="131" cy="226" rx="9" ry="6" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.8"/>' +
+        '<ellipse cx="183" cy="226" rx="9" ry="6" fill="#F2CCB4" stroke="#1E2832" stroke-width="1.8"/>' +
+        /* 首と頭部（穏やかな表情） */
+        '<path d="M147 108 L147 128 L167 128 L167 108 Z" fill="#EABFA6" stroke="#1E2832" stroke-width="1.9"/>' +
+        '<path d="M131 82 C131 62 142 52 157 52 C172 52 183 62 183 82 C183 101 172 114 157 114 C142 114 131 101 131 82 Z" fill="#F2CCB4" stroke="#1E2832" stroke-width="2.2"/>' +
+        '<path d="M130 80 C128 58 141 47 158 47 C174 47 186 58 184 80 C179 66 169 61 156 61 C144 61 135 67 130 80 Z" fill="#2A2E35" stroke="#1E2832" stroke-width="1.9"/>' +
+        '<path d="M141 73 Q147 70 152 73 M162 73 Q167 70 173 73" fill="none" stroke="#2A2E35" stroke-width="1.9" stroke-linecap="round"/>' +
+        '<circle cx="147" cy="81" r="2.1" fill="#1E2832"/><circle cx="167" cy="81" r="2.1" fill="#1E2832"/>' +
+        '<path d="M150 97 Q157 101 164 97" fill="none" stroke="#7A4438" stroke-width="2" stroke-linecap="round"/>' +
+      '</g>' +
+      '<rect x="44" y="254" width="226" height="24" rx="7" fill="#123829" stroke="#4FD1C0" stroke-width="1.5"/>' +
+      '<text x="157" y="270" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">手を膝に置き、普段に近い声で振り返る</text>';
+  }
+
+  /* ---------- 右パネル：上から見た見取り図（俯瞰マップ・立ち位置と退路） ---------- */
+  function buildRightMap(mood) {
+    var kind = mood.kind;
+    var calm = mood.isCalm && !mood.dangerPos;
+    var mid = mood.isMid && !mood.dangerPos;
+
+    /* 上から見た人トークン描画ヘルパー */
+    function personToken(x, y, label, fill, stroke, dirDeg, sub) {
+      var rad = (dirDeg || 0) * Math.PI / 180;
+      var ax = x + Math.cos(rad) * 19;
+      var ay = y + Math.sin(rad) * 19;
+      return (
+        '<g>' +
+          /* 向きを示す小さな三角形・視線コーン */
+          '<circle cx="' + ax.toFixed(1) + '" cy="' + ay.toFixed(1) + '" r="4.2" fill="' + stroke + '"/>' +
+          /* 肩・頭 */
+          '<circle cx="' + x + '" cy="' + y + '" r="16" fill="' + fill + '" stroke="' + stroke + '" stroke-width="2.4"/>' +
+          '<text x="' + x + '" y="' + (y + 4) + '" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="700">' + label + '</text>' +
+          (sub ? '<text x="' + x + '" y="' + (y + 28) + '" text-anchor="middle" fill="#D5E5F7" font-size="9.5" font-weight="700">' + sub + '</text>' : '') +
+        '</g>'
+      );
+    }
+
+    /* クリックで試せる立ち位置ゴーストマーカー */
+    function ghostNode(mode, x, y, tag, isDanger) {
+      var active = state.posMode === mode;
+      var col = isDanger ? '#FF6B5E' : '#4FD1C0';
+      return (
+        '<g class="map-node" data-pos-node="' + mode + '">' +
+          '<circle cx="' + x + '" cy="' + y + '" r="14" fill="' + (active ? (isDanger ? '#591616' : '#12403A') : 'rgba(15,24,36,.78)') + '" stroke="' + col + '" stroke-width="' + (active ? '2.5' : '1.6') + '" stroke-dasharray="' + (active ? 'none' : '3 2') + '"/>' +
+          '<text x="' + x + '" y="' + (y + 3.5) + '" text-anchor="middle" fill="' + col + '" font-size="9.5" font-weight="700">' + tag + '</text>' +
+        '</g>'
+      );
+    }
+
+    /* 近すぎ・退路ふさぎ時の赤い危険ゾーン描画 */
+    function redDangerZone(px, py, nx, ny, msg) {
+      var mx = (px + nx) / 2;
+      var my = (py + ny) / 2;
+      return (
+        '<g class="anim-danger-zone">' +
+          '<line x1="' + px + '" y1="' + py + '" x2="' + nx + '" y2="' + ny + '" stroke="#FF4D4D" stroke-width="26" stroke-linecap="round" opacity=".38"/>' +
+          '<line x1="' + px + '" y1="' + py + '" x2="' + nx + '" y2="' + ny + '" stroke="#FF7A6E" stroke-width="3" stroke-dasharray="5 4"/>' +
+        '</g>' +
+        '<rect x="' + (mx - 74) + '" y="' + (my - 28) + '" width="148" height="20" rx="6" fill="#591212" stroke="#FF7A6E" stroke-width="1.5"/>' +
+        '<text x="' + mx + '" y="' + (my - 14) + '" text-anchor="middle" fill="#FFE3E0" font-size="10" font-weight="700">⚠ ' + msg + '</text>'
+      );
+    }
+
+    /* 適正距離・退路確保の緑ライン */
+    function safeDistanceArc(px, py, nx, ny, msg) {
+      return (
+        '<line x1="' + px + '" y1="' + py + '" x2="' + nx + '" y2="' + ny + '" stroke="#4FD1C0" stroke-width="2.2" stroke-dasharray="5 4"/>' +
+        '<rect x="334" y="252" width="292" height="22" rx="6" fill="#10332E" stroke="#3CC4B2" stroke-width="1.3"/>' +
+        '<text x="480" y="267" text-anchor="middle" fill="#B8FFF3" font-size="10.5" font-weight="700">✓ ' + msg + '</text>'
+      );
+    }
+
+    var base =
+      '<line x1="317" y1="0" x2="317" y2="330" stroke="#2B425E" stroke-width="2"/>' +
+      '<rect x="320" y="0" width="320" height="330" fill="#131E2E"/>' +
+      '<rect x="326" y="6" width="308" height="22" rx="6" fill="#0F1824" stroke="#314966" stroke-width="1.2"/>' +
+      '<text x="480" y="21" text-anchor="middle" fill="#D5E5F7" font-size="11.5" font-weight="700">上から見た見取り図（タップで立ち位置を検証）</text>' +
+      /* 間取り外枠 */
+      '<rect x="330" y="34" width="300" height="244" rx="8" fill="#1B2A3E" stroke="#456182" stroke-width="2"/>';
+
+    /* 場面ごとの見取り図座標 */
+    var px = 415, py = 120;
+    var nx = 498, ny = 175;
+    var sx = 578, sy = 198;
+
+    if (kind === 'discharge') {
+      /* 談話室：テーブル・椅子・廊下へのドア */
+      if (state.posMode === 'close') { nx = 432; ny = 148; }
+      else if (state.posMode === 'block') { nx = 572; ny = 228; }
+      return base +
+        /* 談話室テーブル */
+        '<rect x="352" y="138" width="96" height="62" rx="6" fill="#6E563E" stroke="#C9A882" stroke-width="2"/>' +
+        '<text x="400" y="173" text-anchor="middle" fill="#F5E6D3" font-size="11" font-weight="700">テーブル</text>' +
+        /* 廊下へのドア（右下） */
+        '<rect x="544" y="268" width="64" height="12" rx="3" fill="#28B57B"/>' +
+        '<text x="576" y="262" text-anchor="middle" fill="#A3F5CC" font-size="10.5" font-weight="700">廊下へのドア（退路）</text>' +
+        '<path d="M514 202 L564 252" stroke="#28B57B" stroke-width="2.2" stroke-dasharray="4 3"/>' +
+        /* 立ち位置候補ノード */
+        ghostNode('safe', 498, 175, '①斜め', false) +
+        ghostNode('close', 432, 148, '②近すぎ', true) +
+        ghostNode('block', 572, 228, '③ドア前', true) +
+        (mood.dangerPos
+          ? redDangerZone(px, py, nx, ny, state.posMode === 'block' ? 'ドア前をふさぎ退路なし' : '正面・近すぎ（圧迫感）')
+          : safeDistanceArc(px, py, nx, ny, '斜めに距離を保ち、ドアへの通路を空ける')) +
+        personToken(px, py, '森下', calm ? '#1F7A5C' : '#C93B2B', '#FFE09E', 35, '患者') +
+        personToken(nx, ny, 'あなた', '#0C766A', '#9CF5E8', -145, '新人ナース') +
+        personToken(sx, sy, '先輩', '#2744D1', '#B8C9FF', -155, '見守り');
+    }
+
+    if (kind === 'visit') {
+      /* 面会室前の廊下：面会室ドア・台車・椅子（他患者）・静かな一角 */
+      px = (calm && !mood.dangerPos) ? 518 : 422;
+      py = (calm && !mood.dangerPos) ? 102 : 112;
+      nx = (calm && !mood.dangerPos) ? 556 : 488;
+      ny = (calm && !mood.dangerPos) ? 156 : 166;
+      if (state.posMode === 'close') { px = 422; py = 112; nx = 424; ny = 148; }
+      else if (state.posMode === 'block') { px = 422; py = 112; nx = 372; ny = 106; }
+
+      return base +
+        /* 面会室ドア（上壁） */
+        '<rect x="394" y="34" width="62" height="10" fill="#C99B6B"/>' +
+        '<text x="425" y="58" text-anchor="middle" fill="#FFE8A3" font-size="10" font-weight="700">面会室ドア</text>' +
+        /* ドア脇の台車 */
+        '<rect x="342" y="64" width="44" height="62" rx="4" fill="#5B6E82" stroke="#A9BDD4" stroke-width="1.8"/>' +
+        '<text x="364" y="99" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">台車</text>' +
+        /* 近くの椅子と別の患者 */
+        '<rect x="346" y="196" width="76" height="32" rx="5" fill="#4D5F73" stroke="#89A2B8" stroke-width="1.6"/>' +
+        personToken(384, 212, '他患者', '#6E7B8B', '#CBD5E1', -60, '近くの椅子') +
+        /* 右上の静かな一角 */
+        '<rect x="492" y="54" width="124" height="122" rx="8" fill="rgba(18,120,68,.18)" stroke="#35B87B" stroke-width="1.6" stroke-dasharray="5 3"/>' +
+        '<text x="554" y="72" text-anchor="middle" fill="#A3F5CC" font-size="10" font-weight="700">静かな一角（先輩から見える）</text>' +
+        /* 先輩からの視線ライン */
+        '<line x1="586" y1="220" x2="' + nx + '" y2="' + ny + '" stroke="#8CA2FF" stroke-width="1.8" stroke-dasharray="4 4"/>' +
+        ghostNode('safe', 488, 166, '①斜め', false) +
+        ghostNode('close', 424, 148, '②正面近', true) +
+        ghostNode('block', 372, 106, '③台車間', true) +
+        (mood.dangerPos
+          ? redDangerZone(px, py, nx, ny, state.posMode === 'block' ? '台車と壁の狭い隙間（袋小路）' : '正面で近すぎ（赤警告）')
+          : safeDistanceArc(px, py, nx, ny, calm ? '静かな一角へ移動・先輩が見える位置で見守る' : '斜めに立ち、どちらも廊下を通れる位置')) +
+        personToken(px, py, '平井', calm ? '#1F7A5C' : '#C93B2B', '#FFE09E', 45) +
+        personToken(nx, ny, 'あなた', '#0C766A', '#9CF5E8', -135) +
+        personToken(586, 220, '先輩', '#2744D1', '#B8C9FF', -120, '見守り');
+    }
+
+    if (kind === 'money') {
+      /* ナースステーション窓口・廊下・椅子 */
+      px = 450; py = calm ? 122 : 98;
+      nx = 492; ny = 166;
+      if (state.posMode === 'close') { nx = 450; ny = 132; }
+      else if (state.posMode === 'block') { nx = 396; ny = 98; }
+
+      return base +
+        /* ナースステーション窓口（上部） */
+        '<rect x="344" y="42" width="210" height="40" rx="5" fill="#2A4058" stroke="#7FA3C7" stroke-width="2"/>' +
+        '<text x="449" y="66" text-anchor="middle" fill="#FFE8A3" font-size="11" font-weight="700">ナースステーション窓口</text>' +
+        /* そばの椅子と振り向く他患者 */
+        '<rect x="346" y="188" width="84" height="36" rx="5" fill="#4D5F73" stroke="#89A2B8" stroke-width="1.6"/>' +
+        personToken(388, 206, '他患者', '#6E7B8B', '#CBD5E1', -45, '振り向く') +
+        ghostNode('safe', 492, 166, '①斜め', false) +
+        ghostNode('close', 450, 132, '②近すぎ', true) +
+        ghostNode('block', 396, 98, '③通路塞', true) +
+        (mood.dangerPos
+          ? redDangerZone(px, py, nx, ny, '距離が近すぎ・通路をふさぐ')
+          : safeDistanceArc(px, py, nx, ny, calm ? '15分後の経過連絡を約束し、窓口から手が離れる' : '斜めに距離を取り、確認できる範囲を伝える')) +
+        personToken(px, py, '野田', calm ? '#1F7A5C' : '#C93B2B', '#FFE09E', -90) +
+        personToken(nx, ny, 'あなた', '#0C766A', '#9CF5E8', -135) +
+        personToken(576, 62, '先輩', '#2744D1', '#B8C9FF', 180, '確認へ');
+    }
+
+    if (kind === 'voice') {
+      /* 病室前の廊下：本人・距離を保つ看護師・近くの先輩・通行患者 → 応援で先輩が加わり周囲を離す */
+      px = 420; py = 124;
+      nx = 492; ny = 172;
+      sx = calm ? 528 : 582;
+      sy = calm ? 142 : 124;
+      var byX = calm ? 362 : 368;
+      var byY = calm ? 228 : 168;
+      if (state.posMode === 'close') { nx = 442; ny = 136; }
+      else if (state.posMode === 'block') { nx = 382; ny = 124; }
+
+      return base +
+        '<rect x="342" y="42" width="110" height="28" rx="4" fill="#2A3E54" stroke="#6E8BA8" stroke-width="1.6"/>' +
+        '<text x="397" y="60" text-anchor="middle" fill="#D5E5F7" font-size="10.5" font-weight="700">病室前（廊下）</text>' +
+        /* 周囲の患者を離す矢印 */
+        (calm
+          ? '<path d="M368 175 L362 216" stroke="#4FD1C0" stroke-width="2.2" stroke-dasharray="4 3"/>' +
+            '<text x="382" y="246" text-anchor="middle" fill="#A3F5CC" font-size="9.5" font-weight="700">周囲の人を離す</text>'
+          : '') +
+        ghostNode('safe', 492, 172, '①距離確保', false) +
+        ghostNode('close', 442, 136, '②近すぎ', true) +
+        ghostNode('block', 382, 124, '③孤立', true) +
+        (mood.dangerPos
+          ? redDangerZone(px, py, nx, ny, '危害を命じる幻聴時に接近・孤立は危険')
+          : safeDistanceArc(px, py, nx, ny, calm ? '先輩が加わり周囲を離して医師へ急報' : '距離を保ち、いつでも応援を呼べる位置')) +
+        personToken(byX, byY, '他患者', '#6E7B8B', '#CBD5E1', 90) +
+        personToken(px, py, '三田', '#C93B2B', '#C77DFF', -135, '幻聴') +
+        personToken(nx, ny, 'あなた', '#0C766A', '#9CF5E8', -140) +
+        personToken(sx, sy, '先輩', '#2744D1', '#B8C9FF', -160, calm ? '応援合流' : '近くで待機');
+    }
+
+    if (kind === 'crowded') {
+      /* ナースステーション前：大声・周囲の患者の案内・急接近時に話し手が通路へ離れる動き */
+      var step2 = state.qIndex >= 1;
+      px = (step2 && !calm) ? 462 : 426;
+      py = (step2 && !calm) ? 136 : 114;
+      nx = calm ? 554 : 494;
+      ny = calm ? 196 : 164;
+      if (state.posMode === 'close') { nx = 446; ny = 132; }
+      else if (state.posMode === 'block') { nx = 388; ny = 114; }
+
+      var patientsMoved = mid || calm || step2;
+      return base +
+        '<rect x="344" y="42" width="190" height="32" rx="5" fill="#2A4058" stroke="#7FA3C7" stroke-width="1.8"/>' +
+        '<text x="439" y="62" text-anchor="middle" fill="#FFE8A3" font-size="10.5" font-weight="700">ナースステーション前廊下</text>' +
+        /* 椅子と周囲の患者（先輩が離れた所へ案内する動き） */
+        '<rect x="344" y="182" width="90" height="32" rx="5" fill="#4D5F73" stroke="#89A2B8" stroke-width="1.5"/>' +
+        (patientsMoved
+          ? '<path d="M390 198 L358 236" stroke="#4FD1C0" stroke-width="2.2" stroke-dasharray="4 3"/>' +
+            personToken(356, 232, '他患者', '#4E6B66', '#A3F5CC', 135, '先輩が案内') +
+            personToken(404, 226, '先輩', '#2744D1', '#B8C9FF', 135, '周囲を誘導')
+          : personToken(372, 198, '他患者', '#6E7B8B', '#CBD5E1', -45) +
+            personToken(412, 198, '他患者', '#6E7B8B', '#CBD5E1', -60) +
+            personToken(562, 128, '先輩', '#2744D1', '#B8C9FF', -150, '分担')) +
+        /* 話し手が通路へ離れる矢印＆緊急応援到着 */
+        (calm
+          ? '<path d="M494 164 L548 192" stroke="#4FD1C0" stroke-width="3" stroke-linecap="round"/>' +
+            personToken(592, 144, '応援', '#2744D1', '#FFE8A3', -150, '緊急応援')
+          : '') +
+        ghostNode('safe', calm ? 554 : 494, calm ? 196 : 164, '①退路確保', false) +
+        ghostNode('close', 446, 132, '②近すぎ', true) +
+        ghostNode('block', 388, 114, '③通路塞', true) +
+        (mood.dangerPos || (step2 && !calm)
+          ? redDangerZone(px, py, nx, ny, '急接近・接触危険！空いた通路へ離れる')
+          : safeDistanceArc(px, py, nx, ny, calm ? '通路を使って安全な距離まで離れ、緊急応援を呼ぶ' : '1人が距離を保って聞き、もう1人が周囲を案内')) +
+        personToken(px, py, '井口', '#C93B2B', '#FFE09E', 35, step2 && !calm ? '急接近!' : '大声') +
+        personToken(nx, ny, 'あなた', '#0C766A', '#9CF5E8', -145, calm ? '安全退避' : '話し手1人');
+    }
+
+    /* 6. 振り返り（談話室でドアまでの通路を空けた配置 ／ 職員室で当時の廊下見取り図を再現） */
+    var showReviewMap = calm || (state.qIndex >= 1 && state.calmPreview !== false);
+    if (showReviewMap) {
+      return base +
+        '<rect x="342" y="42" width="276" height="24" rx="5" fill="#23374D" stroke="#6E92B8" stroke-width="1.5"/>' +
+        '<text x="480" y="58" text-anchor="middle" fill="#FFE8A3" font-size="10.5" font-weight="700">当時の廊下見取り図の再現（15:15 窓口前）</text>' +
+        /* 窓口・椅子の視線・応援の動線を振り返る図 */
+        '<rect x="352" y="76" width="150" height="26" rx="4" fill="#2A4058" stroke="#7FA3C7" stroke-width="1.6"/>' +
+        '<text x="427" y="93" text-anchor="middle" fill="#D5E5F7" font-size="10" font-weight="700">窓口（返事待ちで焦り）</text>' +
+        '<rect x="352" y="184" width="92" height="28" rx="4" fill="#4D5F73" stroke="#FF8C7E" stroke-width="1.5"/>' +
+        '<text x="398" y="202" text-anchor="middle" fill="#FFD9D4" font-size="10" font-weight="700">椅子（集まった視線）</text>' +
+        '<path d="M398 182 L428 142" stroke="#FF8C7E" stroke-width="1.8" stroke-dasharray="3 3"/>' +
+        personToken(436, 128, '井口', '#D47A08', '#FFE09E', 40) +
+        personToken(512, 168, '看護師', '#0C766A', '#9CF5E8', -140, '通路へ退避') +
+        personToken(576, 132, '応援', '#2744D1', '#B8C9FF', -150, '周囲誘導・応援') +
+        safeDistanceArc(436, 128, 512, 168, '環境（待ち時間・視線）と応援の動き、職員ケアを確認');
+    }
+
+    /* 談話室での本人との振り返り：ドアまでの通路を空けて斜めに椅子を配置 */
+    return base +
+      '<rect x="354" y="114" width="76" height="52" rx="6" fill="#6E563E" stroke="#C9A882" stroke-width="1.8"/>' +
+      '<text x="392" y="144" text-anchor="middle" fill="#F5E6D3" font-size="10.5" font-weight="700">テーブル</text>' +
+      '<rect x="542" y="268" width="66" height="10" rx="3" fill="#28B57B"/>' +
+      '<text x="575" y="262" text-anchor="middle" fill="#A3F5CC" font-size="10" font-weight="700">ドアまでの通路を空ける</text>' +
+      '<path d="M450 130 L568 250" stroke="#28B57B" stroke-width="2.2" stroke-dasharray="5 4"/>' +
+      personToken(442, 118, '井口', '#1F7A5C', '#A3F5CC', 35, '椅子に着席') +
+      personToken(506, 174, 'あなた', '#0C766A', '#9CF5E8', -145, '斜めに着席') +
+      safeDistanceArc(442, 118, 506, 174, 'ドアまでの通路を空けて椅子を置き、次の工夫を一緒に決める');
+  }
+
+  /* ---------- ステージ全体の HTML を構築 ---------- */
+  function renderStageHTML(sc, mood) {
+    var posLabel = mood.dangerPos
+      ? '⚠ 立ち位置：近すぎ・退路ふさぎ（赤警告）'
+      : '✓ 立ち位置：斜め・通路確保';
+    var posCls = mood.dangerPos ? 'is-danger' : 'is-safe';
+
+    var togglePressed = mood.isCalm && !mood.dangerPos;
+
+    var barBtns = '';
+    if (mood.kind === 'debrief') {
+      var isStaff = mood.isCalm || (state.qIndex >= 1 && state.calmPreview !== false);
+      barBtns =
+        '<button type="button" class="spot-btn ' + (!isStaff ? 'is-on' : '') + '" data-calm-set="false">🪑 談話室（本人と振り返り）</button>' +
+        '<button type="button" class="spot-btn ' + (isStaff ? 'is-on' : '') + '" data-calm-set="true">📋 職員室（3枚の札と見取り図）</button>';
+    } else {
+      barBtns =
+        '<button type="button" class="spot-btn ' + (state.posMode === 'safe' ? 'is-on' : '') + '" data-pos-btn="safe">✓ 斜め・退路あり</button>' +
+        '<button type="button" class="spot-btn ' + (state.posMode === 'close' ? 'is-danger-on' : '') + '" data-pos-btn="close">⚠ 正面・近すぎ</button>' +
+        '<button type="button" class="spot-btn ' + (state.posMode === 'block' ? 'is-danger-on' : '') + '" data-pos-btn="block">⚠ ドア前・狭所</button>' +
+        '<button type="button" class="spot-btn is-toggle" id="calm-toggle" aria-pressed="' + (togglePressed ? 'true' : 'false') + '">' +
+          (togglePressed ? '↺ 緊張時の様子に戻す' : '✨ 落ち着いた様子を見る') +
+        '</button>';
+    }
+
+    return (
+      '<div class="stage-card">' +
+        /* 上部：怒り・緊張ゲージと立ち位置ピル */
+        '<div class="gauge-bar">' +
+          '<div class="gauge-top">' +
+            '<span class="gauge-title">いら立ち・緊張ゲージ <span class="gauge-val is-' + mood.level + '">' + mood.gauge + '%（' + esc(mood.statusText) + '）</span></span>' +
+            '<span class="pos-pill ' + posCls + '">' + posLabel + '</span>' +
+          '</div>' +
+          '<div class="gauge-track" role="progressbar" aria-valuenow="' + mood.gauge + '" aria-valuemin="0" aria-valuemax="100">' +
+            '<div class="gauge-fill is-' + mood.level + '" style="width:' + mood.gauge + '%"></div>' +
+          '</div>' +
+        '</div>' +
+        /* 中央：左＝患者イラスト＆アニメ、右＝上から見た見取り図 */
+        '<div class="stage-box" id="stage-box">' +
+          '<svg id="ward-svg" viewBox="0 0 640 330" role="img" aria-label="' + esc(sc.vis || sc.look || '') + '">' +
+            buildLeftArt(mood) +
+            buildRightMap(mood) +
+          '</svg>' +
+          '<div class="stage-sub">' +
+            '<div class="sub-chip ' + mood.subClass + '">' +
+              '<span class="vol-tag">' + esc(mood.volLabel) + '</span>' +
+              '<span>' + esc(mood.subtitle) + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        /* 下部：立ち位置・表情変化を試す操作バー */
+        '<div class="stage-bar">' + barBtns + '</div>' +
+      '</div>'
+    );
+  }
+
+  /* ---------- タイムライン描画 ---------- */
+  function renderTimeline() {
+    var nav = document.getElementById('timeline');
+    if (!nav) return;
+    var cleared = saved.cleared || {};
+    nav.innerHTML = scenes.map(function (sc, i) {
+      var done = (state.results[i] && state.results[i].done) || cleared[sc.id];
+      var cls = 'tl-item' + (state.view === 'play' && i === state.idx ? ' is-now' : '') + (done ? ' is-done' : '');
+      return '<button type="button" class="' + cls + '" data-scene-idx="' + i + '">' +
+        '<span class="tl-clock">' + esc(sc.time || '') + '</span>' +
+        '<span>' + esc(sc.place || '') + '</span>' +
+        (done ? '<span>✓</span>' : '') +
+      '</button>';
+    }).join('');
+
+    nav.querySelectorAll('[data-scene-idx]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        initScene(Number(b.getAttribute('data-scene-idx')));
+      });
+    });
+  }
+
+  /* ---------- 右ペイン（設問・先輩・試験おまけ） ---------- */
+  function renderRightPaneHTML(sc) {
+    var qs = sc.qs || [];
+    var step1Cls = 'step-tag' + (!state.wrapStep && state.qIndex === 0 ? ' is-on' : (state.qIndex > 0 || state.wrapStep ? ' is-done' : ''));
+    var step2Cls = 'step-tag' + (!state.wrapStep && state.qIndex === 1 ? ' is-on' : (state.wrapStep ? ' is-done' : ''));
+    var step3Cls = 'step-tag' + (state.wrapStep ? ' is-on' : '');
+
+    var tabs =
+      '<div class="step-tabs">' +
+        '<span class="' + step1Cls + '">① 実践の判断 1</span>' +
+        (qs.length > 1 ? '<span class="' + step2Cls + '">② 実践の判断 2</span>' : '') +
+        '<span class="' + step3Cls + '">③ 先輩＆試験おまけ</span>' +
+      '</div>';
+
+    if (!state.wrapStep) {
+      var qObj = qs[state.qIndex];
+      if (!qObj) {
+        return tabs + '<div class="right-scroll"><p>この場面の設問はありません。</p></div>';
+      }
+      var answered = state.qPicked !== null;
+      var ok = state.qPicked === 0;
+      var optsHTML = state.qOrder.map(function (origIdx, dispIdx) {
+        var cls = 'opt';
+        if (answered) {
+          if (origIdx === 0) cls += ' is-ok';
+          else if (origIdx === state.qPicked) cls += ' is-ng';
+        }
+        return '<button type="button" class="' + cls + '" data-opt="' + origIdx + '"' + (answered ? ' disabled' : '') + '>' +
+          '<span class="opt-num">' + (dispIdx + 1) + '</span>' +
+          '<span>' + esc(qObj.a[origIdx]) + '</span>' +
+          '</button>';
+      }).join('');
+
+      var expHTML = '';
+      if (answered) {
+        expHTML =
+          '<div class="exp ' + (ok ? 'is-ok' : 'is-ng') + '">' +
+            '<div class="exp-head">' + (ok ? '✓ 正解！（ゲージと表情・見取り図が変化）' : '△ もう一歩（正解は緑の選択肢）') + '</div>' +
+            '<div>' + esc(qObj.why || '') + '</div>' +
+            '<div class="exp-src">出典：' + esc(qObj.src || '院内の手順で確認') + '</div>' +
+          '</div>';
+      }
+
+      var nextLabel = state.qIndex + 1 < qs.length
+        ? '次の問いへ →'
+        : '先輩のひとこと・試験へ →';
+
+      return (
+        tabs +
+        '<div class="right-scroll">' +
+          '<h2 class="q-title">' + esc(qObj.q) + '</h2>' +
+          '<div class="opts">' + optsHTML + '</div>' +
+          expHTML +
+        '</div>' +
+        '<div class="act-row">' +
+          '<button type="button" id="btn-next-q" class="btn-primary"' + (answered ? '' : ' disabled') + '>' + nextLabel + '</button>' +
+        '</div>'
+      );
+    }
+
+    /* フェーズ 3: 先輩のひとこと ＋ おまけ「試験ならこう問われる」 */
+    var ex = sc.exam;
+    var exAnswered = state.examPicked !== null;
+    var exOk = state.examPicked === 0;
+    var exHTML = '';
+    if (ex) {
+      var exOpts = state.examOrder.map(function (origIdx, dispIdx) {
+        var cls = 'opt';
+        if (exAnswered) {
+          if (origIdx === 0) cls += ' is-ok';
+          else if (origIdx === state.examPicked) cls += ' is-ng';
+        }
+        return '<button type="button" class="' + cls + '" data-exam="' + origIdx + '"' + (exAnswered ? ' disabled' : '') + '>' +
+          '<span class="opt-num">' + (dispIdx + 1) + '</span>' +
+          '<span>' + esc(ex.a[origIdx]) + '</span>' +
+          '</button>';
+      }).join('');
+
+      exHTML =
+        '<div><span class="exam-badge">おまけ・試験ならこう問われる（' + esc(ex.kind || '国試') + '）</span></div>' +
+        '<h2 class="q-title">' + esc(ex.q) + '</h2>' +
+        '<div class="opts">' + exOpts + '</div>' +
+        (exAnswered
+          ? '<div class="exp ' + (exOk ? 'is-ok' : 'is-ng') + '">' +
+              '<div class="exp-head">' + (exOk ? '✓ 正解！' : '△ もう一歩（正解は緑の選択肢）') + '</div>' +
+              '<div>' + esc(ex.why || '') + '</div>' +
+            '</div>'
+          : '');
+    }
+
+    var isLast = state.idx + 1 >= scenes.length;
+    return (
+      tabs +
+      '<div class="right-scroll">' +
+        '<div class="senpai-box">' +
+          '<div class="senpai-av">' + SENPAI_SVG + '</div>' +
+          '<div class="senpai-body">' +
+            '<div class="senpai-name">プリセプター（先輩ナース）</div>' +
+            '<div>' + esc(sc.senpai || '安全な距離と声かけを意識できたね。') + '</div>' +
+          '</div>' +
+        '</div>' +
+        exHTML +
+      '</div>' +
+      '<div class="act-row">' +
+        '<button type="button" id="btn-scene-next" class="btn-primary">' +
+          (isLast ? '全体の振り返りを見る →' : '次の場面（' + esc(scenes[state.idx + 1].time || '') + ' ' + esc(scenes[state.idx + 1].place || '') + '）へ →') +
+        '</button>' +
+      '</div>'
+    );
+  }
+
+  /* ---------- 振り返り画面 ---------- */
+  function renderSummary() {
+    var qOk = 0, qTot = 0, exOk = 0, exTot = 0;
+    var rows = scenes.map(function (sc, i) {
+      var r = state.results[i] || {};
+      qOk += r.qOk || 0;
+      qTot += (sc.qs || []).length;
+      if (sc.exam) { exTot++; if (r.examOk) exOk++; }
+      return '<div class="rec-item">' +
+        '<div><b>' + esc(sc.time) + ' ' + esc(sc.place) + '</b> — ' + esc((sc.who && sc.who.name) || '') + '</div>' +
+        '<button type="button" class="btn-ghost" style="min-height:44px;padding:0 12px" data-retry="' + i + '">見直す</button>' +
+      '</div>';
+    }).join('');
+
+    var app = document.getElementById('app');
+    app.innerHTML =
+      '<div class="summary-card">' +
+        '<h1 class="summary-title">全場面の振り返り完了！</h1>' +
+        '<div class="score-grid">' +
+          '<div class="score-box"><div class="score-num">' + qOk + '/' + qTot + '</div><div class="score-lbl">実践の判断（声かけ・距離・応援）</div></div>' +
+          '<div class="score-box"><div class="score-num">' + (exTot ? exOk + '/' + exTot : '—') + '</div><div class="score-lbl">試験おまけ</div></div>' +
+        '</div>' +
+        '<div class="senpai-box">' +
+          '<div class="senpai-av">' + SENPAI_SVG + '</div>' +
+          '<div class="senpai-body">' +
+            '<div class="senpai-name">プリセプター（先輩ナース）</div>' +
+            '<div>相手の困りごとを言葉にして返すこと、斜めに立って双方が通れる退路を空けること、そして1人で抱えず応援を呼ぶことがディエスカレーションの基本だよ。</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="rec-list">' + rows + '</div>' +
+        '<div class="act-row">' +
+          '<button type="button" id="btn-restart" class="btn-primary">最初からもう一度練習する</button>' +
+        '</div>' +
+      '</div>';
+
+    app.querySelectorAll('[data-retry]').forEach(function (b) {
+      b.addEventListener('click', function () { initScene(Number(b.getAttribute('data-retry'))); });
+    });
+    var re = document.getElementById('btn-restart');
+    if (re) re.addEventListener('click', function () { state.results = {}; initScene(0); });
+  }
+
+  /* ---------- テーマ適用 ---------- */
+  function applyTheme() {
+    if (state.theme === 'dark' || state.theme === 'light') {
+      document.documentElement.setAttribute('data-theme', state.theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    var btn = document.getElementById('themebtn');
+    if (btn) {
+      var dark = state.theme === 'dark' || (!state.theme && window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches);
+      btn.textContent = dark ? '☀' : '☾';
+      btn.title = dark ? '明るい画面に切り替え' : '暗い画面に切り替え';
+      btn.setAttribute('aria-label', btn.title);
+    }
+  }
+
+  /* ---------- 全画面（⛶ 全画面） ---------- */
+  function syncMaxBtn() {
+    var btn = document.getElementById('maxbtn');
+    if (!btn) return;
+    btn.setAttribute('aria-pressed', state.isMax ? 'true' : 'false');
+    btn.innerHTML = state.isMax ? '✕ <span class="lbl-sm">終了</span>' : '⛶ <span class="lbl-sm">全画面</span>';
+  }
+  function setMax(on) {
+    state.isMax = !!on;
+    document.documentElement.classList.toggle('is-max', state.isMax);
+    syncMaxBtn();
+  }
+  function toggleFullscreen() {
+    var want = !state.isMax;
+    setMax(want);
+    try {
+      var el = document.documentElement;
+      if (want) {
+        if (el.requestFullscreen) el.requestFullscreen().catch(function () {});
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      } else {
+        if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+        else if (document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+    } catch (e) { /* iPhone Safari は class だけで動作 */ }
+  }
+  document.addEventListener('fullscreenchange', function () {
+    if (!document.fullscreenElement && state.isMax) setMax(false);
+  });
+  document.addEventListener('webkitfullscreenchange', function () {
+    if (!document.webkitFullscreenElement && state.isMax) setMax(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && state.isMax) setMax(false);
+  });
+
+  /* ---------- 場面初期化 ---------- */
+  function initScene(i) {
+    state.idx = i;
+    state.view = 'play';
+    state.posMode = 'safe';
+    state.calmPreview = null;
+    state.qIndex = 0;
+    state.qPicked = null;
+    state.wrapStep = false;
+    state.examPicked = null;
+
+    var sc = scenes[i];
+    if (!sc) return;
+    var qs = sc.qs || [];
+    state.qOrder = qs.length ? shuffleIdx((qs[0].a || []).length, i * 19 + 5) : [];
+    state.examOrder = sc.exam ? shuffleIdx((sc.exam.a || []).length, i * 41 + 9) : [];
+
+    if (!state.results[i]) {
+      state.results[i] = { qOk: 0, qTot: qs.length, examOk: null, done: false };
+    }
+    render();
+  }
+
+  /* ---------- メイン描画 ---------- */
+  function render() {
+    renderTimeline();
+    var app = document.getElementById('app');
+    if (!app) return;
+
+    if (state.view === 'summary' || !scenes.length) {
+      renderSummary();
+      return;
+    }
+
+    var sc = scenes[state.idx];
+    var mood = computeMood(sc);
+    var who = sc.who || {};
+    var keysHTML = (who.key || []).map(function (k) {
+      return '<span class="key-chip">' + esc(k) + '</span>';
+    }).join('');
+
+    app.innerHTML =
+      '<div class="play-grid">' +
+        '<div class="left-pane">' +
+          '<div class="chart-strip">' +
+            '<span class="time-badge">🕒 ' + esc(sc.time || '') + '</span>' +
+            '<span class="place-badge">' + esc(sc.place || '') + '</span>' +
+            '<span class="who-main">' + esc(who.name || '') + '（' + esc(who.age || '') + '歳・' + esc(who.sex || '') + '）</span>' +
+            '<span class="who-dx">' + esc(who.dx || '') + '</span>' +
+            (keysHTML ? '<div class="who-keys">' + keysHTML + '</div>' : '') +
+          '</div>' +
+          renderStageHTML(sc, mood) +
+          '<div class="look-box"><span class="look-label">場面の様子</span>' + esc(sc.look || '') + '</div>' +
+        '</div>' +
+        '<div class="right-pane">' +
+          renderRightPaneHTML(sc) +
+        '</div>' +
+      '</div>';
+
+    /* 見取り図の立ち位置ノード・ボタン操作 */
+    app.querySelectorAll('[data-pos-node]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        state.posMode = el.getAttribute('data-pos-node') || 'safe';
+        sfxTap();
+        render();
+      });
+    });
+    app.querySelectorAll('[data-pos-btn]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.posMode = b.getAttribute('data-pos-btn') || 'safe';
+        sfxTap();
+        render();
+      });
+    });
+
+    /* 表情・姿勢の変化プレビュー切替 */
+    var calmBtn = document.getElementById('calm-toggle');
+    if (calmBtn) {
+      calmBtn.addEventListener('click', function () {
+        var curCalm = mood.isCalm && !mood.dangerPos;
+        state.calmPreview = !curCalm;
+        if (state.calmPreview) state.posMode = 'safe';
+        sfxTap();
+        render();
+      });
+    }
+
+    app.querySelectorAll('[data-calm-set]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.calmPreview = b.getAttribute('data-calm-set') === 'true';
+        sfxTap();
+        render();
+      });
+    });
+
+    /* 設問の選択肢イベント */
+    app.querySelectorAll('[data-opt]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (state.qPicked !== null) return;
+        var origIdx = Number(b.getAttribute('data-opt'));
+        state.qPicked = origIdx;
+        state.calmPreview = null;
+        if (origIdx === 0) {
+          state.posMode = 'safe';
+          state.results[state.idx].qOk++;
+          sfxOk();
+        } else {
+          if (mood.kind === 'visit' && state.qIndex === 0) {
+            state.posMode = origIdx === 1 ? 'close' : 'block';
+          }
+          sfxNg();
+        }
+        render();
+      });
+    });
+
+    var btnNextQ = document.getElementById('btn-next-q');
+    if (btnNextQ) {
+      btnNextQ.addEventListener('click', function () {
+        var qs = sc.qs || [];
+        state.calmPreview = null;
+        state.posMode = 'safe';
+        if (state.qIndex + 1 < qs.length) {
+          state.qIndex++;
+          state.qPicked = null;
+          state.qOrder = shuffleIdx((qs[state.qIndex].a || []).length, state.idx * 19 + state.qIndex * 13 + 5);
+        } else {
+          state.wrapStep = true;
+        }
+        render();
+      });
+    }
+
+    /* おまけ試験問題 */
+    app.querySelectorAll('[data-exam]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (state.examPicked !== null) return;
+        var origIdx = Number(b.getAttribute('data-exam'));
+        state.examPicked = origIdx;
+        state.results[state.idx].examOk = (origIdx === 0);
+        if (origIdx === 0) sfxOk(); else sfxNg();
+        render();
+      });
+    });
+
+    /* 次の場面へ */
+    var btnSceneNext = document.getElementById('btn-scene-next');
+    if (btnSceneNext) {
+      btnSceneNext.addEventListener('click', function () {
+        state.results[state.idx].done = true;
+        var cleared = saved.cleared || {};
+        cleared[sc.id] = true;
+        saved.cleared = cleared;
+        writeSave({ cleared: cleared });
+
+        if (state.idx + 1 < scenes.length) {
+          initScene(state.idx + 1);
+        } else {
+          state.view = 'summary';
+          render();
+        }
+      });
+    }
+  }
+
+  /* ---------- 初期化 ---------- */
+  function boot() {
+    var wardEl = document.getElementById('ward-name');
+    if (wardEl && D.ward && D.ward.name) wardEl.textContent = D.ward.name;
+
+    var themeBtn = document.getElementById('themebtn');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', function () {
+        var curDark = state.theme === 'dark' || (!state.theme && window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches);
+        state.theme = curDark ? 'light' : 'dark';
+        writeSave({ theme: state.theme });
+        applyTheme();
+      });
+    }
+
+    var soundBtn = document.getElementById('soundbtn');
+    if (soundBtn) {
+      function syncSound() {
+        soundBtn.setAttribute('aria-pressed', state.sound ? 'true' : 'false');
+        soundBtn.innerHTML = state.sound ? '🔊 <span class="lbl-sm">音オン</span>' : '🔇 <span class="lbl-sm">音オフ</span>';
+      }
+      syncSound();
+      soundBtn.addEventListener('click', function () {
+        state.sound = !state.sound;
+        writeSave({ sound: state.sound });
+        syncSound();
+        if (state.sound) playTone(660, 0.1, 'sine', 0.04);
+      });
+    }
+
+    var maxBtn = document.getElementById('maxbtn');
+    if (maxBtn) maxBtn.addEventListener('click', toggleFullscreen);
+
+    applyTheme();
+    syncMaxBtn();
+    initScene(0);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+</body>
+</html>

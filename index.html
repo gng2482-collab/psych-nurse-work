@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>精神科ナースのお仕事（試作）</title>
+<meta name="description" content="新人の看護師が、精神科病棟の夜勤や、患者さんの怒りへの対応を、動かして練習する試作のアプリ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+:root{
+  --paper:#eef1ec; --panel:#fafbf7; --ink:#1b2321; --muted:#52605b; --line:#c9d2cb;
+  --accent:#1d5f74; --accent-ink:#fff; --warn-bg:#fdf3df; --warn-line:#e0c27a; --warn-ink:#5b4210;
+  --shadow:0 3px 10px rgba(24,38,34,.07);
+  --f-display:"DotGothic16","BIZ UDPGothic","Hiragino Sans",system-ui,sans-serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#111816; --panel:#18221e; --ink:#e5ece8; --muted:#9aa8a2; --line:#2d3c36;
+    --accent:#64bdd6; --accent-ink:#0d1513; --warn-bg:#2a2314; --warn-line:#6b5420; --warn-ink:#ecd9a6;
+    --shadow:0 3px 12px rgba(0,0,0,.32);
+    color-scheme:dark;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.75;
+  padding:16px max(16px, env(safe-area-inset-right,0px)) 56px max(16px, env(safe-area-inset-left,0px));
+  overflow-x:hidden;
+}
+:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+.wrap{max-width:860px; margin:0 auto; display:grid; gap:18px}
+.eyebrow{margin:8px 0 0; font-size:.86rem; color:var(--muted)}
+h1{margin:0; font-family:var(--f-display); font-size:clamp(1.7rem, 6vw, 2.4rem); line-height:1.3; font-weight:400; overflow-wrap:anywhere}
+h1 small{font-size:.5em; color:var(--muted); margin-left:.3em}
+.lead{margin:0; font-size:.98rem}
+.note{
+  margin:0; padding:12px 14px; border:1px solid var(--warn-line); background:var(--warn-bg); color:var(--warn-ink);
+  border-radius:12px; font-size:.92rem;
+}
+.cards{list-style:none; margin:0; padding:0; display:grid; gap:14px; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr))}
+.card{
+  display:flex; flex-direction:column; gap:8px; height:100%; padding:16px; text-decoration:none; color:inherit;
+  background:var(--panel); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow);
+}
+.card:hover{border-color:var(--accent)}
+.card .tag{align-self:flex-start; font-size:.78rem; padding:1px 10px; border-radius:99px; color:var(--accent); border:1px solid var(--accent)}
+.card h2{margin:0; font-family:var(--f-display); font-size:1.3rem; font-weight:400; line-height:1.35}
+.card p{margin:0; font-size:.93rem; color:var(--muted)}
+.card .go{margin-top:auto; display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px;
+  background:var(--accent); color:var(--accent-ink); border-radius:10px; font-weight:700; text-align:center}
+.sister{padding:14px 16px; background:var(--panel); border:1px solid var(--line); border-radius:14px; font-size:.95rem}
+.sister a{color:var(--accent); font-weight:700; display:inline-block; min-height:44px; line-height:44px}
+footer{font-size:.82rem; color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">新人の看護師さんと、いっしょに働く人のために</p>
+    <h1>精神科ナースのお仕事<small>（試作）</small></h1>
+  </header>
+  <p class="lead">精神科病棟で新人の看護師が出会う場面を、動かして練習するアプリです。登場する人物・病院・出来事は、すべて架空です。</p>
+  <p class="note">看護師による内容確認の前の試作です。手順は各施設の決まりに従ってください。</p>
+
+  <ul class="cards">
+    <li>
+      <a class="card" href="yakin.html">
+        <span class="tag">A ・ 全8場面</span>
+        <h2>はじめての夜勤</h2>
+        <p>暗い病棟を懐中電灯で巡視して、観察と判断を練習します。当直医への報告（SBAR）も組み立てます。</p>
+        <span class="go">開く →</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="ikari.html">
+        <span class="tag">C ・ 全6場面</span>
+        <h2>怒りが高まる前に</h2>
+        <p>患者さんの怒りが高まる前の、声かけと立ち位置を練習します。上から見た見取り図で、近すぎる位置も確かめます。</p>
+        <span class="go">開く →</span>
+      </a>
+    </li>
+  </ul>
+
+  <p class="sister">医師の専門医試験の勉強には、姉妹サイトの <a href="https://gng2482-collab.github.io/psycho-games/">精神科試験ゲーム →</a> があります。</p>
+  <footer>スマホ・タブレット・パソコンで動きます。内容は学習の目安で、実際の診療・看護は最新の資料と院内の手順で確かめてください。</footer>
+</main>
+</body>
+</html>
