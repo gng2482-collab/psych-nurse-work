@@ -131,10 +131,14 @@ a{color:var(--accent)}
 .tbtn-max{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .tbtn-max:hover{background:var(--accent);color:var(--on-accent)}
 .tbtn-icon{width:44px;padding:0}
+#optionsbtn{gap:0}
 @media (max-width:480px){
   .brand{font-size:15.5px}
   .tbtn{padding:0 9px;font-size:12px}
   .lbl-sm{display:none}
+}
+@media (max-width:340px){
+  .brand-ic{display:none}
 }
 
 /* ---------- メイン領域 ---------- */
@@ -267,7 +271,7 @@ a{color:var(--accent)}
   background:rgba(158,34,24,.94);color:#FFF5F3;border:1px solid #FFA59B;
 }
 .panel-metric{
-  position:absolute;top:6px;right:6px;z-index:5;
+  position:absolute;top:32px;left:6px;z-index:5;max-width:calc(100% - 12px);
   padding:2px 7px;border-radius:7px;font-size:10.5px;font-weight:700;
   font-family:var(--f-mono);pointer-events:none;
   background:rgba(14,22,34,.86);color:#FFE8A3;border:1px solid rgba(255,232,163,.4);
@@ -352,12 +356,8 @@ a{color:var(--accent)}
   display:flex;align-items:center;justify-content:space-between;gap:8px;
   margin-bottom:5px;font-size:12px;font-weight:700;color:var(--ink-2);
 }
-.compare-hint{font-size:11px;color:var(--ink-3);font-weight:400}
 .compare-table{
   width:100%;border-collapse:separate;border-spacing:0 4px;font-size:12.5px;
-}
-.compare-row{
-  cursor:pointer;transition:transform .1s;
 }
 .compare-row td,.compare-row th{
   padding:6px 8px;background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -366,6 +366,10 @@ a{color:var(--accent)}
 .compare-row th{
   text-align:left;font-weight:700;color:var(--ink);
   border-left:1px solid var(--line);border-radius:8px 0 0 8px;width:28%;
+}
+.compare-jump{
+  min-height:44px;padding:0;border:0;background:none;color:inherit;font:inherit;
+  text-align:left;text-decoration:underline;text-underline-offset:.2em;cursor:pointer;
 }
 .compare-row td.col-yest{
   color:var(--ink-2);width:31%;
@@ -379,9 +383,6 @@ a{color:var(--accent)}
 }
 .compare-row.is-changed th{
   border-left:3px solid var(--diff);
-}
-.compare-row.is-active th,.compare-row.is-active td{
-  outline:2px solid var(--accent);
 }
 .chg-badge{
   display:inline-flex;align-items:center;gap:2px;
@@ -407,6 +408,7 @@ a{color:var(--accent)}
 .step-tag.is-on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
 .step-tag.is-done{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
 
+.right-scroll{display:flex;flex-direction:column;gap:8px}
 .q-title{
   margin:0;font-family:var(--f-display);font-size:17px;line-height:1.45;color:var(--ink);
 }
@@ -479,6 +481,7 @@ a{color:var(--accent)}
   text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
 }
 .btn-ghost:hover{border-color:var(--nurse)}
+.reveal-box{width:100%;border-style:dashed;border-color:var(--accent);color:var(--accent)}
 
 /* ---------- 振り返り画面 ---------- */
 .summary-card{
@@ -487,13 +490,6 @@ a{color:var(--accent)}
   display:flex;flex-direction:column;gap:14px;
 }
 .summary-title{margin:0;font-family:var(--f-display);font-size:22px;color:var(--ink)}
-.score-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.score-box{
-  background:var(--paper-2);border:1.5px solid var(--line);border-radius:12px;
-  padding:10px;text-align:center;
-}
-.score-num{font-family:var(--f-display);font-size:22px;color:var(--nurse)}
-.score-lbl{font-size:12px;color:var(--ink-2)}
 .rec-list{display:flex;flex-direction:column;gap:7px}
 .rec-item{
   display:flex;align-items:center;justify-content:space-between;gap:8px;
@@ -585,28 +581,29 @@ html.is-max .play-grid{
   flex:1;min-height:0;display:grid;gap:8px;overflow:hidden;
 }
 html.is-max .left-pane{
-  min-height:0;height:100%;display:flex;flex-direction:column;gap:5px;overflow:hidden;
+  min-height:0;height:100%;gap:5px;overflow-y:auto;overscroll-behavior:contain;
 }
 html.is-max .chart-strip{
   flex:none;padding:4px 9px;gap:3px 7px;
 }
 html.is-max .who-keys{gap:3px}
 html.is-max .stage-card{
-  flex:1;min-height:0;display:flex;flex-direction:column;
+  flex:1 0 auto;display:flex;flex-direction:column;
 }
 html.is-max .diff-bar{
   flex:none;padding:4px 8px;gap:4px;
 }
 html.is-max .spot-btn{min-height:44px;padding:0 8px;font-size:11px}
 html.is-max .stage-box{
-  flex:1;min-height:0;padding:6px;display:flex;flex-direction:column;overflow:hidden;
+  flex:1;padding:6px;display:flex;flex-direction:column;
 }
 html.is-max .compare-panels{
-  flex:1;min-height:0;height:100%;
+  flex:1;min-height:clamp(130px,25dvh,220px);width:100%;
 }
 html.is-max .illust-panel{
   aspect-ratio:auto;height:100%;min-height:0;
 }
+html.is-max .scene-illust{position:absolute;inset:0}
 html.is-max .stage-sub{
   flex:none;margin-top:4px;
 }
@@ -614,7 +611,7 @@ html.is-max .sub-chip{
   padding:4px 8px;font-size:11.5px;line-height:1.32;
 }
 html.is-max .compare-card{
-  flex:none;padding:5px 8px;max-height:132px;overflow-y:auto;
+  flex:none;padding:5px 8px;
 }
 html.is-max .compare-head{margin-bottom:2px;font-size:11px}
 html.is-max .compare-table{border-spacing:0 2px;font-size:11.5px}
@@ -626,9 +623,10 @@ html.is-max .right-pane{
 }
 html.is-max .step-tabs{padding-bottom:5px;gap:4px;flex:none}
 html.is-max .right-scroll{
-  flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:6px;
+  flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;gap:6px;
   padding-right:2px;
 }
+html.is-max .right-scroll > *{flex-shrink:0}
 html.is-max .q-title{font-size:15px;line-height:1.35}
 html.is-max .opts{gap:5px}
 html.is-max .opt{min-height:44px;padding:6px 10px;font-size:12.8px;line-height:1.34}
@@ -645,7 +643,7 @@ html.is-max .summary-card{
 }
 
 /* 横長画面（PC・iPad横）：左右2列 */
-@media (min-width:800px){
+@media (min-width:800px) and (orientation:landscape){
   html.is-max .play-grid{
     grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
     grid-template-rows:minmax(0,1fr);
@@ -654,21 +652,18 @@ html.is-max .summary-card{
 }
 
 /* 縦長画面（iPhone・iPad縦）：上コンパクト見比べ・下に問いと選択肢 */
-@media (max-width:799px){
+@media (max-width:799px), (orientation:portrait){
   html.is-max .play-grid{
     grid-template-columns:1fr;
-    grid-template-rows:minmax(170px,38%) minmax(0,62%);
+    grid-template-rows:minmax(0,2fr) minmax(0,3fr);
     gap:5px;
   }
   html.is-max .chart-strip{padding:3px 7px;font-size:11.5px}
-  html.is-max .who-keys{display:none}
-  html.is-max .compare-card{display:none}
-  html.is-max .stage-sub{display:none}
   html.is-max .right-pane{padding:6px 9px;gap:4px}
 }
 @media (max-width:480px){
   html.is-max .play-grid{
-    grid-template-rows:minmax(145px,33%) minmax(0,67%);
+    grid-template-rows:minmax(0,1fr) minmax(0,2fr);
   }
   html.is-max .diff-bar{padding:3px 6px}
   html.is-max .diff-title{font-size:11px}
@@ -682,11 +677,11 @@ html.is-max .summary-card{
   html.is-max .opt{min-height:44px;padding:4px 8px;font-size:12px;line-height:1.28}
   html.is-max .opt-num{width:21px;height:21px;font-size:11px}
   html.is-max .exp{padding:5px 8px;font-size:11.5px;line-height:1.32}
-  html.is-max .exp-src{display:none}
 }
 
 </style>
 <script data-goatcounter="https://psychogames.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="../psycho-games/review-note.js" data-app="いつもと違う" data-where="../psych-nurse-work/itsumo.html"></script>
 </head>
 <body>
 <div class="sister-bar">
@@ -702,6 +697,7 @@ html.is-max .summary-card{
   <div class="top-in">
     <span class="brand"><span class="brand-ic" aria-hidden="true">🔍</span>いつもと<b>違う</b></span>
     <div class="top-tools">
+      <button type="button" id="optionsbtn" class="tbtn" aria-label="選択肢を最初から出す" title="選択肢を最初から出す" aria-pressed="false">選択肢<span class="lbl-sm">を最初から出す</span></button>
       <button type="button" id="soundbtn" class="tbtn" aria-pressed="false">🔇 <span class="lbl-sm">音オフ</span></button>
       <button type="button" id="themebtn" class="tbtn tbtn-icon" aria-label="画面の明るさを切り替え">☾</button>
       <button type="button" id="maxbtn" class="tbtn tbtn-max" aria-pressed="false">⛶ <span class="lbl-sm">全画面</span></button>
@@ -1201,6 +1197,7 @@ var DATA = {
   'use strict';
 
   var STORAGE_KEY = 'nurse-itsumo-v1';
+  var SHOW_OPTIONS_KEY = 'nurse-itsumo-show-opts-v1';
   var D = window.DATA || { id: 'itsumo', title: 'いつもと違う', ward: { name: '架空の病棟', note: '' }, links: [], scenes: [] };
   var IMG = window.IMG || {};
   var scenes = Array.isArray(D.scenes) ? D.scenes : [];
@@ -1223,6 +1220,8 @@ var DATA = {
   }
 
   var saved = loadSave();
+  var showOptions = false;
+  try { showOptions = localStorage.getItem(SHOW_OPTIONS_KEY) === 'true'; } catch (e) { /* 保存できない場合は隠す */ }
 
   /* ---------- 音（Web Audio・オフ既定） ---------- */
   var audioCtx = null;
@@ -1275,6 +1274,7 @@ var DATA = {
     'ileus': {
       yMetric: '排便3日前・張りなし',
       tMetric: '排便4日前・おなら停止',
+      compareSpots: [2, 2, 0, 2],
       spots: [
         { x: 51, y: 49, short: '①お腹の張り', detail: 'お腹の張りが目立ち、手を当てて前かがみになっている（昨日：張りの訴えなし）' },
         { x: 44, y: 21, short: '②吐き気・表情', detail: '眉を寄せて「気持ち悪い」と吐き気を訴えている（昨日：穏やかな表情）' },
@@ -1297,6 +1297,7 @@ var DATA = {
     'water-intoxication': {
       yMetric: '16時 58.0 kg',
       tMetric: '16時 60.3 kg (+2.3kg)',
+      compareSpots: [2, 0, 1],
       spots: [
         { x: 58, y: 31, short: '①繰り返す飲水', detail: '洗面所でコップに水をくんで繰り返し飲んでいる（飲水の総量は「未確認」）' },
         { x: 72, y: 21, short: '②頭痛と吐き気', detail: 'こめかみを押さえ「頭が痛くて気持ち悪い」と訴える（昨日：頭痛・吐き気なし）' },
@@ -1322,6 +1323,7 @@ var DATA = {
     'malignant-syndrome': {
       yMetric: '36.6℃・脈拍76',
       tMetric: '39.2℃・脈拍122',
+      compareSpots: [0, 0, 2],
       spots: [
         { x: 80, y: 58, short: '①高熱と大粒の汗', detail: '体温 36.6℃ → 39.2℃、脈拍 76 → 122回/分 に急上昇し、額や首に汗をかいている' },
         { x: 52, y: 55, short: '②首と腕のこわばり', detail: '寝返りを打とうとしても首や腕が強くこわばって動きにくい（おととい抗精神病薬を増量）' },
@@ -1349,6 +1351,7 @@ var DATA = {
     'lithium-toxicity': {
       yMetric: '安定歩行・普通便',
       tMetric: '手のふるえ・水様便3回',
+      compareSpots: [1, 0, 2],
       spots: [
         { x: 67, y: 33, short: '①コップが揺れるふるえ', detail: 'コップを持つ手のふるえが目立ち、水面が揺れている（昨日：目立つふるえなし）' },
         { x: 43, y: 74, short: '②立つとふらつく', detail: 'ベッドから立つと足元がふらつき、手すりにつかまる（昨日：一人で安定して歩けた）' },
@@ -1375,6 +1378,7 @@ var DATA = {
     'aspiration': {
       yMetric: 'むせず食事・普段の声',
       tMetric: '飲み込み直後に咳・痰絡む声',
+      compareSpots: [0, 1, 2],
       spots: [
         { x: 43, y: 26, short: '①飲み込み直後の咳', detail: 'ひと口飲み込んだ直後に口を開けて何度も咳き込む（昨日：むせずに食べていた）' },
         { x: 41, y: 35, short: '②痰が絡むゴロゴロ声', detail: '呼吸と声は出ているが「大丈夫」の声が普段よりゴロゴロと痰が絡んでいる' },
@@ -1397,6 +1401,7 @@ var DATA = {
     'venous-thromboembolism': {
       yMetric: '左右差なし・呼吸16・SpO2 98%',
       tMetric: '左脚腫脹・呼吸30・SpO2 92%',
+      compareSpots: [0, 1, 1, 2],
       spots: [
         { x: 64, y: 81, short: '①左ふくらはぎだけ腫脹', detail: '今朝まで身体拘束があり、本人の左ふくらはぎ（向かって右）だけが右より太く腫れて痛む' },
         { x: 50, y: 38, short: '②安静時呼吸 30回/分', detail: '安静時でも呼吸数が 16 → 30回/分 に増え、SpO2 が 98% → 92% に低下している' },
@@ -1426,6 +1431,7 @@ var DATA = {
     'hypoglycemia': {
       yMetric: '朝食ほぼ全量・118mg/dL',
       tMetric: '朝食2割・冷や汗・血糖未測定',
+      compareSpots: [2, 1, 2],
       spots: [
         { x: 57, y: 16, short: '①額の冷や汗', detail: '食前のインスリン注射後、座ったまま顔色が悪く額に冷や汗をかいている' },
         { x: 56, y: 24, short: '②途切れる返事', detail: '呼ぶと目は開けるが、返事が途切れて質問に答えきれない（嚥下の安全も確かめられない）' },
@@ -1452,6 +1458,7 @@ var DATA = {
     'akathisia': {
       yMetric: '座って静かに読書',
       tMetric: '立ち座り・左右の足踏み',
+      compareSpots: [0, 1, 2],
       spots: [
         { x: 47, y: 49, short: '①本を閉じすぐ立つ', detail: '昨日から抗精神病薬が増量され、今日は読みかけの本を閉じて座っていられずすぐ立ち上がる' },
         { x: 35, y: 89, short: '②左右交互の足踏み', detail: '立ったまま左右の足へ交互に体重を移して足踏みを繰り返す' },
@@ -1488,16 +1495,9 @@ var DATA = {
     theme: saved.theme || '',
     isMax: false,
     viewMode: 'side',   // 'side'（2枚並べる） | 'xfade'（重ねてクロスフェード比較）
-    showHints: true,
-    activeSpot: null,   // 0 | 1 | 2 | null
-    foundSpots: {},     // { '0': true, '1': true, ... }
-    qIndex: 0,
-    qPicked: null,
-    qOrder: [],
-    wrapStep: false,
-    examOrder: [],
-    examPicked: null,
-    results: {}         // { sceneIdx: { qOk, qTot, examOk, done } }
+    showOptions: showOptions,
+    round: null,
+    rounds: {}         // 場面を行き来しても、途中の問いと回答を保持する
   };
 
   function getSpec(sc) {
@@ -1505,12 +1505,13 @@ var DATA = {
   }
 
   /* ---------- ステージ（昨日と今日の2枚見比べ＋間違い探し） ---------- */
-  function renderStageHTML(sc) {
+  function renderStageHTML(sc, review) {
+    var round = state.round;
     var spec = getSpec(sc);
     var spots = spec.spots || [];
     var foundCount = 0;
     for (var i = 0; i < spots.length; i++) {
-      if (state.foundSpots[i]) foundCount++;
+      if (round.foundSpots[i]) foundCount++;
     }
     var allFound = foundCount >= spots.length;
 
@@ -1518,10 +1519,10 @@ var DATA = {
     var tImg = IMG[sc.id + '_t'] || yImg;
 
     var pinsHTML = '';
-    if (state.showHints) {
+    if (review && round.showHints) {
       pinsHTML = spots.map(function (sp, idx) {
-        var found = !!state.foundSpots[idx];
-        var active = state.activeSpot === idx;
+        var found = !!round.foundSpots[idx];
+        var active = round.activeSpot === idx;
         var cls = 'diff-pin' + (found ? ' is-found' : '') + (active ? ' is-active' : '');
         return (
           '<button type="button" class="' + cls + '" style="left:' + sp.x + '%;top:' + sp.y + '%" ' +
@@ -1532,12 +1533,9 @@ var DATA = {
       }).join('');
     }
 
-    var activeDetail = (state.activeSpot !== null && spots[state.activeSpot])
-      ? spots[state.activeSpot].detail
-      : (sc.look || '');
-    var subTag = (state.activeSpot !== null && spots[state.activeSpot])
-      ? spots[state.activeSpot].short
-      : '今日の様子';
+    var active = review && round.showHints ? spots[round.activeSpot] : null;
+    var activeDetail = active ? active.detail : (sc.look || '');
+    var subTag = active ? active.short : '今日の様子';
 
     var xfadeImg = state.viewMode === 'xfade'
       ? '<img class="xfade-layer" src="' + yImg + '" alt="昨日の様子（重ね合わせ比較）">'
@@ -1547,15 +1545,15 @@ var DATA = {
       '<div class="stage-card">' +
         '<div class="diff-bar">' +
           '<div class="diff-info">' +
-            '<span class="diff-title">🔍 昨日と今日の違い探し</span>' +
-            '<span class="diff-count ' + (allFound ? 'is-all' : '') + '">' +
-              (allFound ? '✓ 変化 ' + foundCount + '/' + spots.length + ' 確認済' : '見つけた変化 ' + foundCount + '/' + spots.length + '（絵や表をタップ）') +
-            '</span>' +
+            '<span class="diff-title">' + (review ? '🔍 解説図：昨日と今日の違い' : '🔍 昨日と今日の見比べ') + '</span>' +
+            (review && round.showHints ? '<span class="diff-count ' + (allFound ? 'is-all' : '') + '">' +
+              (allFound ? '✓ 変化 ' + foundCount + '/' + spots.length + ' 確認済' : '確認した変化 ' + foundCount + '/' + spots.length + '（印をタップ）') +
+            '</span>' : '') +
           '</div>' +
           '<div class="diff-tools">' +
             '<button type="button" class="spot-btn ' + (state.viewMode === 'side' ? 'is-on' : '') + '" data-view-mode="side">🖼️ 2枚並べる</button>' +
             '<button type="button" class="spot-btn ' + (state.viewMode === 'xfade' ? 'is-on' : '') + '" data-view-mode="xfade">⇄ 重ねて比較</button>' +
-            '<button type="button" class="spot-btn ' + (state.showHints ? 'is-on' : '') + '" id="btn-toggle-hints" aria-pressed="' + (state.showHints ? 'true' : 'false') + '">✨ 変化の印</button>' +
+            (review ? '<button type="button" class="spot-btn ' + (round.showHints ? 'is-on' : '') + '" id="btn-toggle-hints" aria-pressed="' + round.showHints + '">✨ 変化の印</button>' : '') +
           '</div>' +
         '</div>' +
         '<div class="stage-box">' +
@@ -1572,12 +1570,12 @@ var DATA = {
               '<span class="panel-metric is-alert">' + esc(spec.tMetric) + '</span>' +
               '<img class="scene-illust" src="' + tImg + '" alt="' + esc((sc.who && sc.who.name) || '') + 'の今日の様子：' + esc(sc.look || '') + '">' +
               xfadeImg +
-              (state.showHints && spec.svgOverlay ? spec.svgOverlay() : '') +
+              (review && round.showHints && spec.svgOverlay ? spec.svgOverlay() : '') +
               pinsHTML +
             '</div>' +
           '</div>' +
           '<div class="stage-sub">' +
-            '<div class="sub-chip ' + (state.activeSpot !== null ? 'is-spot' : '') + '">' +
+            '<div class="sub-chip ' + (active ? 'is-spot' : '') + '" aria-live="polite">' +
               '<span class="vol-tag">' + esc(subTag) + '</span>' +
               '<span>' + esc(activeDetail) + '</span>' +
             '</div>' +
@@ -1588,22 +1586,24 @@ var DATA = {
   }
 
   /* ---------- 昨日と今日の観察記録・比較表（compare） ---------- */
-  function renderCompareCardHTML(sc) {
+  function renderCompareCardHTML(sc, review) {
     var rows = sc.compare || [];
-    var spec = getSpec(sc);
-    var spotCount = (spec.spots || []).length;
+    // 表の行順と絵の印の順は、場面によって異なる。
+    var compareSpots = review && SCENE_SPECS[sc.id] ? SCENE_SPECS[sc.id].compareSpots : [];
 
     var trs = rows.map(function (r, idx) {
       var isSame = r.yesterday === r.today || /昨日と同じ/.test(r.today || '');
-      var spotIdx = idx < spotCount ? idx : (spotCount - 1);
-      var active = state.activeSpot === spotIdx;
-      var cls = 'compare-row' + (!isSame ? ' is-changed' : '') + (active ? ' is-active' : '');
-      var badge = isSame
+      var cls = 'compare-row' + (review && !isSame ? ' is-changed' : '');
+      var badge = !review ? '' : isSame
         ? '<span class="chg-badge is-same">同じ</span>'
         : '<span class="chg-badge is-diff">変化</span>';
+      var label = esc(r.label);
+      if (compareSpots[idx] !== undefined) {
+        label = '<button type="button" class="compare-jump" data-compare-spot="' + compareSpots[idx] + '">' + label + '</button>';
+      }
       return (
-        '<tr class="' + cls + '" data-cmp-row="' + spotIdx + '">' +
-          '<th scope="row">' + esc(r.label) + '</th>' +
+        '<tr class="' + cls + '">' +
+          '<th scope="row">' + label + '</th>' +
           '<td class="col-yest">昨日：' + esc(r.yesterday) + '</td>' +
           '<td class="col-today">' + badge + '今日：' + esc(r.today) + '</td>' +
         '</tr>'
@@ -1613,8 +1613,7 @@ var DATA = {
     return (
       '<div class="compare-card">' +
         '<div class="compare-head">' +
-          '<span>📋 昨日と今日の観察記録（タップすると上の絵と連動）</span>' +
-          '<span class="compare-hint">赤＝今日変わった所</span>' +
+          '<span>📋 昨日と今日の観察記録</span>' +
         '</div>' +
         '<table class="compare-table" aria-label="昨日と今日の観察記録の比較">' +
           '<tbody>' + trs + '</tbody>' +
@@ -1629,7 +1628,7 @@ var DATA = {
     if (!nav) return;
     var cleared = saved.cleared || {};
     nav.innerHTML = scenes.map(function (sc, i) {
-      var done = (state.results[i] && state.results[i].done) || cleared[sc.id];
+      var done = cleared[sc.id];
       var cls = 'tl-item' + (state.view === 'play' && i === state.idx ? ' is-now' : '') + (done ? ' is-done' : '');
       return '<button type="button" class="' + cls + '" data-scene-idx="' + i + '">' +
         '<span class="tl-clock">' + esc(sc.time || '') + '</span>' +
@@ -1640,7 +1639,7 @@ var DATA = {
 
     nav.querySelectorAll('[data-scene-idx]').forEach(function (b) {
       b.addEventListener('click', function () {
-        initScene(Number(b.getAttribute('data-scene-idx')));
+        initScene(Number(b.getAttribute('data-scene-idx')), false, true);
       });
     });
   }
@@ -1653,126 +1652,117 @@ var DATA = {
     return '';
   }
 
+  function renderOptions(question, order, picked, kind) {
+    if (picked === null && !state.showOptions && !state.round.optionsRevealed) {
+      return '<button type="button" id="reveal-options" class="btn-ghost reveal-box">選択肢を表示</button>';
+    }
+    return '<div class="opts">' + order.map(function (origIdx, dispIdx) {
+      var cls = 'opt';
+      if (picked !== null) {
+        if (origIdx === 0) cls += ' is-ok';
+        else if (origIdx === picked) cls += ' is-ng';
+      }
+      return '<button type="button" class="' + cls + '" data-' + kind + '="' + origIdx + '"' + (picked !== null ? ' disabled' : '') + '>' +
+        '<span class="opt-num">' + (dispIdx + 1) + '</span><span>' + esc(question.a[origIdx]) + '</span></button>';
+    }).join('') + '</div>';
+  }
+
+  function renderExplanation(question, picked) {
+    if (picked === null) return '';
+    var ok = picked === 0;
+    return '<div class="exp ' + (ok ? 'is-ok' : 'is-ng') + '" tabindex="-1">' +
+      '<div class="exp-head">' + (ok ? '✓ 正解！' : '正解は「' + esc(question.a[0]) + '」です。') + '</div>' +
+      '<div>' + esc(question.why || '') + '</div>' +
+      (question.src ? '<div class="exp-src">出典：' + esc(question.src) + '</div>' : '') +
+      '</div>';
+  }
+
+  function recordAnswer(scene, question, step, picked) {
+    var note = window.PG_NOTE;
+    if (!note) return;
+    var attempt = { app: D.title, id: [scene.id, step], q: question.q };
+    if (picked === 0) note.hit(attempt);
+    else note.miss(Object.assign(attempt, {
+      picked: question.a[picked],
+      answer: question.a[0],
+      why: question.why,
+      options: question.a,
+      context: step === 'exam' ? '' : [scene.place, scene.look].join('\n')
+    }));
+  }
+
   /* ---------- 右ペイン（設問・先輩・試験おまけ） ---------- */
-  function renderRightPaneHTML(sc) {
+  function renderRightPaneHTML(sc, review) {
+    var round = state.round;
     var qs = sc.qs || [];
-    var step1Cls = 'step-tag' + (!state.wrapStep && state.qIndex === 0 ? ' is-on' : (state.qIndex > 0 || state.wrapStep ? ' is-done' : ''));
-    var step2Cls = 'step-tag' + (!state.wrapStep && state.qIndex === 1 ? ' is-on' : (state.wrapStep ? ' is-done' : ''));
-    var step3Cls = 'step-tag' + (state.wrapStep ? ' is-on' : '');
+    var step1Cls = 'step-tag' + (!round.wrapStep && round.qIndex === 0 ? ' is-on' : ' is-done');
+    var step2Cls = 'step-tag' + (round.wrapStep ? ' is-done' : (round.qIndex === 1 ? ' is-on' : ''));
+    var step3Cls = 'step-tag' + (round.wrapStep ? ' is-on' : '');
 
     var tabs =
       '<div class="step-tabs">' +
         '<span class="' + step1Cls + '">① 違いから見抜く</span>' +
         (qs.length > 1 ? '<span class="' + step2Cls + '">② 最初の動き方</span>' : '') +
-        '<span class="' + step3Cls + '">③ 先輩＆試験おまけ</span>' +
+        '<span class="' + step3Cls + '">③ 試験おまけ・振り返り</span>' +
       '</div>';
 
-    if (!state.wrapStep) {
-      var qObj = qs[state.qIndex];
+    if (!round.wrapStep) {
+      var qObj = qs[round.qIndex];
       if (!qObj) {
         return tabs + '<div class="right-scroll"><p>この場面の設問はありません。</p></div>';
       }
-      var answered = state.qPicked !== null;
-      var ok = state.qPicked === 0;
-      var optsHTML = state.qOrder.map(function (origIdx, dispIdx) {
-        var cls = 'opt';
-        if (answered) {
-          if (origIdx === 0) cls += ' is-ok';
-          else if (origIdx === state.qPicked) cls += ' is-ng';
-        }
-        return '<button type="button" class="' + cls + '" data-opt="' + origIdx + '"' + (answered ? ' disabled' : '') + '>' +
-          '<span class="opt-num">' + (dispIdx + 1) + '</span>' +
-          '<span>' + esc(qObj.a[origIdx]) + '</span>' +
-          '</button>';
-      }).join('');
-
-      var expHTML = '';
-      if (answered) {
-        expHTML =
-          '<div class="exp ' + (ok ? 'is-ok' : 'is-ng') + '">' +
-            '<div class="exp-head">' + (ok ? '✓ 正解！（昨日と今日の変化を正確に捉えました）' : '△ もう一歩（正解は緑の選択肢）') + '</div>' +
-            '<div>' + esc(qObj.why || '') + '</div>' +
-            '<div class="exp-src">出典：' + esc(qObj.src || '院内の手順で確認') + '</div>' +
-          '</div>';
-      }
-
-      var nextLabel = state.qIndex + 1 < qs.length
+      var nextLabel = round.qIndex + 1 < qs.length
         ? '次の問い（最初の対応）へ →'
-        : '先輩のひとこと・試験へ →';
+        : (sc.exam ? '試験おまけへ →' : 'この場面の振り返りへ →');
 
       return (
         tabs +
         '<div class="right-scroll">' +
-          '<h2 class="q-title">' + esc(qObj.q) + '</h2>' +
-          '<div class="opts">' + optsHTML + '</div>' +
-          expHTML +
+          '<h2 class="q-title" tabindex="-1">' + esc(qObj.q) + '</h2>' +
+          renderOptions(qObj, round.qOrder, round.qPicked, 'opt') +
+          renderExplanation(qObj, round.qPicked) +
         '</div>' +
         '<div class="act-row">' +
-          '<button type="button" id="btn-next-q" class="btn-primary"' + (answered ? '' : ' disabled') + '>' + nextLabel + '</button>' +
+          '<button type="button" id="btn-next-q" class="btn-primary"' + (round.qPicked === null ? ' disabled' : '') + '>' + nextLabel + '</button>' +
         '</div>'
       );
     }
 
     /* フェーズ 3: 先輩のひとこと ＋ おまけ「試験ならこう問われる」 */
     var ex = sc.exam;
-    var exAnswered = state.examPicked !== null;
-    var exOk = state.examPicked === 0;
     var exHTML = '';
-    if (ex) {
-      var exOpts = state.examOrder.map(function (origIdx, dispIdx) {
-        var cls = 'opt';
-        if (exAnswered) {
-          if (origIdx === 0) cls += ' is-ok';
-          else if (origIdx === state.examPicked) cls += ' is-ng';
-        }
-        return '<button type="button" class="' + cls + '" data-exam="' + origIdx + '"' + (exAnswered ? ' disabled' : '') + '>' +
-          '<span class="opt-num">' + (dispIdx + 1) + '</span>' +
-          '<span>' + esc(ex.a[origIdx]) + '</span>' +
-          '</button>';
-      }).join('');
-
+    if (ex && !round.examSkipped) {
       exHTML =
         '<div><span class="exam-badge">おまけ・試験ならこう問われる（' + esc(ex.kind || '国試') + '）</span></div>' +
-        '<h2 class="q-title">' + esc(ex.q) + '</h2>' +
-        '<div class="opts">' + exOpts + '</div>' +
-        (exAnswered
-          ? '<div class="exp ' + (exOk ? 'is-ok' : 'is-ng') + '">' +
-              '<div class="exp-head">' + (exOk ? '✓ 正解！' : '△ もう一歩（正解は緑の選択肢）') + '</div>' +
-              '<div>' + esc(ex.why || '') + '</div>' +
-              (ex.src ? '<div class="exp-src">出典：' + esc(ex.src) + '</div>' : '') +
-            '</div>'
-          : '');
+        '<h2 class="q-title" tabindex="-1">' + esc(ex.q) + '</h2>' +
+        renderOptions(ex, round.examOrder, round.examPicked, 'exam') +
+        renderExplanation(ex, round.examPicked);
     }
 
     var isLast = state.idx + 1 >= scenes.length;
     return (
       tabs +
       '<div class="right-scroll">' +
-        '<div class="senpai-box">' +
+        exHTML +
+        (review ? '<div class="senpai-box" tabindex="-1">' +
           '<div class="senpai-av">' + renderSenpaiAvatar() + '</div>' +
           '<div class="senpai-body">' +
             '<div class="senpai-name">プリセプター（先輩ナース）</div>' +
             '<div>' + esc(sc.senpai || '昨日との違いを具体的な観察と言葉で伝えよう。') + '</div>' +
           '</div>' +
-        '</div>' +
-        exHTML +
+        '</div>' : '') +
       '</div>' +
       '<div class="act-row">' +
-        '<button type="button" id="btn-scene-next" class="btn-primary">' +
+        (review ? '<button type="button" id="btn-scene-next" class="btn-primary">' +
           (isLast ? '全体の振り返りを見る →' : '次の場面（' + esc(scenes[state.idx + 1].time || '') + ' ' + esc((scenes[state.idx + 1].who && scenes[state.idx + 1].who.name) || '') + '）へ →') +
-        '</button>' +
+        '</button>' : '<button type="button" id="btn-skip-exam" class="btn-ghost">試験を飛ばして振り返る</button>') +
       '</div>'
     );
   }
 
   /* ---------- 振り返り画面 ---------- */
   function renderSummary() {
-    var qOk = 0, qTot = 0, exOk = 0, exTot = 0;
     var rows = scenes.map(function (sc, i) {
-      var r = state.results[i] || {};
-      qOk += r.qOk || 0;
-      qTot += (sc.qs || []).length;
-      if (sc.exam) { exTot++; if (r.examOk) exOk++; }
       return '<div class="rec-item">' +
         '<div><b>' + esc(sc.time) + ' ' + esc(sc.place) + '</b> — ' + esc((sc.who && sc.who.name) || '') + '（' + esc((sc.who && sc.who.dx) || '') + '）</div>' +
         '<button type="button" class="btn-ghost" style="min-height:44px;padding:0 12px" data-retry="' + i + '">見直す</button>' +
@@ -1785,11 +1775,7 @@ var DATA = {
     var app = document.getElementById('app');
     app.innerHTML =
       '<div class="summary-card">' +
-        '<h1 class="summary-title">全8場面の「いつもと違う」振り返り完了！</h1>' +
-        '<div class="score-grid">' +
-          '<div class="score-box"><div class="score-num">' + qOk + '/' + qTot + '</div><div class="score-lbl">実践の判断（変化の気づきと初動）</div></div>' +
-          '<div class="score-box"><div class="score-num">' + (exTot ? exOk + '/' + exTot : '—') + '</div><div class="score-lbl">試験おまけ</div></div>' +
-        '</div>' +
+        '<h1 class="summary-title" tabindex="-1">「いつもと違う」の振り返り</h1>' +
         '<div class="senpai-box">' +
           '<div class="senpai-av">' + renderSenpaiAvatar() + '</div>' +
           '<div class="senpai-body">' +
@@ -1805,10 +1791,10 @@ var DATA = {
       '</div>';
 
     app.querySelectorAll('[data-retry]').forEach(function (b) {
-      b.addEventListener('click', function () { initScene(Number(b.getAttribute('data-retry'))); });
+      b.addEventListener('click', function () { initScene(Number(b.getAttribute('data-retry')), true, true); });
     });
     var re = document.getElementById('btn-restart');
-    if (re) re.addEventListener('click', function () { state.results = {}; initScene(0); });
+    if (re) re.addEventListener('click', function () { state.rounds = {}; initScene(0, false, true); });
   }
 
   /* ---------- テーマ適用 ---------- */
@@ -1860,30 +1846,55 @@ var DATA = {
     if (!document.webkitFullscreenElement && state.isMax) setMax(false);
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && state.isMax) setMax(false);
+    if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (e.key === 'Escape' && state.isMax) {
+      toggleFullscreen();
+      return;
+    }
+    if (state.view !== 'play' || e.repeat || e.target.closest('input, textarea, select, [contenteditable]')) return;
+    var reveal = document.getElementById('reveal-options');
+    if (reveal && (e.key === 'Enter' || e.key === ' ') && !e.target.closest('button, a, summary')) {
+      e.preventDefault();
+      reveal.click();
+    } else if (/^[1-9]$/.test(e.key)) {
+      var option = document.querySelectorAll('#app .opts .opt')[Number(e.key) - 1];
+      if (option && !option.disabled) {
+        e.preventDefault();
+        option.click();
+      }
+    }
   });
 
   /* ---------- 場面初期化 ---------- */
-  function initScene(i) {
+  function initScene(i, restart, focus) {
     state.idx = i;
     state.view = 'play';
-    state.activeSpot = null;
-    state.foundSpots = { 0: true };
-    state.qIndex = 0;
-    state.qPicked = null;
-    state.wrapStep = false;
-    state.examPicked = null;
-
     var sc = scenes[i];
-    if (!sc) return;
-    var qs = sc.qs || [];
-    state.qOrder = qs.length ? shuffleIdx((qs[0].a || []).length, i * 23 + 7) : [];
-    state.examOrder = sc.exam ? shuffleIdx((sc.exam.a || []).length, i * 43 + 11) : [];
-
-    if (!state.results[i]) {
-      state.results[i] = { qOk: 0, qTot: qs.length, examOk: null, done: false };
+    if (sc && (restart || !state.rounds[i])) {
+      var qs = sc.qs || [];
+      state.rounds[i] = {
+        activeSpot: null,
+        foundSpots: {},
+        showHints: true,
+        qIndex: 0,
+        qPicked: null,
+        qOrder: qs.length ? shuffleIdx(qs[0].a.length, i * 23 + 7) : [],
+        optionsRevealed: false,
+        wrapStep: qs.length === 0,
+        examOrder: sc.exam ? shuffleIdx(sc.exam.a.length, i * 43 + 11) : [],
+        examPicked: null,
+        examSkipped: false
+      };
     }
+    state.round = state.rounds[i];
+    if (focus) renderAndFocus('.q-title, .senpai-box, .summary-title');
+    else render();
+  }
+
+  function renderAndFocus(selector) {
     render();
+    var target = document.querySelector(selector);
+    if (target) target.focus();
   }
 
   /* ---------- メイン描画 ---------- */
@@ -1898,6 +1909,8 @@ var DATA = {
     }
 
     var sc = scenes[state.idx];
+    var round = state.round;
+    var review = round.wrapStep && (!sc.exam || round.examPicked !== null || round.examSkipped);
     var who = sc.who || {};
     var keysHTML = (who.key || []).map(function (k) {
       return '<span class="key-chip">' + esc(k) + '</span>';
@@ -1913,111 +1926,112 @@ var DATA = {
             '<span class="who-dx">' + esc(who.dx || '') + '</span>' +
             (keysHTML ? '<div class="who-keys">' + keysHTML + '</div>' : '') +
           '</div>' +
-          renderStageHTML(sc) +
-          renderCompareCardHTML(sc) +
+          renderStageHTML(sc, review) +
+          renderCompareCardHTML(sc, review) +
         '</div>' +
         '<div class="right-pane">' +
-          renderRightPaneHTML(sc) +
+          renderRightPaneHTML(sc, review) +
         '</div>' +
       '</div>';
 
-    /* 比較モード切替（2枚並べる / 重ねてクロスフェード） */
-    app.querySelectorAll('[data-view-mode]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        state.viewMode = b.getAttribute('data-view-mode') || 'side';
-        sfxTap();
-        render();
-      });
-    });
-
-    /* 変化の印の表示切替 */
-    var hintBtn = document.getElementById('btn-toggle-hints');
-    if (hintBtn) {
-      hintBtn.addEventListener('click', function () {
-        state.showHints = !state.showHints;
-        sfxTap();
-        render();
+    var reveal = document.getElementById('reveal-options');
+    if (reveal) {
+      reveal.addEventListener('click', function () {
+        round.optionsRevealed = true;
+        renderAndFocus('#app .opts .opt');
       });
     }
 
-    /* 間違い探しピン・比較表の行タップ */
-    function selectSpot(idx) {
-      state.activeSpot = idx;
-      state.foundSpots[idx] = true;
+    /* 図の操作で問いと解説のスクロール位置を動かさない。 */
+    var left = app.querySelector('.left-pane');
+    left.addEventListener('click', function (e) {
+      var control = e.target.closest('[data-view-mode], #btn-toggle-hints, [data-spot], [data-compare-spot]');
+      if (!control) return;
+      var mode = control.getAttribute('data-view-mode');
+      var compareSpot = control.getAttribute('data-compare-spot');
+      var spot = compareSpot === null ? control.getAttribute('data-spot') : compareSpot;
+      var selector = '#btn-toggle-hints';
+      if (mode) {
+        state.viewMode = mode;
+        selector = '[data-view-mode="' + mode + '"]';
+      } else if (spot !== null) {
+        round.showHints = true;
+        round.activeSpot = Number(spot);
+        round.foundSpots[spot] = true;
+        selector = '[data-spot="' + spot + '"]';
+      } else {
+        round.showHints = !round.showHints;
+      }
       sfxTap();
-      render();
-    }
-    app.querySelectorAll('[data-spot]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        selectSpot(Number(b.getAttribute('data-spot')));
-      });
-    });
-    app.querySelectorAll('[data-cmp-row]').forEach(function (tr) {
-      tr.addEventListener('click', function () {
-        selectSpot(Number(tr.getAttribute('data-cmp-row')));
-      });
+      var keepFocus = control === document.activeElement;
+      left.querySelector('.stage-card').outerHTML = renderStageHTML(sc, review);
+      if (compareSpot !== null) left.querySelector(selector).focus();
+      else if (keepFocus) left.querySelector(selector).focus({ preventScroll: true });
     });
 
     /* 設問の選択肢イベント */
     app.querySelectorAll('[data-opt]').forEach(function (b) {
       b.addEventListener('click', function () {
-        if (state.qPicked !== null) return;
+        if (round.qPicked !== null) return;
         var origIdx = Number(b.getAttribute('data-opt'));
-        state.qPicked = origIdx;
-        /* 答えたら全変化スポットを発見済みにする */
-        state.foundSpots = { 0: true, 1: true, 2: true };
-        if (origIdx === 0) {
-          state.results[state.idx].qOk++;
-          sfxOk();
-        } else {
-          sfxNg();
-        }
-        render();
+        round.qPicked = origIdx;
+        recordAnswer(sc, sc.qs[round.qIndex], round.qIndex, origIdx);
+        if (origIdx === 0) sfxOk(); else sfxNg();
+        renderAndFocus('#app .exp');
       });
     });
 
     var btnNextQ = document.getElementById('btn-next-q');
     if (btnNextQ) {
       btnNextQ.addEventListener('click', function () {
+        if (round.qPicked === null) return;
         var qs = sc.qs || [];
-        if (state.qIndex + 1 < qs.length) {
-          state.qIndex++;
-          state.qPicked = null;
-          state.qOrder = shuffleIdx((qs[state.qIndex].a || []).length, state.idx * 23 + state.qIndex * 17 + 7);
+        round.optionsRevealed = false;
+        if (round.qIndex + 1 < qs.length) {
+          round.qIndex++;
+          round.qPicked = null;
+          round.qOrder = shuffleIdx(qs[round.qIndex].a.length, state.idx * 23 + round.qIndex * 17 + 7);
         } else {
-          state.wrapStep = true;
+          round.wrapStep = true;
         }
-        render();
+        renderAndFocus('.q-title, .senpai-box');
       });
     }
 
     /* おまけ試験問題 */
     app.querySelectorAll('[data-exam]').forEach(function (b) {
       b.addEventListener('click', function () {
-        if (state.examPicked !== null) return;
+        if (round.examPicked !== null || round.examSkipped) return;
         var origIdx = Number(b.getAttribute('data-exam'));
-        state.examPicked = origIdx;
-        state.results[state.idx].examOk = (origIdx === 0);
+        round.examPicked = origIdx;
+        recordAnswer(sc, sc.exam, 'exam', origIdx);
         if (origIdx === 0) sfxOk(); else sfxNg();
-        render();
+        renderAndFocus('#app .exp');
       });
     });
+
+    var skipExam = document.getElementById('btn-skip-exam');
+    if (skipExam) {
+      skipExam.addEventListener('click', function () {
+        round.examSkipped = true;
+        renderAndFocus('.senpai-box');
+      });
+    }
 
     /* 次の場面へ */
     var btnSceneNext = document.getElementById('btn-scene-next');
     if (btnSceneNext) {
       btnSceneNext.addEventListener('click', function () {
-        state.results[state.idx].done = true;
         var cleared = saved.cleared || {};
         cleared[sc.id] = true;
         saved.cleared = cleared;
         writeSave({ cleared: cleared });
 
         if (state.idx + 1 < scenes.length) {
-          initScene(state.idx + 1);
+          initScene(state.idx + 1, false, true);
         } else {
           state.view = 'summary';
-          render();
+          renderAndFocus('.summary-title');
         }
       });
     }
@@ -2061,6 +2075,17 @@ var DATA = {
 
     var maxBtn = document.getElementById('maxbtn');
     if (maxBtn) maxBtn.addEventListener('click', toggleFullscreen);
+
+    var optionsBtn = document.getElementById('optionsbtn');
+    if (optionsBtn) {
+      optionsBtn.setAttribute('aria-pressed', state.showOptions);
+      optionsBtn.addEventListener('click', function () {
+        state.showOptions = !state.showOptions;
+        optionsBtn.setAttribute('aria-pressed', state.showOptions);
+        try { localStorage.setItem(SHOW_OPTIONS_KEY, String(state.showOptions)); } catch (e) { /* 保存できない環境でも動作 */ }
+        render();
+      });
+    }
 
     applyTheme();
     syncMaxBtn();

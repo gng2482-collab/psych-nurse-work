@@ -124,7 +124,7 @@ a{color:var(--accent)}
 }
 .tbtn:hover{border-color:var(--nurse)}
 .tbtn:active{transform:scale(.96)}
-.tbtn[aria-pressed="true"]{background:var(--nurse);border-color:var(--nurse);color:#fff}
+.tbtn[aria-pressed="true"]{background:var(--nurse-soft);border-color:var(--nurse);color:var(--ink)}
 .tbtn-max{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .tbtn-max:hover{background:var(--accent);color:var(--on-accent)}
 .tbtn-icon{width:44px;padding:0}
@@ -132,6 +132,10 @@ a{color:var(--accent)}
   .brand{font-size:15.5px}
   .tbtn{padding:0 9px;font-size:12px}
   .lbl-sm{display:none}
+}
+@media (max-width:420px){
+  .brand{display:block;align-content:center;white-space:normal;line-height:1.25}
+  .brand-ic{display:none}
 }
 
 /* ---------- メイン領域 ---------- */
@@ -171,6 +175,7 @@ a{color:var(--accent)}
 
 /* 左ペイン：患者カード＋怒りゲージ＆見取り図ステージ */
 .left-pane{display:flex;flex-direction:column;gap:8px;min-width:0}
+.case-visual{display:flex;flex-direction:column;gap:8px;min-width:0}
 
 .chart-strip{
   background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);
@@ -300,6 +305,7 @@ a{color:var(--accent)}
   font-size:11.5px;font-weight:700;color:var(--amber);
   background:var(--amber-soft);padding:2px 8px;border-radius:999px;margin-right:6px;
 }
+.case-background{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-top:5px}
 
 /* ---------- 右ペイン：問い・選択肢・先輩・試験 ---------- */
 .right-pane{
@@ -317,6 +323,8 @@ a{color:var(--accent)}
 .step-tag.is-on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
 .step-tag.is-done{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
 
+.right-scroll{display:flex;flex-direction:column;gap:8px}
+.right-scroll > *{flex:none}
 .q-title{
   margin:0;font-family:var(--f-display);font-size:17px;line-height:1.45;color:var(--ink);
 }
@@ -384,6 +392,7 @@ a{color:var(--accent)}
   font-size:13.5px;font-weight:700;cursor:pointer;touch-action:manipulation;
 }
 .btn-ghost:hover{border-color:var(--nurse)}
+.reveal-box{width:100%;border-style:dashed}
 
 /* ---------- 振り返り画面 ---------- */
 .summary-card{
@@ -392,13 +401,6 @@ a{color:var(--accent)}
   display:flex;flex-direction:column;gap:14px;
 }
 .summary-title{margin:0;font-family:var(--f-display);font-size:22px;color:var(--ink)}
-.score-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.score-box{
-  background:var(--paper-2);border:1.5px solid var(--line);border-radius:12px;
-  padding:10px;text-align:center;
-}
-.score-num{font-family:var(--f-display);font-size:22px;color:var(--nurse)}
-.score-lbl{font-size:12px;color:var(--ink-2)}
 .rec-list{display:flex;flex-direction:column;gap:7px}
 .rec-item{
   display:flex;align-items:center;justify-content:space-between;gap:8px;
@@ -503,21 +505,24 @@ html.is-max .play-grid{
   flex:1;min-height:0;display:grid;gap:10px;overflow:hidden;
 }
 html.is-max .left-pane{
-  min-height:0;height:100%;display:flex;flex-direction:column;gap:6px;overflow:hidden;
+  min-height:0;height:100%;gap:6px;overflow-y:auto;
 }
+html.is-max .case-visual{flex:1;min-height:0;gap:6px}
 html.is-max .chart-strip{
   flex:none;padding:6px 10px;gap:4px 8px;
 }
 html.is-max .who-keys{gap:4px}
 html.is-max .stage-card{
-  flex:1;min-height:0;display:flex;flex-direction:column;
+  flex:1;min-height:180px;display:flex;flex-direction:column;
 }
 html.is-max .gauge-bar{
   flex:none;padding:5px 10px;gap:4px;
 }
 html.is-max .stage-box{
-  flex:1;min-height:0;aspect-ratio:auto;
+  flex:1;min-height:0;aspect-ratio:auto;display:flex;flex-direction:column;
 }
+html.is-max .stage-box svg{flex:1;min-height:74px;height:0}
+html.is-max .stage-sub{position:static;margin:3px 5px}
 html.is-max .stage-bar{
   flex:none;padding:4px 8px;gap:4px;overflow-x:auto;flex-wrap:nowrap;
 }
@@ -531,7 +536,7 @@ html.is-max .right-pane{
   display:flex;flex-direction:column;overflow:hidden;
 }
 html.is-max .right-scroll{
-  flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
+  flex:1;min-height:0;overflow-y:auto;
   padding-right:2px;
 }
 html.is-max .q-title{font-size:15.5px;line-height:1.38}
@@ -555,23 +560,25 @@ html.is-max .summary-card{
 @media (max-width:839px){
   html.is-max .play-grid{
     grid-template-columns:1fr;
-    grid-template-rows:minmax(185px,41%) minmax(0,59%);
+    grid-template-rows:minmax(0,2fr) minmax(0,3fr);
     gap:6px;
   }
   html.is-max .chart-strip{padding:4px 8px;font-size:12px}
-  html.is-max .who-keys{display:none}
-  html.is-max .look-box{display:none}
+  html.is-max .case-visual{flex:0 0 100%}
   html.is-max .stage-bar{padding:3px 6px}
+  html.is-max .look-box{max-height:none;overflow:visible}
   html.is-max .right-pane{padding:8px 10px;gap:6px}
 }
 @media (max-width:480px){
   html.is-max .play-grid{
-    grid-template-rows:minmax(165px,36%) minmax(0,64%);
+    grid-template-rows:minmax(0,42fr) minmax(0,58fr);
   }
   html.is-max .gauge-bar{padding:4px 8px}
+  html.is-max .gauge-top{gap:3px}
   html.is-max .gauge-title{font-size:11.5px}
   html.is-max .gauge-val{font-size:11.5px}
   html.is-max .pos-pill{font-size:10.5px;padding:1px 6px}
+  html.is-max .stage-box svg{min-height:60px}
   html.is-max .sub-chip{font-size:11px!important;padding:3px 8px}
   html.is-max .spot-btn{padding:0 6px;font-size:11px;gap:3px}
   html.is-max .q-title{font-size:14.5px;line-height:1.35}
@@ -579,8 +586,10 @@ html.is-max .summary-card{
   html.is-max .opt{min-height:44px;padding:5px 9px;font-size:12.5px;line-height:1.32}
   html.is-max .exp{padding:7px 9px;font-size:12px;line-height:1.4}
 }
+
 </style>
 <script data-goatcounter="https://psychogames.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="../psycho-games/review-note.js" data-app="怒りが高まる前に" data-where="../psych-nurse-work/ikari.html"></script>
 </head>
 <body>
 <div class="sister-bar">
@@ -595,6 +604,7 @@ html.is-max .summary-card{
     <div class="top-tools">
       <button type="button" id="soundbtn" class="tbtn" aria-pressed="false">🔇 <span class="lbl-sm">音オフ</span></button>
       <button type="button" id="themebtn" class="tbtn tbtn-icon" aria-label="画面の明るさを切り替え">☾</button>
+      <button type="button" id="optionsbtn" class="tbtn" aria-pressed="false" aria-label="選択肢を最初から表示" title="選択肢を最初から表示">選択肢</button>
       <button type="button" id="maxbtn" class="tbtn tbtn-max" aria-pressed="false">⛶ <span class="lbl-sm">全画面</span></button>
     </div>
   </div>
@@ -927,6 +937,7 @@ var DATA = {
     }
   ]
 };
+
 </script>
 <script>
 /* 怒りが高まる前に（精神科ナースのお仕事 C）：
@@ -1041,6 +1052,8 @@ var DATA = {
     sound: !!saved.sound,
     theme: saved.theme || '',
     isMax: false,
+    showOptions: saved.showOptions === true,
+    optionsRevealed: false,
     posMode: 'safe',    // 'safe'（斜め・退路あり） | 'close'（正面・近すぎ） | 'block'（ドア前・狭所）
     calmPreview: null,  // null（進行に連動） | true（落ち着いた姿勢を表示） | false（緊張時の姿勢を表示）
     qIndex: 0,
@@ -1048,13 +1061,13 @@ var DATA = {
     qOrder: [],
     wrapStep: false,
     examOrder: [],
-    examPicked: null,
-    results: {}         // { sceneIdx: { qOk, qTot, examOk, done } }
+    examPicked: null
   };
 
   /* ---------- 現在の場面の緊張度・ムードを計算 ---------- */
   function computeMood(sc) {
     var kind = detectKind(sc);
+    var feedback = (state.wrapStep ? state.examPicked : state.qPicked) !== null;
     var isCalm = false;
     var isMid = false;
     var isEscalated = false;
@@ -1062,7 +1075,7 @@ var DATA = {
     if (state.calmPreview !== null) {
       isCalm = !!state.calmPreview;
     } else if (state.wrapStep) {
-      isCalm = true;
+      isCalm = feedback;
     } else if (state.qIndex === 0) {
       if (state.qPicked === 0) isMid = true;
       else if (state.qPicked !== null) isEscalated = true;
@@ -1073,11 +1086,9 @@ var DATA = {
     }
 
     /* 立ち位置テストで「近すぎ」「退路ふさぎ」を選んでいるときは緊張が上がる */
-    var dangerPos = state.posMode === 'close' || state.posMode === 'block';
-    if (state.qIndex === 0 && state.qPicked !== null && state.qPicked !== 0 && kind === 'visit') {
-      dangerPos = true;
-    }
+    var dangerPos = feedback && (state.posMode === 'close' || state.posMode === 'block');
 
+    var staffRoom = kind === 'debrief' && feedback && (isCalm || (state.qIndex >= 1 && state.calmPreview !== false));
     var gauge = 76;
     var statusText = '声が大きく緊張が高い';
     var subtitle = '';
@@ -1119,11 +1130,11 @@ var DATA = {
         subClass = 'is-calm';
       } else if (isMid && !dangerPos) {
         gauge = 50;
-        statusText = '斜めの立ち位置と退路を確保・少し呼吸が落ち着く';
+        statusText = feedback ? '斜めの立ち位置と退路を確保・少し呼吸が落ち着く' : '少し呼吸が落ち着く';
         subtitle = '「……ここでは他の人に聞かれるから嫌なんです」';
         volLabel = '🔉 やや強い声';
         subClass = 'is-mid';
-      } else if (isEscalated || dangerPos) {
+      } else if (dangerPos) {
         gauge = 92;
         statusText = '距離が近すぎ・退路がふさがれ圧迫感が高まる';
         subtitle = '「近づかないで！ なんで姉に会わせてくれなかったの？！」';
@@ -1145,7 +1156,7 @@ var DATA = {
         subClass = 'is-calm';
       } else if (isMid && !dangerPos) {
         gauge = 52;
-        statusText = '希望を受け止め確認を伝える・前のめりが少し緩む';
+        statusText = feedback ? '希望を受け止め確認を伝える・前のめりが少し緩む' : '前のめりが少し緩む';
         subtitle = '「……じゃあ、どれくらい待てば分かるんだ？」';
         volLabel = '🔉 やや強い声';
         subClass = 'is-mid';
@@ -1171,7 +1182,7 @@ var DATA = {
         subClass = 'is-calm';
       } else if (isMid && !dangerPos) {
         gauge = 86;
-        statusText = '危害を命じる幻聴が判明・直ちに応援と安全確保が必要';
+        statusText = feedback ? '危害を命じる幻聴が判明・直ちに応援と安全確保が必要' : '返事をしながら片耳を覆う';
         subtitle = '「……近くの人を傷つけろと聞こえる。今は逆らえるか分からない…」';
         volLabel = '🔉 切迫した声';
         subClass = 'is-loud';
@@ -1216,7 +1227,6 @@ var DATA = {
       }
     } else {
       /* debrief（振り返り） */
-      var staffRoom = isCalm || (state.qIndex >= 1 && state.calmPreview !== false);
       if (staffRoom) {
         gauge = 16;
         statusText = '職員室：当時の配置図と3枚の札で経過・環境・職員ケアを共有';
@@ -1235,6 +1245,8 @@ var DATA = {
     var level = gauge >= 70 ? 'high' : (gauge >= 40 ? 'mid' : 'low');
     return {
       kind: kind,
+      feedback: feedback,
+      staffRoom: staffRoom,
       gauge: gauge,
       level: level,
       isCalm: isCalm,
@@ -1266,7 +1278,7 @@ var DATA = {
       /* 左パネル見出しピル */
       '<rect x="8" y="6" width="298" height="22" rx="6" fill="#0F1824" stroke="#314966" stroke-width="1.2"/>' +
       '<text x="157" y="21" text-anchor="middle" fill="#D5E5F7" font-size="11.5" font-weight="700">' +
-        (kind === 'debrief' && (calm || (state.qIndex >= 1 && state.calmPreview !== false))
+        (mood.staffRoom
           ? '職員室での振り返り（3枚の札）'
           : '患者の様子（表情・肩・手の動き・呼吸）') +
       '</text>';
@@ -1493,13 +1505,13 @@ var DATA = {
         '</g>' +
         '<rect x="52" y="252" width="210" height="24" rx="7" fill="' + (calm ? '#123829' : '#3B1618') + '" stroke="' + (calm ? '#4FD1C0' : '#FF8C7E') + '" stroke-width="1.5"/>' +
         '<text x="157" y="268" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">' +
-          (calm ? '距離を保ち応援と安全確保・医師へ急報' : '片耳を覆い視線がそれる・危害を命じる声') +
+          (calm ? '距離を保ち応援と安全確保・医師へ急報' : '片耳を覆い視線がそれる') +
         '</text>';
     }
 
     /* 5. ナースステーション前の大声・急接近（井口さん 39歳男）：大声 → 急に距離を縮める → 通路へ離れ緊急応援 */
     if (kind === 'crowded') {
-      var threat = (state.qIndex >= 1 && !calm) || mood.dangerPos;
+      var threat = (!state.wrapStep && state.qIndex >= 1 && !calm) || mood.dangerPos;
       return bg +
         /* 井口さん（39歳男性） */
         '<g class="' + (calm ? 'anim-calm-breath' : 'anim-tense') + '">' +
@@ -1534,13 +1546,12 @@ var DATA = {
             '<text x="157" y="232" text-anchor="middle" fill="#FFFFFF" font-size="11">院内の緊急応援を呼び、1人で接近しない</text>'
           : '<rect x="44" y="252" width="226" height="24" rx="7" fill="#3B1618" stroke="#FF8C7E" stroke-width="1.5"/>' +
             '<text x="157" y="268" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">' +
-              (threat ? '威嚇と急接近 → 通路へ離れ緊急応援！' : '大声・周囲の視線 → 話し手1人と周囲誘導') +
+              (threat ? '威嚇と急接近' : '大声・周囲の視線') +
             '</text>');
     }
 
     /* 6. 落ち着いたあとの振り返り（井口さん・談話室／職員室の3枚の札） */
-    var showStaffCards = calm || (state.qIndex >= 1 && state.calmPreview !== false);
-    if (showStaffCards) {
+    if (mood.staffRoom) {
       /* 職員室：vis 指定の「待っていた返事」「集まった視線」「次にできる工夫」の3枚の札 */
       return bg +
         '<rect x="18" y="40" width="278" height="276" rx="10" fill="#1E2F42" stroke="#4A688A" stroke-width="2"/>' +
@@ -1598,6 +1609,7 @@ var DATA = {
 
     /* 上から見た人トークン描画ヘルパー */
     function personToken(x, y, label, fill, stroke, dirDeg, sub) {
+      if (!mood.feedback && kind === 'visit' && state.qIndex === 0 && label === 'あなた') return '';
       var rad = (dirDeg || 0) * Math.PI / 180;
       var ax = x + Math.cos(rad) * 19;
       var ay = y + Math.sin(rad) * 19;
@@ -1608,13 +1620,14 @@ var DATA = {
           /* 肩・頭 */
           '<circle cx="' + x + '" cy="' + y + '" r="16" fill="' + fill + '" stroke="' + stroke + '" stroke-width="2.4"/>' +
           '<text x="' + x + '" y="' + (y + 4) + '" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="700">' + label + '</text>' +
-          (sub ? '<text x="' + x + '" y="' + (y + 28) + '" text-anchor="middle" fill="#D5E5F7" font-size="9.5" font-weight="700">' + sub + '</text>' : '') +
+          (sub && mood.feedback ? '<text x="' + x + '" y="' + (y + 28) + '" text-anchor="middle" fill="#D5E5F7" font-size="9.5" font-weight="700">' + sub + '</text>' : '') +
         '</g>'
       );
     }
 
     /* クリックで試せる立ち位置ゴーストマーカー */
     function ghostNode(mode, x, y, tag, isDanger) {
+      if (!mood.feedback) return '';
       var active = state.posMode === mode;
       var col = isDanger ? '#FF6B5E' : '#4FD1C0';
       return (
@@ -1627,6 +1640,7 @@ var DATA = {
 
     /* 近すぎ・退路ふさぎ時の赤い危険ゾーン描画 */
     function redDangerZone(px, py, nx, ny, msg) {
+      if (!mood.feedback) return '';
       var mx = (px + nx) / 2;
       var my = (py + ny) / 2;
       return (
@@ -1641,6 +1655,7 @@ var DATA = {
 
     /* 適正距離・退路確保の緑ライン */
     function safeDistanceArc(px, py, nx, ny, msg) {
+      if (!mood.feedback) return '';
       return (
         '<line x1="' + px + '" y1="' + py + '" x2="' + nx + '" y2="' + ny + '" stroke="#4FD1C0" stroke-width="2.2" stroke-dasharray="5 4"/>' +
         '<rect x="334" y="252" width="292" height="22" rx="6" fill="#10332E" stroke="#3CC4B2" stroke-width="1.3"/>' +
@@ -1652,7 +1667,7 @@ var DATA = {
       '<line x1="317" y1="0" x2="317" y2="330" stroke="#2B425E" stroke-width="2"/>' +
       '<rect x="320" y="0" width="320" height="330" fill="#131E2E"/>' +
       '<rect x="326" y="6" width="308" height="22" rx="6" fill="#0F1824" stroke="#314966" stroke-width="1.2"/>' +
-      '<text x="480" y="21" text-anchor="middle" fill="#D5E5F7" font-size="11.5" font-weight="700">上から見た見取り図（タップで立ち位置を検証）</text>' +
+      '<text x="480" y="21" text-anchor="middle" fill="#D5E5F7" font-size="11.5" font-weight="700">上から見た見取り図</text>' +
       /* 間取り外枠 */
       '<rect x="330" y="34" width="300" height="244" rx="8" fill="#1B2A3E" stroke="#456182" stroke-width="2"/>';
 
@@ -1671,8 +1686,8 @@ var DATA = {
         '<text x="400" y="173" text-anchor="middle" fill="#F5E6D3" font-size="11" font-weight="700">テーブル</text>' +
         /* 廊下へのドア（右下） */
         '<rect x="544" y="268" width="64" height="12" rx="3" fill="#28B57B"/>' +
-        '<text x="576" y="262" text-anchor="middle" fill="#A3F5CC" font-size="10.5" font-weight="700">廊下へのドア（退路）</text>' +
-        '<path d="M514 202 L564 252" stroke="#28B57B" stroke-width="2.2" stroke-dasharray="4 3"/>' +
+        '<text x="576" y="262" text-anchor="middle" fill="#A3F5CC" font-size="10.5" font-weight="700">廊下へのドア</text>' +
+        (mood.feedback ? '<path d="M514 202 L564 252" stroke="#28B57B" stroke-width="2.2" stroke-dasharray="4 3"/>' : '') +
         /* 立ち位置候補ノード */
         ghostNode('safe', 498, 175, '①斜め', false) +
         ghostNode('close', 432, 148, '②近すぎ', true) +
@@ -1705,10 +1720,10 @@ var DATA = {
         '<rect x="346" y="196" width="76" height="32" rx="5" fill="#4D5F73" stroke="#89A2B8" stroke-width="1.6"/>' +
         personToken(384, 212, '他患者', '#6E7B8B', '#CBD5E1', -60, '近くの椅子') +
         /* 右上の静かな一角 */
-        '<rect x="492" y="54" width="124" height="122" rx="8" fill="rgba(18,120,68,.18)" stroke="#35B87B" stroke-width="1.6" stroke-dasharray="5 3"/>' +
-        '<text x="554" y="72" text-anchor="middle" fill="#A3F5CC" font-size="10" font-weight="700">静かな一角（先輩から見える）</text>' +
+        '<rect x="492" y="54" width="124" height="122" rx="8" fill="#213448" stroke="#6E8BA8" stroke-width="1.6" stroke-dasharray="5 3"/>' +
+        '<text x="554" y="72" text-anchor="middle" fill="#D5E5F7" font-size="10" font-weight="700">廊下の一角</text>' +
         /* 先輩からの視線ライン */
-        '<line x1="586" y1="220" x2="' + nx + '" y2="' + ny + '" stroke="#8CA2FF" stroke-width="1.8" stroke-dasharray="4 4"/>' +
+        (mood.feedback ? '<line x1="586" y1="220" x2="' + nx + '" y2="' + ny + '" stroke="#8CA2FF" stroke-width="1.8" stroke-dasharray="4 4"/>' : '') +
         ghostNode('safe', 488, 166, '①斜め', false) +
         ghostNode('close', 424, 148, '②正面近', true) +
         ghostNode('block', 372, 106, '③台車間', true) +
@@ -1778,7 +1793,7 @@ var DATA = {
 
     if (kind === 'crowded') {
       /* ナースステーション前：大声・周囲の患者の案内・急接近時に話し手が通路へ離れる動き */
-      var step2 = state.qIndex >= 1;
+      var step2 = !state.wrapStep && state.qIndex >= 1;
       px = (step2 && !calm) ? 462 : 426;
       py = (step2 && !calm) ? 136 : 114;
       nx = calm ? 554 : 494;
@@ -1815,8 +1830,7 @@ var DATA = {
     }
 
     /* 6. 振り返り（談話室でドアまでの通路を空けた配置 ／ 職員室で当時の廊下見取り図を再現） */
-    var showReviewMap = calm || (state.qIndex >= 1 && state.calmPreview !== false);
-    if (showReviewMap) {
+    if (mood.staffRoom) {
       return base +
         '<rect x="342" y="42" width="276" height="24" rx="5" fill="#23374D" stroke="#6E92B8" stroke-width="1.5"/>' +
         '<text x="480" y="58" text-anchor="middle" fill="#FFE8A3" font-size="10.5" font-weight="700">当時の廊下見取り図の再現（15:15 窓口前）</text>' +
@@ -1837,15 +1851,15 @@ var DATA = {
       '<rect x="354" y="114" width="76" height="52" rx="6" fill="#6E563E" stroke="#C9A882" stroke-width="1.8"/>' +
       '<text x="392" y="144" text-anchor="middle" fill="#F5E6D3" font-size="10.5" font-weight="700">テーブル</text>' +
       '<rect x="542" y="268" width="66" height="10" rx="3" fill="#28B57B"/>' +
-      '<text x="575" y="262" text-anchor="middle" fill="#A3F5CC" font-size="10" font-weight="700">ドアまでの通路を空ける</text>' +
-      '<path d="M450 130 L568 250" stroke="#28B57B" stroke-width="2.2" stroke-dasharray="5 4"/>' +
+      '<text x="575" y="262" text-anchor="middle" fill="#A3F5CC" font-size="10" font-weight="700">談話室のドア</text>' +
+      (mood.feedback ? '<path d="M450 130 L568 250" stroke="#28B57B" stroke-width="2.2" stroke-dasharray="5 4"/>' : '') +
       personToken(442, 118, '井口', '#1F7A5C', '#A3F5CC', 35, '椅子に着席') +
       personToken(506, 174, 'あなた', '#0C766A', '#9CF5E8', -145, '斜めに着席') +
       safeDistanceArc(442, 118, 506, 174, 'ドアまでの通路を空けて椅子を置き、次の工夫を一緒に決める');
   }
 
   /* ---------- ステージ全体の HTML を構築 ---------- */
-  function renderStageHTML(sc, mood) {
+  function renderStageHTML(mood) {
     var posLabel = mood.dangerPos
       ? '⚠ 立ち位置：近すぎ・退路ふさぎ（赤警告）'
       : '✓ 立ち位置：斜め・通路確保';
@@ -1855,7 +1869,7 @@ var DATA = {
 
     var barBtns = '';
     if (mood.kind === 'debrief') {
-      var isStaff = mood.isCalm || (state.qIndex >= 1 && state.calmPreview !== false);
+      var isStaff = mood.staffRoom;
       barBtns =
         '<button type="button" class="spot-btn ' + (!isStaff ? 'is-on' : '') + '" data-calm-set="false">🪑 談話室（本人と振り返り）</button>' +
         '<button type="button" class="spot-btn ' + (isStaff ? 'is-on' : '') + '" data-calm-set="true">📋 職員室（3枚の札と見取り図）</button>';
@@ -1875,7 +1889,7 @@ var DATA = {
         '<div class="gauge-bar">' +
           '<div class="gauge-top">' +
             '<span class="gauge-title">いら立ち・緊張ゲージ <span class="gauge-val is-' + mood.level + '">' + mood.gauge + '%（' + esc(mood.statusText) + '）</span></span>' +
-            '<span class="pos-pill ' + posCls + '">' + posLabel + '</span>' +
+            (mood.feedback ? '<span class="pos-pill ' + posCls + '">' + posLabel + '</span>' : '') +
           '</div>' +
           '<div class="gauge-track" role="progressbar" aria-valuenow="' + mood.gauge + '" aria-valuemin="0" aria-valuemax="100">' +
             '<div class="gauge-fill is-' + mood.level + '" style="width:' + mood.gauge + '%"></div>' +
@@ -1883,7 +1897,7 @@ var DATA = {
         '</div>' +
         /* 中央：左＝患者イラスト＆アニメ、右＝上から見た見取り図 */
         '<div class="stage-box" id="stage-box">' +
-          '<svg id="ward-svg" viewBox="0 0 640 330" role="img" aria-label="' + esc(sc.vis || sc.look || '') + '">' +
+          '<svg id="ward-svg" viewBox="0 0 640 330" role="img" aria-label="患者の様子と病棟の見取り図">' +
             buildLeftArt(mood) +
             buildRightMap(mood) +
           '</svg>' +
@@ -1895,7 +1909,7 @@ var DATA = {
           '</div>' +
         '</div>' +
         /* 下部：立ち位置・表情変化を試す操作バー */
-        '<div class="stage-bar">' + barBtns + '</div>' +
+        (mood.feedback ? '<div class="stage-bar" aria-label="見取り図と患者の反応を試す">' + barBtns + '</div>' : '') +
       '</div>'
     );
   }
@@ -1906,7 +1920,7 @@ var DATA = {
     if (!nav) return;
     var cleared = saved.cleared || {};
     nav.innerHTML = scenes.map(function (sc, i) {
-      var done = (state.results[i] && state.results[i].done) || cleared[sc.id];
+      var done = cleared[sc.id];
       var cls = 'tl-item' + (state.view === 'play' && i === state.idx ? ' is-now' : '') + (done ? ' is-done' : '');
       return '<button type="button" class="' + cls + '" data-scene-idx="' + i + '">' +
         '<span class="tl-clock">' + esc(sc.time || '') + '</span>' +
@@ -1920,6 +1934,45 @@ var DATA = {
         initScene(Number(b.getAttribute('data-scene-idx')));
       });
     });
+  }
+
+  function renderOptions(question, order, picked, kind) {
+    if (picked === null && !state.showOptions && !state.optionsRevealed) {
+      return '<button type="button" id="reveal-options" class="btn-ghost reveal-box">選択肢を表示</button>';
+    }
+    return '<div class="opts">' + order.map(function (origIdx, dispIdx) {
+      var cls = 'opt';
+      if (picked !== null) {
+        if (origIdx === 0) cls += ' is-ok';
+        else if (origIdx === picked) cls += ' is-ng';
+      }
+      return '<button type="button" class="' + cls + '" data-' + kind + '="' + origIdx + '"' + (picked !== null ? ' disabled' : '') + '>' +
+        '<span class="opt-num">' + (dispIdx + 1) + '</span><span>' + esc(question.a[origIdx]) + '</span></button>';
+    }).join('') + '</div>';
+  }
+
+  function renderExplanation(question, picked) {
+    if (picked === null) return '';
+    var ok = picked === 0;
+    return '<div class="exp ' + (ok ? 'is-ok' : 'is-ng') + '" tabindex="-1">' +
+      '<div class="exp-head">' + (ok ? '✓ 正解！' : '正解は「' + esc(question.a[0]) + '」です。') + '</div>' +
+      '<div>' + esc(question.why || '') + '</div>' +
+      (question.src ? '<div class="exp-src">出典：' + esc(question.src) + '</div>' : '') +
+      '</div>';
+  }
+
+  function recordAnswer(scene, question, step, picked) {
+    var note = window.PG_NOTE;
+    if (!note) return;
+    var attempt = { app: D.title, id: [scene.id, step], q: question.q };
+    if (picked === 0) note.hit(attempt);
+    else note.miss(Object.assign(attempt, {
+      picked: question.a[picked],
+      answer: question.a[0],
+      why: question.why,
+      options: question.a,
+      context: step === 'exam' ? '' : [scene.place, scene.look].join('\n')
+    }));
   }
 
   /* ---------- 右ペイン（設問・先輩・試験おまけ） ---------- */
@@ -1942,39 +1995,16 @@ var DATA = {
         return tabs + '<div class="right-scroll"><p>この場面の設問はありません。</p></div>';
       }
       var answered = state.qPicked !== null;
-      var ok = state.qPicked === 0;
-      var optsHTML = state.qOrder.map(function (origIdx, dispIdx) {
-        var cls = 'opt';
-        if (answered) {
-          if (origIdx === 0) cls += ' is-ok';
-          else if (origIdx === state.qPicked) cls += ' is-ng';
-        }
-        return '<button type="button" class="' + cls + '" data-opt="' + origIdx + '"' + (answered ? ' disabled' : '') + '>' +
-          '<span class="opt-num">' + (dispIdx + 1) + '</span>' +
-          '<span>' + esc(qObj.a[origIdx]) + '</span>' +
-          '</button>';
-      }).join('');
-
-      var expHTML = '';
-      if (answered) {
-        expHTML =
-          '<div class="exp ' + (ok ? 'is-ok' : 'is-ng') + '">' +
-            '<div class="exp-head">' + (ok ? '✓ 正解！（ゲージと表情・見取り図が変化）' : '△ もう一歩（正解は緑の選択肢）') + '</div>' +
-            '<div>' + esc(qObj.why || '') + '</div>' +
-            '<div class="exp-src">出典：' + esc(qObj.src || '院内の手順で確認') + '</div>' +
-          '</div>';
-      }
-
       var nextLabel = state.qIndex + 1 < qs.length
         ? '次の問いへ →'
-        : '先輩のひとこと・試験へ →';
+        : '試験の問いへ →';
 
       return (
         tabs +
         '<div class="right-scroll">' +
-          '<h2 class="q-title">' + esc(qObj.q) + '</h2>' +
-          '<div class="opts">' + optsHTML + '</div>' +
-          expHTML +
+          '<h2 class="q-title" tabindex="-1">' + esc(qObj.q) + '</h2>' +
+          renderExplanation(qObj, state.qPicked) +
+          renderOptions(qObj, state.qOrder, state.qPicked, 'opt') +
         '</div>' +
         '<div class="act-row">' +
           '<button type="button" id="btn-next-q" class="btn-primary"' + (answered ? '' : ' disabled') + '>' + nextLabel + '</button>' +
@@ -1984,50 +2014,31 @@ var DATA = {
 
     /* フェーズ 3: 先輩のひとこと ＋ おまけ「試験ならこう問われる」 */
     var ex = sc.exam;
-    var exAnswered = state.examPicked !== null;
-    var exOk = state.examPicked === 0;
-    var exHTML = '';
-    if (ex) {
-      var exOpts = state.examOrder.map(function (origIdx, dispIdx) {
-        var cls = 'opt';
-        if (exAnswered) {
-          if (origIdx === 0) cls += ' is-ok';
-          else if (origIdx === state.examPicked) cls += ' is-ng';
-        }
-        return '<button type="button" class="' + cls + '" data-exam="' + origIdx + '"' + (exAnswered ? ' disabled' : '') + '>' +
-          '<span class="opt-num">' + (dispIdx + 1) + '</span>' +
-          '<span>' + esc(ex.a[origIdx]) + '</span>' +
-          '</button>';
-      }).join('');
-
-      exHTML =
+    var exHTML = ex
+      ? (
         '<div><span class="exam-badge">おまけ・試験ならこう問われる（' + esc(ex.kind || '国試') + '）</span></div>' +
-        '<h2 class="q-title">' + esc(ex.q) + '</h2>' +
-        '<div class="opts">' + exOpts + '</div>' +
-        (exAnswered
-          ? '<div class="exp ' + (exOk ? 'is-ok' : 'is-ng') + '">' +
-              '<div class="exp-head">' + (exOk ? '✓ 正解！' : '△ もう一歩（正解は緑の選択肢）') + '</div>' +
-              '<div>' + esc(ex.why || '') + '</div>' +
-            '</div>'
-          : '');
-    }
+        '<h2 class="q-title" tabindex="-1">' + esc(ex.q) + '</h2>' +
+        renderExplanation(ex, state.examPicked) +
+        renderOptions(ex, state.examOrder, state.examPicked, 'exam')
+      ) : '';
 
     var isLast = state.idx + 1 >= scenes.length;
+    var nextSceneLabel = isLast ? '全体の振り返りを見る →' : '次の場面（' + esc(scenes[state.idx + 1].time || '') + ' ' + esc(scenes[state.idx + 1].place || '') + '）へ →';
     return (
       tabs +
       '<div class="right-scroll">' +
-        '<div class="senpai-box">' +
+        exHTML +
+        (!ex || state.examPicked !== null ? '<div class="senpai-box">' +
           '<div class="senpai-av">' + SENPAI_SVG + '</div>' +
           '<div class="senpai-body">' +
             '<div class="senpai-name">プリセプター（先輩ナース）</div>' +
             '<div>' + esc(sc.senpai || '安全な距離と声かけを意識できたね。') + '</div>' +
           '</div>' +
-        '</div>' +
-        exHTML +
+        '</div>' : '') +
       '</div>' +
       '<div class="act-row">' +
         '<button type="button" id="btn-scene-next" class="btn-primary">' +
-          (isLast ? '全体の振り返りを見る →' : '次の場面（' + esc(scenes[state.idx + 1].time || '') + ' ' + esc(scenes[state.idx + 1].place || '') + '）へ →') +
+          (ex && state.examPicked === null ? '試験を飛ばして進む →' : nextSceneLabel) +
         '</button>' +
       '</div>'
     );
@@ -2035,12 +2046,7 @@ var DATA = {
 
   /* ---------- 振り返り画面 ---------- */
   function renderSummary() {
-    var qOk = 0, qTot = 0, exOk = 0, exTot = 0;
     var rows = scenes.map(function (sc, i) {
-      var r = state.results[i] || {};
-      qOk += r.qOk || 0;
-      qTot += (sc.qs || []).length;
-      if (sc.exam) { exTot++; if (r.examOk) exOk++; }
       return '<div class="rec-item">' +
         '<div><b>' + esc(sc.time) + ' ' + esc(sc.place) + '</b> — ' + esc((sc.who && sc.who.name) || '') + '</div>' +
         '<button type="button" class="btn-ghost" style="min-height:44px;padding:0 12px" data-retry="' + i + '">見直す</button>' +
@@ -2050,11 +2056,7 @@ var DATA = {
     var app = document.getElementById('app');
     app.innerHTML =
       '<div class="summary-card">' +
-        '<h1 class="summary-title">全場面の振り返り完了！</h1>' +
-        '<div class="score-grid">' +
-          '<div class="score-box"><div class="score-num">' + qOk + '/' + qTot + '</div><div class="score-lbl">実践の判断（声かけ・距離・応援）</div></div>' +
-          '<div class="score-box"><div class="score-num">' + (exTot ? exOk + '/' + exTot : '—') + '</div><div class="score-lbl">試験おまけ</div></div>' +
-        '</div>' +
+        '<h1 class="summary-title" tabindex="-1">場面の振り返り</h1>' +
         '<div class="senpai-box">' +
           '<div class="senpai-av">' + SENPAI_SVG + '</div>' +
           '<div class="senpai-body">' +
@@ -2072,7 +2074,7 @@ var DATA = {
       b.addEventListener('click', function () { initScene(Number(b.getAttribute('data-retry'))); });
     });
     var re = document.getElementById('btn-restart');
-    if (re) re.addEventListener('click', function () { state.results = {}; initScene(0); });
+    if (re) re.addEventListener('click', function () { initScene(0); });
   }
 
   /* ---------- テーマ適用 ---------- */
@@ -2096,6 +2098,7 @@ var DATA = {
     var btn = document.getElementById('maxbtn');
     if (!btn) return;
     btn.setAttribute('aria-pressed', state.isMax ? 'true' : 'false');
+    btn.setAttribute('aria-label', state.isMax ? '全画面を終了' : '全画面');
     btn.innerHTML = state.isMax ? '✕ <span class="lbl-sm">終了</span>' : '⛶ <span class="lbl-sm">全画面</span>';
   }
   function setMax(on) {
@@ -2124,17 +2127,34 @@ var DATA = {
     if (!document.webkitFullscreenElement && state.isMax) setMax(false);
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && state.isMax) setMax(false);
+    if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (e.key === 'Escape' && state.isMax) {
+      toggleFullscreen();
+      return;
+    }
+    if (state.view !== 'play' || e.target.closest('input, textarea, select, [contenteditable]')) return;
+    var gate = document.getElementById('reveal-options');
+    if (gate && (e.key === 'Enter' || e.key === ' ') && !e.target.closest('button, a, summary')) {
+      e.preventDefault();
+      gate.click();
+    } else if (/^[1-4]$/.test(e.key)) {
+      var option = document.querySelectorAll('.opts .opt')[Number(e.key) - 1];
+      if (option && !option.disabled) {
+        e.preventDefault();
+        option.click();
+      }
+    }
   });
 
   /* ---------- 場面初期化 ---------- */
-  function initScene(i) {
+  function initScene(i, focus) {
     state.idx = i;
     state.view = 'play';
     state.posMode = 'safe';
     state.calmPreview = null;
     state.qIndex = 0;
     state.qPicked = null;
+    state.optionsRevealed = false;
     state.wrapStep = false;
     state.examPicked = null;
 
@@ -2144,10 +2164,19 @@ var DATA = {
     state.qOrder = qs.length ? shuffleIdx((qs[0].a || []).length, i * 19 + 5) : [];
     state.examOrder = sc.exam ? shuffleIdx((sc.exam.a || []).length, i * 41 + 9) : [];
 
-    if (!state.results[i]) {
-      state.results[i] = { qOk: 0, qTot: qs.length, examOk: null, done: false };
-    }
     render();
+    if (focus !== false) focusQuestion();
+  }
+
+  function focusQuestion() {
+    var title = document.querySelector('.q-title, .summary-title');
+    if (title) title.focus({ preventScroll: document.documentElement.classList.contains('is-max') });
+  }
+
+  function showExplanation() {
+    render();
+    var explanation = document.querySelector('.exp');
+    if (explanation) explanation.focus();
   }
 
   /* ---------- メイン描画 ---------- */
@@ -2171,55 +2200,61 @@ var DATA = {
     app.innerHTML =
       '<div class="play-grid">' +
         '<div class="left-pane">' +
-          '<div class="chart-strip">' +
-            '<span class="time-badge">🕒 ' + esc(sc.time || '') + '</span>' +
-            '<span class="place-badge">' + esc(sc.place || '') + '</span>' +
-            '<span class="who-main">' + esc(who.name || '') + '（' + esc(who.age || '') + '歳・' + esc(who.sex || '') + '）</span>' +
-            '<span class="who-dx">' + esc(who.dx || '') + '</span>' +
-            (keysHTML ? '<div class="who-keys">' + keysHTML + '</div>' : '') +
+          '<div class="case-visual">' +
+            '<div class="chart-strip">' +
+              '<span class="time-badge">🕒 ' + esc(sc.time || '') + '</span>' +
+              '<span class="place-badge">' + esc(sc.place || '') + '</span>' +
+              '<span class="who-main">' + esc(who.name || '') + '（' + esc(who.age || '') + '歳・' + esc(who.sex || '') + '）</span>' +
+            '</div>' +
+            renderStageHTML(mood) +
           '</div>' +
-          renderStageHTML(sc, mood) +
-          '<div class="look-box"><span class="look-label">場面の様子</span>' + esc(sc.look || '') + '</div>' +
+          '<div class="look-box"><span class="look-label">場面の様子</span>' + esc(sc.look || '') +
+            '<div class="case-background"><span class="who-dx">' + esc(who.dx || '') + '</span>' +
+              (keysHTML ? '<div class="who-keys">' + keysHTML + '</div>' : '') +
+            '</div>' +
+          '</div>' +
         '</div>' +
         '<div class="right-pane">' +
           renderRightPaneHTML(sc) +
         '</div>' +
       '</div>';
 
-    /* 見取り図の立ち位置ノード・ボタン操作 */
-    app.querySelectorAll('[data-pos-node]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        state.posMode = el.getAttribute('data-pos-node') || 'safe';
-        sfxTap();
+    var revealBtn = document.getElementById('reveal-options');
+    if (revealBtn) {
+      revealBtn.addEventListener('click', function () {
+        state.optionsRevealed = true;
         render();
-      });
-    });
-    app.querySelectorAll('[data-pos-btn]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        state.posMode = b.getAttribute('data-pos-btn') || 'safe';
-        sfxTap();
-        render();
-      });
-    });
-
-    /* 表情・姿勢の変化プレビュー切替 */
-    var calmBtn = document.getElementById('calm-toggle');
-    if (calmBtn) {
-      calmBtn.addEventListener('click', function () {
-        var curCalm = mood.isCalm && !mood.dangerPos;
-        state.calmPreview = !curCalm;
-        if (state.calmPreview) state.posMode = 'safe';
-        sfxTap();
-        render();
+        app.querySelector('.opts .opt').focus();
       });
     }
 
-    app.querySelectorAll('[data-calm-set]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        state.calmPreview = b.getAttribute('data-calm-set') === 'true';
-        sfxTap();
-        render();
-      });
+    /* 解説中の図だけを更新し、問いと解説のスクロール位置を保つ */
+    var left = app.querySelector('.left-pane');
+    left.addEventListener('click', function (e) {
+      var control = e.target.closest('[data-pos-node], [data-pos-btn], [data-calm-set], #calm-toggle');
+      if (!control) return;
+      var pos = control.getAttribute('data-pos-btn') || control.getAttribute('data-pos-node');
+      var room = control.getAttribute('data-calm-set');
+      var selector = '';
+      if (pos) {
+        state.posMode = pos;
+        selector = '[data-pos-btn="' + pos + '"]';
+      } else if (room !== null) {
+        state.calmPreview = room === 'true';
+        selector = '[data-calm-set="' + room + '"]';
+      } else {
+        var currentMood = computeMood(sc);
+        var curCalm = currentMood.isCalm && !currentMood.dangerPos;
+        state.calmPreview = !curCalm;
+        if (state.calmPreview) state.posMode = 'safe';
+        selector = '#calm-toggle';
+      }
+      sfxTap();
+      var barScroll = left.querySelector('.stage-bar').scrollLeft;
+      var keepFocus = control === document.activeElement;
+      left.querySelector('.stage-card').outerHTML = renderStageHTML(computeMood(sc));
+      left.querySelector('.stage-bar').scrollLeft = barScroll;
+      if (keepFocus) left.querySelector(selector).focus({ preventScroll: true });
     });
 
     /* 設問の選択肢イベント */
@@ -2229,9 +2264,9 @@ var DATA = {
         var origIdx = Number(b.getAttribute('data-opt'));
         state.qPicked = origIdx;
         state.calmPreview = null;
+        recordAnswer(sc, sc.qs[state.qIndex], state.qIndex, origIdx);
         if (origIdx === 0) {
           state.posMode = 'safe';
-          state.results[state.idx].qOk++;
           sfxOk();
         } else {
           if (mood.kind === 'visit' && state.qIndex === 0) {
@@ -2239,16 +2274,18 @@ var DATA = {
           }
           sfxNg();
         }
-        render();
+        showExplanation();
       });
     });
 
     var btnNextQ = document.getElementById('btn-next-q');
     if (btnNextQ) {
       btnNextQ.addEventListener('click', function () {
+        if (state.qPicked === null) return;
         var qs = sc.qs || [];
         state.calmPreview = null;
         state.posMode = 'safe';
+        state.optionsRevealed = false;
         if (state.qIndex + 1 < qs.length) {
           state.qIndex++;
           state.qPicked = null;
@@ -2257,6 +2294,7 @@ var DATA = {
           state.wrapStep = true;
         }
         render();
+        focusQuestion();
       });
     }
 
@@ -2266,9 +2304,9 @@ var DATA = {
         if (state.examPicked !== null) return;
         var origIdx = Number(b.getAttribute('data-exam'));
         state.examPicked = origIdx;
-        state.results[state.idx].examOk = (origIdx === 0);
+        recordAnswer(sc, sc.exam, 'exam', origIdx);
         if (origIdx === 0) sfxOk(); else sfxNg();
-        render();
+        showExplanation();
       });
     });
 
@@ -2276,7 +2314,6 @@ var DATA = {
     var btnSceneNext = document.getElementById('btn-scene-next');
     if (btnSceneNext) {
       btnSceneNext.addEventListener('click', function () {
-        state.results[state.idx].done = true;
         var cleared = saved.cleared || {};
         cleared[sc.id] = true;
         saved.cleared = cleared;
@@ -2287,6 +2324,7 @@ var DATA = {
         } else {
           state.view = 'summary';
           render();
+          focusQuestion();
         }
       });
     }
@@ -2325,9 +2363,18 @@ var DATA = {
     var maxBtn = document.getElementById('maxbtn');
     if (maxBtn) maxBtn.addEventListener('click', toggleFullscreen);
 
+    var optionsBtn = document.getElementById('optionsbtn');
+    optionsBtn.setAttribute('aria-pressed', String(state.showOptions));
+    optionsBtn.addEventListener('click', function () {
+      state.showOptions = !state.showOptions;
+      writeSave({ showOptions: state.showOptions });
+      optionsBtn.setAttribute('aria-pressed', String(state.showOptions));
+      render();
+    });
+
     applyTheme();
     syncMaxBtn();
-    initScene(0);
+    initScene(0, false);
   }
 
   if (document.readyState === 'loading') {
@@ -2336,6 +2383,7 @@ var DATA = {
     boot();
   }
 })();
+
 </script>
 </body>
 </html>
